@@ -1,0 +1,15 @@
+{
+ "esik": 0.12,
+ "paragraf_sayisi": 2,
+ "sorunlu": [
+  {
+   "paragraf": 0,
+   "wer": 0.333,
+   "farklar": [
+    "'bin dokuz yüz elli dokuzda on' → '1959 da 10'",
+    "'yuri yudin di' → 'yürü yudinde'"
+   ],
+   "metin": "Bin dokuz yüz elli dokuzda on kişilik bir grup, Kuzey Urallarda zorlu bir kayak yürüyüşüne çıktı. Yolun başında biri has"
+  }
+ ]
+}

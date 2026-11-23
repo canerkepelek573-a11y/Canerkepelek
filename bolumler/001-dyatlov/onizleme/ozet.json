@@ -1,0 +1,41 @@
+{
+ "bolum": "001-dyatlov",
+ "baslik": "Dyatlov Geçidi: Çadırı İçeriden Kesip Karanlığa Neden Kaçtılar?",
+ "uyarilar": [
+  "Paragraf 8: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'taiga forest winter', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/8/80/Winter-boreal-forest-Trondheim.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "Paragraf 9: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'cross country skiing winter forest', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/6/6c/A_cross-country_skiing_track_in_pine_forest_Helsinki.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "Paragraf 10: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'snow covered mountain pass wind', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/e/ec/Snow_on_Japan%27s_Honshu_Island_%28MODIS_2024-01-14%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "Paragraf 15: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'search party snow mountains', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/2/29/The_animals_of_the_world._Brehm%27s_life_of_animals%3B_%281895%29_%2820587229539%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "Paragraf 18: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'footprints snow slope', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/b/b3/Footprints_in_the_snow_on_slopes_of_Mount_Apharwat..JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "Paragraf 19: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'big cedar tree winter forest', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/2/25/Canadian_forest_industries_1882_%281882%29_%2820496192416%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "Paragraf 21: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'snowy slope forest edge dusk', 'yon': 'yatay'}): Commons aramasında uygun sonuç yok: 'snowy slope forest edge dusk'",
+  "Paragraf 23: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'snow ravine creek melting spring', 'yon': 'yatay'}): Commons aramasında uygun sonuç yok: 'snow ravine creek melting spring'",
+  "Paragraf 26: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'dark frozen creek water', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/4/4b/Birdcraft_-_a_field_book_of_two_hundred_song%2C_game%2C_and_water_birds_%281897%29_%2814565106328%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "Paragraf 35: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'reindeer herd snow north', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/d/d0/The_Other_364_Days_of_the_Year-_The_Real_Lives_of_Wild_Reindeer_%2815842503347%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "Paragraf 36: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'barbed wire snow winter', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/6/64/Barbed_wire_winter.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "Paragraf 37: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'foggy snowy forest mysterious', 'yon': 'yatay'}): Commons aramasında uygun sonuç yok: 'foggy snowy forest mysterious'",
+  "Paragraf 57: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'tent alone snow mountain dusk', 'yon': 'yatay'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/b/b6/Trans-Himalaya%3B_discoveries_and_adventures_in_Tibet_%281909%29_%2814802731893%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "shorts2: Paragraf 0: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'big cedar tree winter forest', 'yon': 'dikey'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/2/25/Canadian_forest_industries_1882_%281882%29_%2820496192416%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "shorts4: Paragraf 0: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'taiga forest winter', 'yon': 'dikey'}): İndirilemedi (çok fazla istek): https://upload.wikimedia.org/wikipedia/commons/8/80/Winter-boreal-forest-Trondheim.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ ],
+ "ana": {
+  "sure_dk": 29.9,
+  "sahne": 55
+ },
+ "shorts1": {
+  "sure_sn": 29.9,
+  "sahne": 3
+ },
+ "shorts2": {
+  "sure_sn": 33.0,
+  "sahne": 1
+ },
+ "shorts3": {
+  "sure_sn": 30.6,
+  "sahne": 2
+ },
+ "shorts4": {
+  "sure_sn": 32.6,
+  "sahne": 1
+ }
+}

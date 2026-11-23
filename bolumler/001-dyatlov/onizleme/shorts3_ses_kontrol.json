@@ -1,0 +1,24 @@
+{
+ "esik": 0.12,
+ "paragraf_sayisi": 2,
+ "sorunlu": [
+  {
+   "paragraf": 0,
+   "wer": 0.3,
+   "farklar": [
+    "'bin dokuz yüz elli dokuzda dokuz' → '1959 da 9'"
+   ],
+   "metin": "Bin dokuz yüz elli dokuzda dokuz yürüyüşçünün ölümünü soruşturan savcı, dosyayı tek bir cümleyle kapattı: karşı konulama"
+  },
+  {
+   "paragraf": 1,
+   "wer": 0.156,
+   "farklar": [
+    "'otuz bir' → '31'",
+    "'emredilmişti' → 'emledilmişti'",
+    "'gizem de' → 'gizemde'"
+   ],
+   "metin": "Otuz bir yıl sonra ise bir gazeteye konuştu. İddiasına göre davayı kapatması emredilmişti. Ve o dönem gökyüzünde görülen"
+  }
+ ]
+}

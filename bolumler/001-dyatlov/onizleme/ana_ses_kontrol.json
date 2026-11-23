@@ -1,0 +1,366 @@
+{
+ "esik": 0.12,
+ "paragraf_sayisi": 61,
+ "sorunlu": [
+  {
+   "paragraf": 0,
+   "wer": 0.211,
+   "farklar": [
+    "'kuzey urallarda' → ''",
+    "'dağ yamacında' → 'dayamacında'"
+   ],
+   "metin": "Kuzey Urallarda, karla kaplı bir dağ yamacında, yarı gömülü bir çadır bulundu. Çadırın bezi kesilmişti… ama dışarıdan de"
+  },
+  {
+   "paragraf": 2,
+   "wer": 0.173,
+   "farklar": [
+    "'altmış' → '60'",
+    "'bin dokuz yüz elli dokuzun' → '1959 un'",
+    "'birliği nin' → 'birliğinin'",
+    "'resmî' → 'resmi'"
+   ],
+   "metin": "Altmış yılı aşkın süredir sorulan soru hep aynı. Onları o çadırdan ne çıkardı? Bugün sizi, bin dokuz yüz elli dokuzun şu"
+  },
+  {
+   "paragraf": 3,
+   "wer": 0.4,
+   "farklar": [
+    "'gizem e' → 'gizeme'"
+   ],
+   "metin": "Derin Gizem'e hoş geldiniz."
+  },
+  {
+   "paragraf": 4,
+   "wer": 0.32,
+   "farklar": [
+    "'önce' → ''",
+    "'bin dokuz yüz elli dokuz' → '1959'",
+    "'sverdlovsk' → 'sferblos'",
+    "'enstitüsü nden' → 'enstitüsünden'",
+    "'hedef' → 'heder'",
+    "'urallardaki otorten' → 'ural daki o torten'",
+    "'üç yüz' → '300'"
+   ],
+   "metin": "Önce elimizdeki gerçeklere bakalım. Yıl bin dokuz yüz elli dokuz. Yer, bugünkü adıyla Yekaterinburg, o zamanki adıyla Sv"
+  },
+  {
+   "paragraf": 5,
+   "wer": 0.388,
+   "farklar": [
+    "'grubun' → 'grupun'",
+    "'yirmi üç' → '23'",
+    "'igor dyatlof' → 'ıgor diatlov'",
+    "'zinaida kolmogorova' → 'zinaide kolmogorov a'",
+    "'lüdmila dubinina' → 'lüdmina dubin ine'",
+    "'krivonişçenko' → 'kirvonischenko'",
+    "'tibo brinyol' → 'tipo birinyol'",
+    "'aleksandr kolevatof' → 'alexander kolevatov'",
+    "'yirmili' → '20 li'",
+    "'dağ' → 'dağı'"
+   ],
+   "metin": "Grubun lideri, yirmi üç yaşındaki radyo mühendisliği öğrencisi İgor Dyatlov. Deneyimli, disiplinli, çevresinde saygı duy"
+  },
+  {
+   "paragraf": 6,
+   "wer": 0.135,
+   "farklar": [
+    "'otuz yedi' → '37'",
+    "'semyon zolotaryof' → 'semion zolotaryov'",
+    "'turizm' → 'turizme'",
+    "'grubun' → 'grupun'",
+    "'zolotaryof' → 'zolotaryov'"
+   ],
+   "metin": "Bir de, gruba son anda katılan biri var. Otuz yedi yaşındaki Semyon Zolotaryov. İkinci Dünya Savaşı gazisi, deneyimli bi"
+  },
+  {
+   "paragraf": 7,
+   "wer": 0.226,
+   "farklar": [
+    "'yirmi üç' → '23'",
+    "'bin dokuz yüz elli dokuzda' → '1959 da'",
+    "'vijay' → 'viay'",
+    "'jeolog' → 'geolog'",
+    "'yalnızca kar rüzgâr' → 'yalnız cakar rüzgar'"
+   ],
+   "metin": "Yirmi üç Ocak bin dokuz yüz elli dokuzda grup trene biniyor. Serov, sonra İvdel, sonra Vijay adlı küçük bir yerleşim. Bi"
+  },
+  {
+   "paragraf": 8,
+   "wer": 0.13,
+   "farklar": [
+    "'hikâyenin' → 'hikayenin'",
+    "'yirmi sekiz' → '28'",
+    "'yuri yudin' → 'yürü yüdün'",
+    "'elli dört' → '54'"
+   ],
+   "metin": "Ve burada, hikâyenin ilk tuhaf dönemeci yaşanıyor. Yirmi sekiz Ocak'ta, grubun üyelerinden Yuri Yudin hastalanıyor. Baca"
+  },
+  {
+   "paragraf": 10,
+   "wer": 0.235,
+   "farklar": [
+    "'otuz bir ocak ta' → '31 ocakta'",
+    "'geçidi' → 'geçide'",
+    "'rüzgâr' → 'rüzgar'",
+    "'dyatlof un' → 'diyatlufun'"
+   ],
+   "metin": "Otuz bir Ocak'ta grup, dağların arasındaki geçidi aşmayı deniyor. Ama rüzgâr o kadar sert ki geri dönmek zorunda kalıyor"
+  },
+  {
+   "paragraf": 14,
+   "wer": 0.238,
+   "farklar": [
+    "'grubun on iki' → 'grupun 12'",
+    "'vijay a' → 'viciye'",
+    "'dyatlof' → 'yatlov'",
+    "'şubatın yirmisine' → 'şubat ın 20 sine'"
+   ],
+   "metin": "Grubun on iki Şubat'ta Vijay'a dönüp bir telgraf çekmesi gerekiyordu. Telgraf gelmedi. Dyatlov, yola çıkmadan önce birka"
+  },
+  {
+   "paragraf": 16,
+   "wer": 0.136,
+   "farklar": [
+    "'yirmi altı' → '26'",
+    "'slobtsof' → 'slopsov'",
+    "'siyahl ın' → 'siyahlığın'",
+    "'hâldeydi' → 'haldeydi'"
+   ],
+   "metin": "Yirmi altı Şubat'ta, iki öğrenci gönüllü, Mihail Şaravin ve Boris Slobtsov, Holat Siyahl'ın yamacında çadırı buldu. Çadı"
+  },
+  {
+   "paragraf": 19,
+   "wer": 0.2,
+   "farklar": [
+    "'bir buçuk' → '1 5'",
+    "'yuri' → 'yürü'",
+    "'yuri krivonişçenko ikisinin' → 'yürü krivoniş çenko kisinin'",
+    "'sönmüş' → 'sömmüş'"
+   ],
+   "metin": "Ertesi gün, çadırdan yaklaşık bir buçuk kilometre aşağıda, ormanın kenarındaki büyük bir sedir ağacının dibinde, ilk iki"
+  },
+  {
+   "paragraf": 20,
+   "wer": 0.167,
+   "farklar": [
+    "'dalları' → 'dağları'",
+    "'beş' → '5'",
+    "'ağaca' → 'aca'",
+    "'dal mı' → 'dağımı'",
+    "'şeyi mi' → 'şeyimi'"
+   ],
+   "metin": "Ama asıl tuhaf olan, ağacın kendisiydi. Sedirin dalları, yaklaşık beş metre yüksekliğe kadar kırılmıştı. Biri, o donduru"
+  },
+  {
+   "paragraf": 21,
+   "wer": 0.133,
+   "farklar": [
+    "'grubun' → 'grupun'",
+    "'igor dyatlof' → 'ıgor dyatlov'",
+    "'zinaida' → 'zinaide'",
+    "'beş' → '5'",
+    "'rüzgâra' → 'rüzgara'"
+   ],
+   "metin": "Aynı gün, sedir ile çadır arasındaki yamaçta iki ceset daha bulundu. Grubun lideri İgor Dyatlov ve Zinaida Kolmogorova. "
+  },
+  {
+   "paragraf": 23,
+   "wer": 0.415,
+   "farklar": [
+    "'dört' → '4'",
+    "'bin dokuz yüz elli dokuz' → '1959'",
+    "'ekibi sedir' → 'ekibisedir'",
+    "'yetmiş beş' → '75'",
+    "'lüdmila' → 'ludmila'",
+    "'semyon zolotaryof' → 'semion zolotaryov'",
+    "'tibo brinyol' → 'tipo birinyol'",
+    "'aleksandr kolevatof' → 'alexander kolevatov'"
+   ],
+   "metin": "Dört Mayıs bin dokuz yüz elli dokuz. Karlar erimeye başladığında, arama ekibi sedir ağacından yaklaşık yetmiş beş metre "
+  },
+  {
+   "paragraf": 25,
+   "wer": 0.154,
+   "farklar": [
+    "'tibo brinyol' → 'tipo birinyol'",
+    "'zolotaryof' → 'zolotaryov'",
+    "'vozrojdenni ye' → 'wozrogdeniye'",
+    "'kuvvetle' → 'kuvvette'",
+    "'yanı şuydu' → 'yanış uydu'"
+   ],
+   "metin": "Tibo-Brinyol'un kafatasında ağır bir kırık vardı. Dubinina ve Zolotaryov'un göğüs kafeslerinde çok sayıda kırık. Adli ta"
+  },
+  {
+   "paragraf": 29,
+   "wer": 0.213,
+   "farklar": [
+    "'yirmi sekiz' → '28'",
+    "'bin dokuz yüz elli dokuzda' → '1959 da'",
+    "'ivanof' → 'ıvanov'",
+    "'resmî' → 'resmi'",
+    "'gelemediği' → 'gelemedi'"
+   ],
+   "metin": "Yirmi sekiz Mayıs bin dokuz yüz elli dokuzda, savcı Lev İvanov davayı kapattı. Resmî sonuç tek bir cümleydi: ölüm nedeni"
+  },
+  {
+   "paragraf": 30,
+   "wer": 0.188,
+   "farklar": [
+    "'peki' → ''",
+    "'bin dokuz yüz elli dokuzda' → '1959 da'",
+    "'otuz bir' → '31'",
+    "'dayanağı' → 'dayana'"
+   ],
+   "metin": "Peki o dönemde başka neler oluyordu? Şubat ve Mart bin dokuz yüz elli dokuzda, bölgede farklı kişiler gökyüzünde parlak,"
+  },
+  {
+   "paragraf": 32,
+   "wer": 0.158,
+   "farklar": [
+    "'bin dokuz yüz doksanda' → '1990 da'",
+    "'üzereyken lev ivanof' → 'üzere iken levy vanov'",
+    "'resmî' → 'resmi'"
+   ],
+   "metin": "Bin dokuz yüz doksanda, Sovyetler Birliği dağılmak üzereyken, Lev İvanov bir gazeteye konuştu. İddiasına göre, üst düzey"
+  },
+  {
+   "paragraf": 39,
+   "wer": 0.145,
+   "farklar": [
+    "'aleksey rakitin e' → 'alexi rakitine'",
+    "'ajanlara' → 'apanlara'",
+    "'teoride' → 'teori de'",
+    "'krivonişçenko' → 'krivon ışçenko'"
+   ],
+   "metin": "Şimdi, başta söz verdiğim yere geliyoruz. En çarpıcı teorilerden biri, yazar Aleksey Rakitin'e ait. İddiasına göre grubu"
+  },
+  {
+   "paragraf": 40,
+   "wer": 0.17,
+   "farklar": [
+    "'teoriyi' → 'teori'",
+    "'iddiaya' → 'iddia ya'",
+    "'aleksandr' → 'alexander'",
+    "'envanterde' → 'en mantarda'",
+    "'casusluk' → 'casustuk'",
+    "'resmî' → 'resmi'",
+    "'iddiadan' → 'iddialardan'"
+   ],
+   "metin": "Zolotaryov hakkında anlatılanlar da bu teoriyi besliyor. İddiaya göre kendisini gruba farklı bir isimle, Aleksandr olara"
+  },
+  {
+   "paragraf": 42,
+   "wer": 0.138,
+   "farklar": [
+    "'peki' → ''",
+    "'tıbbın' → 'tıpkın'",
+    "'olgusu' → 'olbusu'",
+    "'yakın anlarda vücut aniden' → 'yakınanlarda vücutaniden'",
+    "'bu' → ''"
+   ],
+   "metin": "Peki neden neredeyse çıplaktılar? Burada tıbbın bilinen bir olgusu devreye giriyor: paradoksal soyunma. Ağır hipotermide"
+  },
+  {
+   "paragraf": 43,
+   "wer": 0.244,
+   "farklar": [
+    "'resmî' → 'resmi'",
+    "'iki bin on dokuzda' → '2019 da'",
+    "'iki bin yirmide' → '2020 de'",
+    "'kar levhası çığı' → 'karlı evhasıçı'"
+   ],
+   "metin": "Ve son olarak, bugün resmî kabul gören açıklama. İki bin on dokuzda Rusya Başsavcılığı dosyayı yeniden inceledi. İki bin"
+  },
+  {
+   "paragraf": 44,
+   "wer": 0.214,
+   "farklar": [
+    "'iki bin yirmi birde' → '2021 de'",
+    "'johan gom' → 'vohangom'",
+    "'kesik açtı' → 'kesi kaçtı'",
+    "'rüzgârın' → 'rüzgarın'",
+    "'kesiğin' → 'kesin'",
+    "'kar levhası' → 'karlı evhası'",
+    "'kesiği' → 'kesi'",
+    "'iki' → '2'",
+    "'çığların' → 'çıların'"
+   ],
+   "metin": "İki bin yirmi birde iki bilim insanı, Johan Gaume ve Alexander Puzrin, bu senaryoyu bilimsel olarak modelledi. Teorileri"
+  },
+  {
+   "paragraf": 45,
+   "wer": 0.13,
+   "farklar": [
+    "'çığ' → 'çi'",
+    "'çığ' → 'çi'",
+    "'iki bin on dokuzdaki' → '2019 daki'",
+    "'üç' → '3'",
+    "'hâlâ' → 'hala'",
+    "'resmî' → 'resmi'"
+   ],
+   "metin": "Peki bu, dosyayı kapatıyor mu? Herkese göre değil. Eleştirmenlere göre yamacın eğimi çığ için fazla hafif. Arama ekipler"
+  },
+  {
+   "paragraf": 48,
+   "wer": 0.161,
+   "farklar": [
+    "'radyoaktif olduğu' → 'radioaktif oldu'",
+    "'giyside' → 'kişisi de'",
+    "'değeriydi' → 'deriydi'"
+   ],
+   "metin": "Bir diğer yaygın söylenti, cesetlerin son derece radyoaktif olduğu. Oysa kayıtlara göre ölçülen şey, sadece birkaç giysi"
+  },
+  {
+   "paragraf": 51,
+   "wer": 0.122,
+   "farklar": [
+    "'bir' → ''",
+    "'dayanağı envanterle' → 'dayanı en mantar ile'",
+    "'resmî' → 'resmi'"
+   ],
+   "metin": "Bir başka söylenti, o gece yamaçta dokuz değil, on kişinin olduğu yönünde. Bu iddianın dayanağı, envanterle tam örtüşmey"
+  },
+  {
+   "paragraf": 53,
+   "wer": 0.184,
+   "farklar": [
+    "'zolotaryof a' → 'zolotaryofa'",
+    "'iki bin on sekizde' → '2018 de'",
+    "'girişimiyle' → 'girişimi ile'",
+    "'o' → ''"
+   ],
+   "metin": "Ve Zolotaryov'a dönüyoruz. İki bin on sekizde, bir gazetenin girişimiyle mezarı açıldı. İlk DNA testinin akrabalarıyla e"
+  },
+  {
+   "paragraf": 54,
+   "wer": 0.143,
+   "farklar": [
+    "'peki ya' → 'pekiye'",
+    "'yuri' → 'yürü'",
+    "'iki bin on üçte' → '2013 de'"
+   ],
+   "metin": "Peki ya geri dönen tek kişi, Yuri Yudin? Arkadaşlarının eşyalarını teşhis etmek için çağrılan oydu. Hayatının geri kalan"
+  },
+  {
+   "paragraf": 57,
+   "wer": 0.138,
+   "farklar": [
+    "'en derininde' → 'enderininde'",
+    "'rüzgârın uğuldadığı' → 'rüzgarın oldadığı'"
+   ],
+   "metin": "Ama şunu söyleyebilirim. Bu dosyanın en derininde, hep aynı sahne duruyor. Karla kaplı, rüzgârın uğuldadığı bir yamaç. İ"
+  },
+  {
+   "paragraf": 59,
+   "wer": 0.143,
+   "farklar": [
+    "'dyatlof geçidi nde' → 'diatlof geçidiğinde'",
+    "'askerî' → 'askeri'",
+    "'casusluk' → 'casustuk'",
+    "'hâlâ' → 'hala'"
+   ],
+   "metin": "Kaynakları her zamanki gibi açıklama kısmına bırakıyorum. Okuyun, araştırın, kendi bağlantılarınızı kurun. Ve yorumlarda"
+  }
+ ]
+}

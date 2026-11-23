@@ -1,0 +1,16 @@
+{
+ "esik": 0.12,
+ "paragraf_sayisi": 2,
+ "sorunlu": [
+  {
+   "paragraf": 1,
+   "wer": 0.227,
+   "farklar": [
+    "'altmış' → '60'",
+    "'soruya' → 'sobaya'",
+    "'tam dosya derin' → 'hamdosya delin'"
+   ],
+   "metin": "Altmış yılı aşkın süredir kimse bu soruya kesin bir cevap veremedi. Onları o sıcak çadırdan ne çıkardı? Tam dosya, Derin"
+  }
+ ]
+}
