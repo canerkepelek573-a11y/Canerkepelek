@@ -544,61 +544,19 @@ akis:
       Bir sonraki dosyada görüşmek üzere.
 
 # ================================================================ SHORTS (her biri tek başına "vay be" dedirtmeli)
+# ================================================================ SHORTS
+# Kural (CLAUDE.md §1): Shorts'lar ana videonun en çarpıcı anlarından kesilir; ayrı metin yazılmaz.
+# `paragraflar`: ana videodaki anlatım paragraflarının sıra numaraları (aynı ses, aynı görseller, dikey format).
 shorts:
-  - baslik: "Çadırı İçeriden Kestiler… Ama Neden? #Shorts"
-    aciklama: "1959'da dokuz yürüyüşçü çadırlarını içeriden kesip eksi otuz derecede karanlığa kaçtı. Tam belgesel kanalda: Dyatlov Geçidi."
-    akis:
-      - gorseller:
-          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1S-09.jpg", sayfa: "https://dyatlovpass.com/search-photos", aciklama: "The Dyatlov tent half-buried in snow as found by searchers, February 1959"}
-          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-steps-01.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Footprints leading down the slope from the tent, photographed by searchers in 1959"}
-        metin: >
-          Dokuz deneyimli yürüyüşçü, gece yarısı çadırlarını içeriden kesti ve eksi otuz derecede, çoraplarla karanlığa yürüdü.
-          Botları, montları, yiyecekleri çadırda kaldı. Hiçbiri geri dönmedi.
-      - gorseller:
-          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_33-1.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "The Dyatlov group skiing into a blizzard, one of the last photos, 1 February 1959"}
-          - {kaynak: kart, baslik: "Neden?", alt: "Dyatlov Geçidi · 1959"}
-        metin: >
-          Altmış yılı aşkın süredir kimse bu soruya kesin bir cevap veremedi. Onları o sıcak çadırdan ne çıkardı?
-          Tam dosya, Gerçek Gizem kanalında.
-  - baslik: "Ağaçta 5 Metre Yükseğe Kadar Kırık Dallar… #Shorts"
-    aciklama: "Dyatlov Geçidi'ndeki sedir ağacının gizemi. Tam belgesel kanalda."
-    akis:
-      - gorseller:
-          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/6S-19-dead-cedar.jpg", sayfa: "https://dyatlovpass.com/dead-cedar", aciklama: "Searchers next to the cedar tree, 1959"}
-        metin: >
-          Dondurucu bir gecede, iki adam yalnızca iç çamaşırlarıyla, bir sedir ağacının dibinde bulundu. Yanlarında sönmüş bir ateş vardı.
-      - gorseller:
-          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-Pass-Yakimenko-1963-72-dead-cedar.jpg", sayfa: "https://dyatlovpass.com/dead-cedar", aciklama: "The cedar tree photographed by Valentin Yakimenko in 1963"}
-          - {kaynak: kart, ust: "Sedir ağacı", baslik: "5 Metre Yukarıda Kırık Dallar"}
-        metin: >
-          Ama asıl tuhaf olan, ağacın dallarıydı. Beş metre yüksekliğe kadar kırılmıştı. Biri, o soğukta ağaca tırmanmıştı.
-          Ateş için mi? Yoksa çadırın olduğu yöne bakıp bir şeyi mi gözlüyordu? Tam dosya, Gerçek Gizem'de.
-  - baslik: "Savcı 31 Yıl Sonra Konuştu #Shorts"
-    aciklama: "Dyatlov dosyasını kapatan savcı, 1990'da bambaşka bir şey söyledi. Tam belgesel kanalda."
-    akis:
-      - gorseller:
-          - {kaynak: commons, dosya: "File:Dyatlov.Volume 1.Page 384.jpg"}
-          - {kaynak: kart, tur: belge, baslik: "Ceza davası · Karar", satirlar: ["Ölüm nedeni: karşı konulamaz bir doğa gücü."], damga: "KAPANDI"}
-        metin: >
-          Bin dokuz yüz elli dokuzda dokuz yürüyüşçünün ölümünü soruşturan savcı, dosyayı tek bir cümleyle kapattı:
-          karşı konulamaz bir doğa gücü.
-      - gorseller:
-          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-photos-marinner966-04.jpg", sayfa: "https://dyatlovpass.com/contemporary-photos", aciklama: "Night sky with glowing clouds over the forest near Dyatlov Pass"}
-        metin: >
-          Otuz bir yıl sonra ise bir gazeteye konuştu. İddiasına göre davayı kapatması emredilmişti.
-          Ve o dönem gökyüzünde görülen parlak turuncu kürelerin, ölümlerle doğrudan ilgili olduğundan neredeyse emindi. Tam dosya, Gerçek Gizem'de.
-  - baslik: "Geri Dönen Tek Kişi #Shorts"
-    aciklama: "Dyatlov grubundan sağ kalan tek kişi Yuri Yudin'in hikâyesi. Tam belgesel kanalda."
-    akis:
-      - gorseller:
-          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/B-01.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "Dyatlov group members in the train compartment, January 1959"}
-          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Krivonischenko-camera-film6-33.jpg", sayfa: "https://dyatlovpass.com/camera-krivonischenko", aciklama: "Yuri Yudin's farewell embrace with the group at the 2nd Northern settlement, 28 January 1959"}
-        metin: >
-          Bin dokuz yüz elli dokuzda on kişilik bir grup, Kuzey Urallarda zorlu bir kayak yürüyüşüne çıktı.
-          Yolun başında biri hastalandı ve geri döndü. Adı Yuri Yudin'di.
-      - gorseller:
-          - {kaynak: commons, dosya: "File:Памятник дятловцам на Михайловском кладбище.jpg"}
-          - {kaynak: kart, ust: "Yuri Yudin", baslik: "54 Yıl Süren Soru"}
-        metin: >
-          Geride kalan dokuz kişinin hiçbiri eve dönmedi. Yudin, hayatının geri kalanında onlara ne olduğunu sordu.
-          Cevabını alamadan öldü ve son isteği üzerine arkadaşlarının yanına gömüldü. Tam dosya, Gerçek Gizem'de.
+  - baslik: "Çadırı İçeriden Kesip Karanlığa Koştular #Shorts"
+    aciklama: "1959'da dokuz deneyimli yürüyüşçü, çadırlarını içeriden kesip eksi otuz derecede karanlığa yürüdü. Dyatlov Geçidi'nin tam hikâyesi kanalda."
+    paragraflar: [0, 1]
+  - baslik: "Sedir Ağacında 5 Metreye Kadar Kırık Dallar #Shorts"
+    aciklama: "Dyatlov Geçidi'ndeki sedir ağacının dibinde ne bulundu? Tam belgesel kanalda."
+    paragraflar: [19, 20]
+  - baslik: "Dyatlov Dosyasını Kapatan Savcı 31 Yıl Sonra Konuştu #Shorts"
+    aciklama: "Davayı 'karşı konulamaz bir doğa gücü' diyerek kapatan savcı Lev İvanov, 1990'da bambaşka bir şey söyledi. Tam belgesel kanalda."
+    paragraflar: [29, 32]
+  - baslik: "Dyatlov Grubundan Geri Dönen Tek Kişi: Yuri Yudin #Shorts"
+    aciklama: "Yolun başında hastalanıp geri dönen Yuri Yudin, 54 yıl boyunca aynı soruyu sordu. Tam belgesel kanalda."
+    paragraflar: [8, 54]
