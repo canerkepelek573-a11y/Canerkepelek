@@ -1,0 +1,100 @@
+name: Bölüm üret (video + Shorts + kapak)
+
+on:
+  workflow_dispatch:
+    inputs:
+      bolum:
+        description: "Bölüm klasörü (ör. bolumler/001-dyatlov)"
+        required: true
+        default: "bolumler/001-dyatlov"
+      sadece:
+        description: "hepsi | ana | shorts1..shorts4 | kapak"
+        required: true
+        default: "hepsi"
+  push:
+    paths:
+      - "bolumler/*/senaryo.yaml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: video-uret
+  cancel-in-progress: true
+
+jobs:
+  uret:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Araçları kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q edge-tts==7.3.1 pyyaml pillow requests
+
+      - name: Önbellek (ses ve görseller)
+        uses: actions/cache@v4
+        with:
+          path: .onbellek
+          key: onbellek-${{ github.run_id }}
+          restore-keys: onbellek-
+
+      - name: Testler
+        run: python -m unittest discover -s tests -t .
+
+      - name: Hangi bölüm?
+        id: bolum
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "yol=${{ inputs.bolum }}" >> "$GITHUB_OUTPUT"
+            echo "sadece=${{ inputs.sadece }}" >> "$GITHUB_OUTPUT"
+          else
+            yol=$(git diff --name-only HEAD~1 HEAD -- 'bolumler/*/senaryo.yaml' | head -1 | xargs dirname)
+            echo "yol=$yol" >> "$GITHUB_OUTPUT"
+            echo "sadece=hepsi" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Üret
+        run: python scripts/uret.py "${{ steps.bolum.outputs.yol }}" --sadece "${{ steps.bolum.outputs.sadece }}"
+
+      - name: Videoları sakla (indirilebilir)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bolum-${{ github.run_number }}
+          path: |
+            cikti/*/ana/video.mp4
+            cikti/*/ana/altyazi.srt
+            cikti/*/ana/aciklama.txt
+            cikti/*/shorts*/video.mp4
+            cikti/*/kapak.jpg
+          retention-days: 7
+
+      - name: Önizleme karelerini depoya kaydet
+        if: always()
+        run: |
+          yol="${{ steps.bolum.outputs.yol }}"
+          ad=$(basename "$yol")
+          mkdir -p "$yol/onizleme"
+          rm -f "$yol"/onizleme/*
+          cp cikti/"$ad"/onizleme/* "$yol/onizleme/" 2>/dev/null || true
+          cp cikti/"$ad"/ozet.json "$yol/onizleme/" 2>/dev/null || true
+          cp cikti/"$ad"/ana/aciklama.txt "$yol/onizleme/" 2>/dev/null || true
+          cp cikti/"$ad"/ana/kaynaklar.txt "$yol/onizleme/" 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add "$yol/onizleme"
+          if ! git diff --cached --quiet; then
+            git commit -m "Önizleme: $ad"
+            git pull --rebase
+            git push
+          fi
