@@ -114,11 +114,22 @@ Ses ve görüntü **net şekilde oturur** ve birbiriyle **tutarlı** olur:
 
 ## 5. Kanal Büyütme (YouTube'da Öne Çıkma)
 
-Her adım kanalın büyümesine hizmet eder:
-- Açıklamalar arama ve öneri sistemine uygun yazılır (anahtar kelimeler, bölümler/zaman damgaları, hashtag'ler).
-- Shorts'lar ana videoya yönlendirir (ilgili video bağlantısı).
-- Oynatma listeleri, sabitlenmiş yorum, bitiş ekranı kullanılır.
-- Yükleme saati Türk izleyicinin aktif olduğu saatlere göre seçilir.
+Her adım kanalın büyümesine hizmet eder. **Her yüklemede şu kontrol listesi eksiksiz uygulanır**
+(kanal sahibinin talimatı: "video paylaşırken anahtar kelimeleri unutma"):
+
+1. **Başlık:** ana anahtar kelime ilk 40 karakterde (ör. "Dyatlov Geçidi: …"), 40–60 karakter, merak boşluğu.
+2. **Açıklama:** ilk 2 satırda ana ve yan anahtar kelimeler + gizem sorusu; ardından bölümler (00:00 ile
+   başlayan zaman damgaları), kaynaklar, görsel kaynakları, söylenti/iddia notu, ilgili videolar.
+3. **Etiketler (tags):** 10–15 adet; Türkçe ve İngilizce yazımlar, olay/yer/kişi adları, yazım varyasyonları
+   (ör. "Dyatlov Geçidi", "Dyatlov Pass", "Holat Siyahl", "Kholat Syakhl", "çözülemeyen olaylar").
+4. **Hashtag'ler:** 3–5 adet (ilk 3'ü başlığın üstünde görünür); Shorts'ta ayrıca `#Shorts`.
+5. **Kategori ve dil:** Eğitim kategorisi, video dili ve ses dili Türkçe.
+6. **Altyazı:** Türkçe altyazı dosyası (SRT) yüklenir (arama motorları altyazıyı okur).
+7. **Kapak fotoğrafı** yüklenir.
+8. **Oynatma listesi:** video, konusuna uygun tema listesine eklenir.
+9. **Shorts:** başlık + açıklamada ana videonun adı ve anahtar kelimeleri; ana videoya yönlendirme.
+10. **Yayın saati:** Türk izleyicinin aktif olduğu saatler (başlangıçta 18:00–21:00 TSİ).
+11. Sabitlenmiş yorum ve bitiş ekranı API ile eklenemiyor; bunlar için kanal sahibine kısa bir hatırlatma yapılır.
 
 ## 6. Görseller: Olayın Kendi Arşiv Fotoğrafları
 
