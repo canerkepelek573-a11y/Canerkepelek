@@ -109,6 +109,48 @@ def commons_dosya_adaylari(basliklar: list[str]) -> list[dict]:
     return sorted(sonuc, key=lambda a: a["baslik"])
 
 
+def wikipedia_adaylari(dil: str, sayfa: str) -> list[dict]:
+    """Bir Wikipedia makalesinde kullanılan tüm görseller (kaynak: makalenin kendisi)."""
+    api = f"https://{dil}.wikipedia.org/w/api.php"
+    veri = _json(api, {"action": "parse", "format": "json", "page": sayfa, "prop": "images", "redirects": 1})
+    dosyalar = [f"File:{d}" for d in veri.get("parse", {}).get("images", [])
+                if not d.lower().endswith((".svg",)) or "map" in d.lower() or "карта" in d.lower()]
+    sonuc = []
+    for i in range(0, len(dosyalar), 40):
+        bilgi_v = _json(api, {"action": "query", "format": "json", "titles": "|".join(dosyalar[i:i + 40]),
+                              "prop": "imageinfo", "iiprop": "url|size|mime|extmetadata", "iiurlwidth": 330})
+        for p in bilgi_v.get("query", {}).get("pages", {}).values():
+            b = (p.get("imageinfo") or [{}])[0]
+            if not b.get("url") or (b.get("width") or 0) < 300:
+                continue
+            lisans = b.get("extmetadata", {}).get("LicenseShortName", {}).get("value", "") or "?"
+            sonuc.append({"tanim": {"kaynak": "url", "adres": b["url"],
+                                    "sayfa": f"https://{dil}.wikipedia.org/wiki/{sayfa.replace(' ', '_')}"},
+                          "kucuk": b.get("thumburl") or b["url"], "baslik": p["title"].split(":", 1)[-1],
+                          "lisans": lisans, "boyut": f"{b.get('width')}x{b.get('height')}"})
+    return sonuc
+
+
+def sayfa_adaylari(adres: str) -> list[dict]:
+    """Bir web sayfasındaki büyük görseller (img src ve görsele giden bağlantılar)."""
+    import re
+    from urllib.parse import urljoin
+
+    y = requests.get(adres, headers=UA, timeout=60)
+    y.raise_for_status()
+    adresler = re.findall(r'<img[^>]+src=["\']([^"\']+)', y.text, re.I)
+    adresler += re.findall(r'<a[^>]+href=["\']([^"\']+\.(?:jpe?g|png|webp))', y.text, re.I)
+    sonuc, gorulen = [], set()
+    for a in adresler:
+        tam = urljoin(adres, a)
+        if tam in gorulen or any(k in tam.lower() for k in ("logo", "icon", "sprite", "avatar", "banner")):
+            continue
+        gorulen.add(tam)
+        sonuc.append({"tanim": {"kaynak": "url", "adres": tam, "sayfa": adres}, "kucuk": tam,
+                      "baslik": tam.rsplit("/", 1)[-1][:60], "lisans": "kaynak sayfa", "boyut": ""})
+    return sonuc
+
+
 def kucuk_resim(url: str | None) -> Image.Image:
     bos = Image.new("RGB", KUCUK, (40, 40, 45))
     if not url:
@@ -165,7 +207,18 @@ def main() -> int:
         if ad in hepsi:          # daha önce üretilmiş tabloyu yeniden üretme
             continue
         adaylar = []
-        if ara.startswith("kategori:"):
+        if ara.startswith("wikipedia:"):
+            _, dil, sayfa = ara.split(":", 2)
+            try:
+                adaylar = wikipedia_adaylari(dil, sayfa)
+            except Exception as hata:
+                print(f"{ad}: wikipedia okunamadı: {hata}")
+        elif ara.startswith("sayfa:"):
+            try:
+                adaylar = sayfa_adaylari(ara.removeprefix("sayfa:"))
+            except Exception as hata:
+                print(f"{ad}: sayfa okunamadı: {hata}")
+        elif ara.startswith("kategori:"):
             try:
                 adaylar = commons_dosya_adaylari(kategori_dosyalari(ara.removeprefix("kategori:")))
             except Exception as hata:

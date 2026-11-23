@@ -208,6 +208,14 @@ def loc(ara: str, sira: int = 0) -> dict:
             "atif": f"{r.get('title')} — Library of Congress — No known restrictions ({r.get('id')})"}
 
 
+def url(adres: str, sayfa: str, aciklama: str = "") -> dict:
+    """Kanal sahibinin kararıyla, olayın gerçek görüntüsünün asıl kaynağından alınan görsel (CLAUDE.md §6.2)."""
+    uzanti = Path(adres.split("?")[0]).suffix.lower() or ".jpg"
+    yol = _indir(adres, _dosya_adi(adres, uzanti))
+    ad = aciklama or Path(adres.split("?")[0]).name
+    return {"yol": str(yol), "tur": "foto", "atif": f"{ad} — Kaynak: {sayfa}"}
+
+
 def yerel(dosya: str, lisans: str, sahibi: str = "Gerçek Gizem") -> dict:
     yol = Path(dosya)
     if not yol.exists():
@@ -235,6 +243,8 @@ def coz(tanim: dict, cikti: Path, boyut: tuple[int, int]) -> dict:
         return nasa(tanim["ara"], tanim.get("sira", 0))
     if k == "loc":
         return loc(tanim["ara"], tanim.get("sira", 0))
+    if k == "url":
+        return url(tanim["adres"], tanim["sayfa"], tanim.get("aciklama", ""))
     if k == "yerel":
         return yerel(tanim["dosya"], tanim.get("lisans", "Gerçek Gizem özgün içerik"), tanim.get("sahibi", "Gerçek Gizem"))
     if k in ("kart", "harita"):

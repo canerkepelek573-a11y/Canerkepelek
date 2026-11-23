@@ -34,6 +34,10 @@ jobs:
           else
             echo "yol=$(git diff --name-only HEAD~1 HEAD -- 'bolumler/*/aday_aramalari.yaml' | head -1 | xargs dirname)" >> "$GITHUB_OUTPUT"
           fi
+      - name: Dyatlov arşiv sitesindeki sayfaları listele
+        if: contains(steps.bolum.outputs.yol, 'dyatlov')
+        continue-on-error: true
+        run: python scripts/site_sayfalari.py https://dyatlovpass.com/ "${{ steps.bolum.outputs.yol }}/adaylar/site_sayfalari.txt" camera,film,photo,search,tent,cedar,ravine,den,funeral,diary,newspaper,otorten,memorial,mansi,group,members,rescue,1959,frame
       - name: Tabloları üret
         run: python scripts/gorsel_adaylari.py "${{ steps.bolum.outputs.yol }}"
       - name: Depoya kaydet
