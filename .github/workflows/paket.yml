@@ -1,0 +1,76 @@
+name: Hazır bölümü topla / yükle (yeniden üretmeden)
+
+# Daha önce "Bölüm üret" ile üretilmiş parçaları (parca-*) o çalıştırmadan alır;
+# yükleme bilgilerini hazırlar, isterse YouTube'a yükler, paketi ve önizlemeleri kaydeder.
+on:
+  workflow_dispatch:
+    inputs:
+      calistirma:
+        description: "Bölüm üret çalıştırmasının numarası (run id)"
+        required: true
+      bolum:
+        description: "Bölüm klasörü"
+        required: true
+        default: "bolumler/001-dyatlov"
+      yukle:
+        description: "YouTube'a yükle (hayir | private | unlisted | public)"
+        required: true
+        default: "hayir"
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: paket
+  cancel-in-progress: false
+
+jobs:
+  topla:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml pillow requests google-api-python-client google-auth
+      - name: Parçaları al
+        uses: actions/download-artifact@v4
+        with:
+          pattern: parca-*
+          path: cikti/
+          merge-multiple: true
+          run-id: ${{ inputs.calistirma }}
+          github-token: ${{ github.token }}
+      - name: Yükleme bilgileri ve özet
+        run: |
+          yol="${{ inputs.bolum }}"; ad=$(basename "$yol")
+          for p in ana shorts1 shorts2 shorts3 shorts4; do
+            test -s "cikti/$ad/$p/video.mp4" || { echo "Eksik parça: $p" >&2; exit 1; }
+          done
+          python scripts/uret.py "$yol" --sadece bilgi
+          python scripts/ozet_birlestir.py "$ad"
+      - name: YouTube'a yükle
+        if: inputs.yukle != 'hayir'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/yukle.py "${{ inputs.bolum }}" --gizlilik "${{ inputs.yukle }}" --zamanla
+      - name: İndirilebilir paket
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: paket-${{ github.run_number }}
+          path: |
+            cikti/*/ana/video.mp4
+            cikti/*/ana/altyazi.srt
+            cikti/*/ana/aciklama.txt
+            cikti/*/shorts*/video.mp4
+            cikti/*/kapak.jpg
+            cikti/*/onizleme/yukleme_bilgileri.md
+          retention-days: 7
+      - name: Önizlemeleri depoya kaydet
+        if: ${{ !cancelled() }}
+        run: bash scripts/onizleme_kaydet.sh "${{ inputs.bolum }}"

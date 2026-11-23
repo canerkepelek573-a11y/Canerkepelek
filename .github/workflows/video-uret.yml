@@ -84,7 +84,7 @@ jobs:
 
   topla:
     needs: [hazirla, uret]
-    if: always() && needs.hazirla.result == 'success'
+    if: ${{ !cancelled() && needs.hazirla.result == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -103,17 +103,7 @@ jobs:
         run: |
           yol="${{ needs.hazirla.outputs.yol }}"; ad=$(basename "$yol")
           python scripts/uret.py "$yol" --sadece bilgi
-          python - "$ad" <<'PY'
-          import json, sys, glob
-          ad = sys.argv[1]
-          ozet = {"bolum": ad, "uyarilar": []}
-          for f in sorted(glob.glob(f"cikti/{ad}/ozet_*.json")):
-              d = json.load(open(f, encoding="utf-8"))
-              ozet["uyarilar"] += d.pop("uyarilar", [])
-              ozet.update({k: v for k, v in d.items() if k not in ("bolum",)})
-          json.dump(ozet, open(f"cikti/{ad}/ozet.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-          print(json.dumps(ozet, ensure_ascii=False, indent=1))
-          PY
+          python scripts/ozet_birlestir.py "$ad"
       - name: YouTube'a yükle
         if: github.event_name == 'workflow_dispatch' && inputs.yukle != 'hayir' && needs.uret.result == 'success'
         env:
@@ -135,20 +125,5 @@ jobs:
             cikti/*/onizleme/yukleme_bilgileri.md
           retention-days: 7
       - name: Önizlemeleri depoya kaydet
-        if: always()
-        run: |
-          yol="${{ needs.hazirla.outputs.yol }}"; ad=$(basename "$yol")
-          mkdir -p "$yol/onizleme"
-          rm -f "$yol"/onizleme/*
-          cp cikti/"$ad"/onizleme/* "$yol/onizleme/" 2>/dev/null || true
-          cp cikti/"$ad"/kapak.jpg cikti/"$ad"/ozet.json "$yol/onizleme/" 2>/dev/null || true
-          cp cikti/"$ad"/ana/aciklama.txt cikti/"$ad"/ana/kaynaklar.txt "$yol/onizleme/" 2>/dev/null || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
-          git add "$yol/onizleme"
-          git add "$yol/yuklendi.json" 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git commit -m "Önizleme: $ad"
-            git pull --rebase -X theirs
-            git push
-          fi
+        if: ${{ !cancelled() }}
+        run: bash scripts/onizleme_kaydet.sh "${{ needs.hazirla.outputs.yol }}"
