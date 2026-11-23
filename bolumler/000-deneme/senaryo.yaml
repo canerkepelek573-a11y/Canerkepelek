@@ -1,0 +1,52 @@
+# Sistem denemesi: tüm görsel kaynaklarını ve iki video biçimini kısa bir metinle sınar.
+bolum_no: 0
+baslik: "Sistem denemesi"
+aciklama: |
+  Bu bir sistem denemesidir.
+hashtagler: ["#gizem", "#DerinGizem"]
+kapak:
+  gorsel: {kaynak: openverse, ara: "ural mountains winter"}
+  metin: "ÇADIR İÇERİDEN|KESİLMİŞTİ"
+  odak: sag
+okunus:
+  Dyatlov: Dyatlof
+  Kholat Syakhl: Holat Siyahl
+akis:
+  - bolum: "Giriş: Deneme"
+    yazi: "1 Şubat 1959 · Kuzey Urallar"
+    gorseller:
+      - {kaynak: kart, ust: "Derin Gizem · Dosya #0", baslik: "Sistem Denemesi", alt: "Kuzey Urallar · Şubat 1959"}
+      - {kaynak: openverse, ara: "ural mountains winter"}
+    metin: >
+      1959 yılının şubat ayında, dokuz deneyimli yürüyüşçü Kholat Syakhl yamacında kamp kurdu.
+      Ertesi sabah… çadır, içeriden kesilmiş olarak bulundu.
+  - abone: true
+  - bolum: "Harita ve Arşiv"
+    gorseller:
+      - kaynak: harita
+        baslik: "Kuzey Urallar"
+        alan: [56, 64, 56, 63]
+        rota: true
+        isaretler:
+          - {ad: "Sverdlovsk", konum: [60.6, 56.84]}
+          - {ad: "İvdel", konum: [60.42, 60.69]}
+          - {ad: "Kholat Syakhl", konum: [59.45, 61.75], ana: true}
+      - {kaynak: nasa, ara: "aurora borealis"}
+    metin: >
+      Dyatlov ve arkadaşlarının rotası, Sverdlovsk'tan kuzeye uzanıyordu. Yolculuk yaklaşık 300 km sürecekti.
+      Peki o gece gökyüzünde ne vardı?
+  - bolum: "Belge"
+    gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Ceza davası dosyası", satirlar: ["Ölüm nedeni: aşılamayan doğal bir güç."], damga: "KAPANDI"}
+      - {kaynak: commons, dosya: "File:Example.jpg"}
+    metin: >
+      Dava, 28 Mayıs 1959'da kapatıldı. Araştırmacıların %40'ı bu açıklamaya hâlâ inanmıyor.
+shorts:
+  - baslik: "Deneme Shorts"
+    akis:
+      - abone: false
+        gorseller:
+          - {kaynak: openverse, ara: "snowy forest night", yon: dikey}
+          - {kaynak: kart, baslik: "Çadır İçeriden Kesilmişti"}
+        metin: >
+          1959'da dokuz kişi karlı bir dağda kayboldu. Çadırları içeriden kesilmişti. Neden?
