@@ -7,10 +7,6 @@ on:
         description: "Bölüm klasörü (ör. bolumler/001-dyatlov)"
         required: true
         default: "bolumler/001-dyatlov"
-      sadece:
-        description: "hepsi | ana | shorts1..shorts4 | kapak"
-        required: true
-        default: "hepsi"
       yukle:
         description: "YouTube'a yükle (hayir | private | unlisted | public)"
         required: true
@@ -27,62 +23,105 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  uret:
+  hazirla:
     runs-on: ubuntu-latest
-    timeout-minutes: 240
+    outputs:
+      yol: ${{ steps.bolum.outputs.yol }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Araçları kur
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
-          pip install -q edge-tts==7.3.1 pyyaml pillow requests faster-whisper google-api-python-client google-auth
-
-      - name: Önbellek (ses ve görseller)
-        uses: actions/cache@v4
-        with:
-          path: .onbellek
-          key: onbellek-${{ github.run_id }}
-          restore-keys: onbellek-
-
-      - name: Testler
-        run: python -m unittest discover -s tests -t .
-
-      - name: Görsel kaynakları erişim testi
-        continue-on-error: true
-        run: python scripts/kaynak_testi.py
-
       - name: Hangi bölüm?
         id: bolum
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "yol=${{ inputs.bolum }}" >> "$GITHUB_OUTPUT"
-            echo "sadece=${{ inputs.sadece }}" >> "$GITHUB_OUTPUT"
           else
-            yol=$(git diff --name-only HEAD~1 HEAD -- 'bolumler/*/senaryo.yaml' | head -1 | xargs dirname)
-            echo "yol=$yol" >> "$GITHUB_OUTPUT"
-            echo "sadece=hepsi" >> "$GITHUB_OUTPUT"
+            echo "yol=$(git diff --name-only HEAD~1 HEAD -- 'bolumler/*/senaryo.yaml' | head -1 | xargs dirname)" >> "$GITHUB_OUTPUT"
           fi
 
+  # Ana video, 4 Shorts ve kapak aynı anda, ayrı makinelerde üretilir.
+  uret:
+    needs: hazirla
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        parca: [ana, shorts1, shorts2, shorts3, shorts4, kapak]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Araçları kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q edge-tts==7.3.1 pyyaml pillow requests faster-whisper
+      - name: Önbellek (ses ve görseller)
+        uses: actions/cache@v4
+        with:
+          path: .onbellek
+          key: onbellek-${{ matrix.parca }}-${{ github.run_id }}
+          restore-keys: |
+            onbellek-${{ matrix.parca }}-
+            onbellek-
+      - name: Testler
+        run: python -m unittest discover -s tests -t .
       - name: Üret
-        run: python scripts/uret.py "${{ steps.bolum.outputs.yol }}" --sadece "${{ steps.bolum.outputs.sadece }}" --kontrol
+        run: |
+          kontrol=""
+          if [ "${{ matrix.parca }}" != "kapak" ]; then kontrol="--kontrol"; fi
+          python scripts/uret.py "${{ needs.hazirla.outputs.yol }}" --sadece "${{ matrix.parca }}" $kontrol
+      - name: Parçayı sakla
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parca-${{ matrix.parca }}
+          path: cikti/
+          retention-days: 7
 
+  topla:
+    needs: [hazirla, uret]
+    if: always() && needs.hazirla.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml pillow requests google-api-python-client google-auth
+      - name: Parçaları birleştir
+        uses: actions/download-artifact@v4
+        with:
+          pattern: parca-*
+          path: cikti/
+          merge-multiple: true
+      - name: Yükleme bilgileri ve özet
+        run: |
+          yol="${{ needs.hazirla.outputs.yol }}"; ad=$(basename "$yol")
+          python scripts/uret.py "$yol" --sadece bilgi
+          python - "$ad" <<'PY'
+          import json, sys, glob
+          ad = sys.argv[1]
+          ozet = {"bolum": ad, "uyarilar": []}
+          for f in sorted(glob.glob(f"cikti/{ad}/ozet_*.json")):
+              d = json.load(open(f, encoding="utf-8"))
+              ozet["uyarilar"] += d.pop("uyarilar", [])
+              ozet.update({k: v for k, v in d.items() if k not in ("bolum",)})
+          json.dump(ozet, open(f"cikti/{ad}/ozet.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+          print(json.dumps(ozet, ensure_ascii=False, indent=1))
+          PY
       - name: YouTube'a yükle
-        if: github.event_name == 'workflow_dispatch' && inputs.yukle != 'hayir'
+        if: github.event_name == 'workflow_dispatch' && inputs.yukle != 'hayir' && needs.uret.result == 'success'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-        run: python scripts/yukle.py "${{ steps.bolum.outputs.yol }}" --gizlilik "${{ inputs.yukle }}" --zamanla
-
-      - name: Videoları sakla (indirilebilir)
+        run: python scripts/yukle.py "${{ needs.hazirla.outputs.yol }}" --gizlilik "${{ inputs.yukle }}" --zamanla
+      - name: İndirilebilir paket
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -93,26 +132,23 @@ jobs:
             cikti/*/ana/aciklama.txt
             cikti/*/shorts*/video.mp4
             cikti/*/kapak.jpg
+            cikti/*/onizleme/yukleme_bilgileri.md
           retention-days: 7
-
-      - name: Önizleme karelerini depoya kaydet
+      - name: Önizlemeleri depoya kaydet
         if: always()
         run: |
-          yol="${{ steps.bolum.outputs.yol }}"
-          ad=$(basename "$yol")
+          yol="${{ needs.hazirla.outputs.yol }}"; ad=$(basename "$yol")
           mkdir -p "$yol/onizleme"
           rm -f "$yol"/onizleme/*
           cp cikti/"$ad"/onizleme/* "$yol/onizleme/" 2>/dev/null || true
-          cp cikti/"$ad"/kapak.jpg "$yol/onizleme/" 2>/dev/null || true
-          cp cikti/"$ad"/ozet.json "$yol/onizleme/" 2>/dev/null || true
-          cp cikti/"$ad"/ana/aciklama.txt "$yol/onizleme/" 2>/dev/null || true
-          cp cikti/"$ad"/ana/kaynaklar.txt "$yol/onizleme/" 2>/dev/null || true
-          git add "$yol/yuklendi.json" 2>/dev/null || true
+          cp cikti/"$ad"/kapak.jpg cikti/"$ad"/ozet.json "$yol/onizleme/" 2>/dev/null || true
+          cp cikti/"$ad"/ana/aciklama.txt cikti/"$ad"/ana/kaynaklar.txt "$yol/onizleme/" 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
           git add "$yol/onizleme"
+          git add "$yol/yuklendi.json" 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Önizleme: $ad"
-            git pull --rebase
+            git pull --rebase -X theirs
             git push
           fi

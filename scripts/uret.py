@@ -99,7 +99,7 @@ def uret_bir(ad: str, paragraflar, bicim: str, kok: Path, **kwargs) -> tuple[dic
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("bolum", type=Path)
-    ap.add_argument("--sadece", default="hepsi", help="ana | shorts1..shorts4 | kapak | hepsi")
+    ap.add_argument("--sadece", default="hepsi", help="ana | shorts1..shorts4 | kapak | bilgi | hepsi")
     ap.add_argument("--kontrol", action="store_true", help="sesi yazıya çevirip metinle karşılaştır")
     arg = ap.parse_args()
     global KONTROL
@@ -130,13 +130,14 @@ def main() -> int:
         if rapor["sure"] > 60:
             ozet["uyarilar"].append(f"shorts{i}: süre {rapor['sure']:.0f} sn (hedef 20–50 sn)")
 
-    if arg.sadece == "hepsi":
+    if arg.sadece in ("hepsi", "bilgi"):
         yukleme_bilgisi(veri, kok)
 
     if arg.sadece == "hepsi" and (kok / "kapak.jpg").exists():
         (kok / "onizleme").mkdir(exist_ok=True)
         shutil.copy(kok / "kapak.jpg", kok / "onizleme" / "kapak.jpg")
-    (kok / "ozet.json").write_text(json.dumps(ozet, ensure_ascii=False, indent=1), encoding="utf-8")
+    ad = "ozet.json" if arg.sadece == "hepsi" else f"ozet_{arg.sadece}.json"
+    (kok / ad).write_text(json.dumps(ozet, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(ozet, ensure_ascii=False, indent=1))
     return 0
 
