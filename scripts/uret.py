@@ -101,6 +101,8 @@ def main() -> int:
     ap.add_argument("bolum", type=Path)
     ap.add_argument("--sadece", default="hepsi", help="ana | shorts1..shorts4 | kapak | bilgi | hepsi")
     ap.add_argument("--kontrol", action="store_true", help="sesi yazıya çevirip metinle karşılaştır")
+    ap.add_argument("--yeniden-kontrol", default="",
+                    help="üretilmiş parçaların sesini yeniden denetle (ör. ana,shorts1); render yapılmaz")
     arg = ap.parse_args()
     global KONTROL
     KONTROL = arg.kontrol
@@ -109,6 +111,19 @@ def main() -> int:
     kok = Path("cikti") / arg.bolum.name
     kok.mkdir(parents=True, exist_ok=True)
     ozet: dict = {"bolum": arg.bolum.name, "baslik": veri["baslik"], "uyarilar": []}
+
+    if arg.yeniden_kontrol:
+        from derin import kontrol
+        listeler = {"ana": veri["paragraflar"]}
+        listeler.update({f"shorts{i}": k["paragraflar"] for i, k in enumerate(veri.get("shorts", []) or [], 1)})
+        for parca in arg.yeniden_kontrol.split(","):
+            zaman = json.loads((kok / parca / "zaman.json").read_text(encoding="utf-8"))
+            sonuc = kontrol.denetle(kok / parca / "ses.wav", zaman, [p.konusma for p in listeler[parca]])
+            (kok / "onizleme").mkdir(parents=True, exist_ok=True)
+            (kok / "onizleme" / f"{parca}_ses_kontrol.json").write_text(
+                json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")
+            print(parca, json.dumps(sonuc, ensure_ascii=False, indent=1))
+        return 0
 
     if arg.sadece in ("hepsi", "kapak"):
         kapak.olustur(veri["kapak"], veri["bolum_no"], kok / "kapak.jpg")

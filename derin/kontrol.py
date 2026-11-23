@@ -15,6 +15,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 ESIK = 0.06      # paragraf başına izin verilen harf düzeyi hata oranı
+BAS_SESSIZLIK = 1  # sn
 
 
 def _norm(metin: str) -> list[str]:
@@ -47,10 +48,11 @@ def denetle(ses: Path, zaman: dict, konusmalar: list[str], model_boyutu: str = "
     # sesi kendimiz çözüyoruz (faster-whisper'ın PyAV sürüm uyumsuzluğundan bağımsız)
     ham = subprocess.run(["ffmpeg", "-v", "error", "-i", str(ses), "-ac", "1", "-ar", "16000", "-f", "f32le", "-"],
                          check=True, capture_output=True).stdout
-    dalga = np.frombuffer(ham, dtype=np.float32)
+    # Başa 1 sn sessizlik: Whisper, ses hemen başlayınca ilk kelimeleri atlayabiliyor (yanlış alarm).
+    dalga = np.concatenate([np.zeros(16000 * BAS_SESSIZLIK, dtype=np.float32), np.frombuffer(ham, dtype=np.float32)])
     model = WhisperModel(model_boyutu, device="cpu", compute_type="int8")
     parcalar, _ = model.transcribe(dalga, language="tr", word_timestamps=True, vad_filter=False)
-    kelimeler = [(w.word, w.start, w.end) for p in parcalar for w in (p.words or [])]
+    kelimeler = [(w.word, w.start - BAS_SESSIZLIK, w.end - BAS_SESSIZLIK) for p in parcalar for w in (p.words or [])]
 
     sorunlu = []
     for p, konusma in zip(zaman["paragraflar"], konusmalar):
