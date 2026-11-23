@@ -124,7 +124,9 @@ def main() -> int:
     for i, kisa in enumerate(veri.get("shorts", []) or [], 1):
         if arg.sadece not in ("hepsi", f"shorts{i}"):
             continue
-        zaman, rapor = uret_bir(f"shorts{i}", kisa["paragraflar"], "shorts", kok)
+        zaman, rapor = uret_bir(f"shorts{i}", kisa["paragraflar"], "shorts", kok, son_kart_sure=2.5,
+                                son_kart={"kaynak": "kart", "ust": "Gerçek Gizem", "baslik": "Tam Belgesel Kanalda",
+                                          "alt": veri["baslik"].split(":")[0]})
         ozet[f"shorts{i}"] = {"sure_sn": round(rapor["sure"], 1), "sahne": rapor["sahne_sayisi"]}
         ozet["uyarilar"] += [f"shorts{i}: {u}" for u in rapor["uyarilar"]]
         if rapor["sure"] > 60:

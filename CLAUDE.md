@@ -19,7 +19,7 @@ Her bölüm için şu paket eksiksiz üretilir:
 | Çıktı | Özellik |
 |---|---|
 | **1 ana video** | En az **20 dakika**, yatay (16:9), en az 1080p |
-| **4 Shorts** | Aynı konudan, dikey (9:16), her biri tek başına "vay be" dedirtecek |
+| **4 Shorts** | **Ana videonun en özel, en izlenebilir, en dikkat çekici anlarından kesilir** (aynı anlatım ve görseller, dikey 9:16); ayrı konu veya ayrı metin yok (kanal sahibinin talimatı, 23.11.2026). Her biri tek başına "vay be" dedirtecek, 20–60 sn |
 | **Kapak fotoğrafları** | Ana video ve Shorts için |
 | **Başlık, açıklama, etiketler, bölümler (zaman damgaları)** | Kanalı öne çıkaracak şekilde |
 

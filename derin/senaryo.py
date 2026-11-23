@@ -85,5 +85,15 @@ def oku(yol: Path) -> dict:
     okunus = veri.get("okunus", {}) or {}
     veri["paragraflar"] = paragraflar(veri["akis"], okunus)
     for kisa in veri.get("shorts", []) or []:
-        kisa["paragraflar"] = paragraflar(kisa["akis"], okunus)
+        if "paragraflar" in kisa:
+            # Shorts = ana videonun seçilen anları (aynı anlatım, aynı görseller; CLAUDE.md §1)
+            secilen = []
+            for yeni_sira, i in enumerate(kisa["paragraflar"]):
+                ana = veri["paragraflar"][i]
+                secilen.append(Paragraf(sira=yeni_sira, metin=ana.metin, konusma=ana.konusma,
+                                        gorseller=ana.gorseller, bolum=None, yazi=ana.yazi, abone=False,
+                                        sessizlik=0.0))
+            kisa["paragraflar"] = secilen
+        else:
+            kisa["paragraflar"] = paragraflar(kisa["akis"], okunus)
     return veri
