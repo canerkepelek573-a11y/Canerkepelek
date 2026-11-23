@@ -112,7 +112,14 @@ def klip(sahne: Sahne, boyut: tuple[int, int], hedef: Path) -> Path:
             on_olcek = (f"split[a][b];[a]scale={2 * g}:{2 * y}:force_original_aspect_ratio=increase,"
                         f"crop={2 * g}:{2 * y},boxblur=40:5[z];[b]scale={2 * g}:{2 * y}:"
                         f"force_original_aspect_ratio=decrease[o];[z][o]overlay=(W-w)/2:(H-h)/2")
-            if g > y or not sahne.gorsel.get("sigdir"):   # varsayılan: fotoğraf ekranı doldursun
+            kucuk_foto = False
+            try:
+                from PIL import Image
+                with Image.open(kaynak) as im:
+                    kucuk_foto = im.width < 0.6 * g
+            except Exception:
+                pass
+            if (g > y or not sahne.gorsel.get("sigdir")) and not kucuk_foto:   # varsayılan: ekranı doldur
                 on_olcek = f"scale={2 * g}:{2 * y}:force_original_aspect_ratio=increase,crop={2 * g}:{2 * y}"
         vf = (f"{on_olcek},zoompan=z='{z}':x='{x}':y='{yy}':d={kare}:s={g}x{y}:fps={FPS},"
               f"{ton},format=yuv420p")

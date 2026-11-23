@@ -211,7 +211,21 @@ def loc(ara: str, sira: int = 0) -> dict:
 def url(adres: str, sayfa: str, aciklama: str = "") -> dict:
     """Kanal sahibinin kararıyla, olayın gerçek görüntüsünün asıl kaynağından alınan görsel (CLAUDE.md §6.2)."""
     uzanti = Path(adres.split("?")[0]).suffix.lower() or ".jpg"
-    yol = _indir(adres, _dosya_adi(adres, uzanti))
+    # Sayfadaki küçük önizleme yerine büyük sürümü dene (…-thumb.jpg → ….jpg, /thumbs/ → /gallery/)
+    adaylar = []
+    if "-thumb." in adres:
+        adaylar.append(adres.replace("-thumb.", "."))
+    if "/thumbs/" in adres:
+        adaylar.append(adres.replace("/thumbs/", "/gallery/"))
+    yol = None
+    for buyuk in adaylar:
+        try:
+            yol = _indir(buyuk, _dosya_adi(buyuk, uzanti))
+            break
+        except Exception:
+            continue
+    if yol is None:
+        yol = _indir(adres, _dosya_adi(adres, uzanti))
     ad = aciklama or Path(adres.split("?")[0]).name
     return {"yol": str(yol), "tur": "foto", "atif": f"{ad} — Kaynak: {sayfa}"}
 
