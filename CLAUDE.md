@@ -56,6 +56,8 @@ Her iş **en dikkatli şekilde** yapılır; aceleye getirilmiş, özensiz çıkt
    noktalama ile ve paragraflar arasına bizim eklediğimiz kontrollü sessizlikle sağlanır.
 4. Edge TTS'in verdiği kelime zamanlamaları (WordBoundary) ses–görüntü–altyazı eşlemesinde kullanılır.
 5. Edge TTS bir gün hata verirse sistem sessizce kötü ses üretmez; durur ve durumu bildirir.
+   **Seçilen ses (kanal sahibinin seçimi, ses testi örnek 07):** `tr-TR-AhmetNeural`, hız `-10%`, ses perdesi `-5Hz`.
+   Bu ayarlar tüm videolarda ve Shorts'ta sabit kalır; değişiklik yalnızca kanal sahibinin onayıyla yapılır.
 6. **Yanlış seslendirme kesinlikle olmamalı.**
    - **Noktalama işaretlerine** kesinlikle dikkat edilir; cümleler doğru yerde durur, doğru vurguyla okunur.
    - **Sayılar kesik kesik okunmamalı.** Yıllar, tarihler, büyük sayılar, yüzdeler, ondalıklar,
