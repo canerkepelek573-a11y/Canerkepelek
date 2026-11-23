@@ -1,0 +1,15 @@
+{
+ "bolum": "000-deneme",
+ "baslik": "Sistem denemesi",
+ "uyarilar": [
+  "shorts1: Paragraf 0: görsel alınamadı ({'kaynak': 'openverse', 'ara': 'snowy forest night', 'yon': 'dikey'}): https://api.openverse.org/v1/images/ cevap vermedi: HTTPError: <Response [504]> <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-"
+ ],
+ "ana": {
+  "sure_dk": 0.9,
+  "sahne": 7
+ },
+ "shorts1": {
+  "sure_sn": 10.5,
+  "sahne": 1
+ }
+}
