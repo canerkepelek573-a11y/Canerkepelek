@@ -57,6 +57,21 @@ Her iş **en dikkatli şekilde** yapılır; aceleye getirilmiş, özensiz çıkt
 5. Seslendirme en iyi sonuç için araştırmaya dayalı ayarlarla yapılır (bkz. `docs/arastirma-google-tts.md`).
    Sayı çevirme, parçalara bölme ve kalite kontrol kuralları `docs/arastirma-seslendirme.md` dosyasında da geçerlidir.
 
+## 3.1 Ses ve Görüntü Uyumu
+
+Ses ve görüntü **net şekilde oturur** ve birbiriyle **tutarlı** olur:
+1. **İçerik uyumu:** Ekranda o an anlatılan şey gösterilir. Anlatıcı bir mekândan, nesneden, tarihten
+   veya kişiden bahsediyorsa görüntü de onunla ilgilidir; konuyla alakasız "dolgu" görüntü kullanılmaz.
+2. **Zamanlama uyumu:** Görüntü geçişleri cümle ve paragraf sınırlarına denk gelir; bir cümlenin
+   ortasında alakasız bir kesme yapılmaz. Görüntü süreleri seslendirmenin gerçek sürelerine göre hesaplanır
+   (tahmini süreyle değil).
+3. **Altyazı uyumu:** Altyazılar kelime kelime sesle eş zamanlı akar; sesten önce veya sonra görünmez.
+   Altyazıda yazılan metin, seslendirmede okunan metinle birebir aynıdır (yabancı isimler orijinal yazımıyla).
+4. **Efekt ve müzik uyumu:** Ses efektleri ve müzik vurguları görüntüdeki ana denk gelir; müzik
+   anlatıcının sesini bastırmaz.
+5. **Kontrol:** Her video yüklenmeden önce ses–görüntü–altyazı uyumu kontrol edilir.
+   Kayma veya tutarsızlık varsa düzeltilmeden yüklenmez.
+
 ## 4. Başlık ve Kapak Fotoğrafı Kuralları
 
 1. Bu konulardaki **en çok izlenen YouTube videoları** incelenir; başlık ve kapak fotoğrafı
