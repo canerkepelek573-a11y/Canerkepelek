@@ -40,22 +40,29 @@ Her iş **en dikkatli şekilde** yapılır; aceleye getirilmiş, özensiz çıkt
    videonun ortalarında ve sona doğru). Shorts'ta sonda kısa bir çağrı yapılır.
 4. Konu anlatımı sürükleyici, karanlık ve gizemli bir belgesel anlatıcısı tonunda olur.
 
-## 3. Seslendirme Kuralları (Google Cloud Text-to-Speech)
+## 3. Seslendirme Kuralları (Edge TTS)
 
-1. Tüm seslendirme **Google Cloud Text-to-Speech** ile yapılır (kanal sahibinin kararı, 23.11.2026;
-   önceki plan ElevenLabs idi, o araştırma `docs/arastirma-seslendirme.md` dosyasında referans olarak durur).
-2. API anahtarı **asla** sohbete, koda veya depoya yazılmaz. GitHub'da
-   **Settings → Secrets and variables → Actions** bölümüne `GOOGLE_CLOUD_API_KEY` adıyla eklenir.
-3. **Yanlış seslendirme kesinlikle olmamalı.**
+1. Tüm seslendirme **Edge TTS** (Microsoft'un ücretsiz sinir ağı sesleri, `edge-tts` kütüphanesi) ile yapılır.
+   Kanal sahibinin kararı, 23.11.2026. Gerekçe: Google Cloud 1.500 TL ön ödeme istedi; ücretsiz yol seçildi.
+   Önceki araştırmalar (`docs/arastirma-seslendirme.md` ElevenLabs, `docs/arastirma-google-tts.md` Google)
+   referans olarak durur; Edge çalışmayı bırakırsa yedek olarak bunlardan biri kanal sahibine önerilir.
+2. Edge TTS anahtar gerektirmez. İleride başka bir servis için anahtar gerekirse anahtar **asla** sohbete,
+   koda veya depoya yazılmaz; GitHub **Settings → Secrets and variables → Actions** bölümüne eklenir.
+3. Edge TTS özel SSML kabul etmez: ton `rate` (hız) ve `pitch` (ses perdesi) ile, duraklamalar
+   noktalama ile ve paragraflar arasına bizim eklediğimiz kontrollü sessizlikle sağlanır.
+4. Edge TTS'in verdiği kelime zamanlamaları (WordBoundary) ses–görüntü–altyazı eşlemesinde kullanılır.
+5. Edge TTS bir gün hata verirse sistem sessizce kötü ses üretmez; durur ve durumu bildirir.
+6. **Yanlış seslendirme kesinlikle olmamalı.**
    - **Noktalama işaretlerine** kesinlikle dikkat edilir; cümleler doğru yerde durur, doğru vurguyla okunur.
    - **Sayılar kesik kesik okunmamalı.** Yıllar, tarihler, büyük sayılar, yüzdeler, ondalıklar,
      sıra sayıları ve Roma rakamları seslendirmeden önce **Türkçe yazıya çevrilir**
      (ör. `1947` → "bin dokuz yüz kırk yedi", `%40` → "yüzde kırk", `XIV.` → "On Dördüncü").
    - Yabancı özel isimlerin okunuşu kontrol edilir.
-4. Üretilen ses **kontrol edilir** (yazıya geri çevrilip metinle karşılaştırılır);
+7. Üretilen ses **kontrol edilir** (yazıya geri çevrilip metinle karşılaştırılır);
    hatalı bölüm varsa o bölüm yeniden seslendirilir. Hatalı ses yüklenmez.
-5. Seslendirme en iyi sonuç için araştırmaya dayalı ayarlarla yapılır (bkz. `docs/arastirma-google-tts.md`).
-   Sayı çevirme, parçalara bölme ve kalite kontrol kuralları `docs/arastirma-seslendirme.md` dosyasında da geçerlidir.
+8. Seslendirme en iyi sonuç için araştırmaya dayalı ayarlarla yapılır. Sayı çevirme, yabancı isim okunuşu,
+   parçalara bölme, parçaları birleştirme ve kalite kontrol kuralları `docs/arastirma-seslendirme.md` ve
+   `docs/arastirma-google-tts.md` dosyalarından Edge TTS'e uyarlanarak uygulanır.
 
 ## 3.1 Ses ve Görüntü Uyumu
 
