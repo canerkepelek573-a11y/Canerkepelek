@@ -118,7 +118,7 @@ jobs:
 
   topla:
     needs: [hazirla, uret]
-    if: ${{ !cancelled() && needs.hazirla.result == 'success' }}
+    if: ${{ !cancelled() && needs.hazirla.result == 'success' && needs.uret.result != 'skipped' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
