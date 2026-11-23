@@ -1,7 +1,8 @@
 """Üretilmiş bir bölümü YouTube'a yükler ve başarıdan sonra üretim dosyalarını siler (CLAUDE.md §5, §7).
 
 Kullanım: python scripts/yukle.py bolumler/001-dyatlov [--gizlilik private|unlisted|public] [--zamanla]
---zamanla: ana video bir sonraki 19:00 (TSİ) için, Shorts'lar ondan sonra 2 günde bir 19:00'a planlanır.
+--zamanla: ana video ve 1. Shorts bir sonraki 19:00 (TSİ) için; diğer Shorts'lar sonraki günlerde
+           her gün birer tane 19:00'a planlanır (kanal sahibiyle kararlaştırılan düzen).
 """
 
 from __future__ import annotations
@@ -20,12 +21,14 @@ TSI = dt.timezone(dt.timedelta(hours=3))
 
 
 def yayin_zamanlari(adet: int) -> list[str]:
+    """[ana, shorts1, shorts2, ...]: ana + shorts1 aynı gün 19:00; sonraki Shorts'lar her gün bir tane."""
     simdi = dt.datetime.now(TSI)
     ilk = simdi.replace(hour=19, minute=0, second=0, microsecond=0)
     if ilk <= simdi + dt.timedelta(hours=2):
         ilk += dt.timedelta(days=1)
-    return [(ilk + dt.timedelta(days=2 * i)).astimezone(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-            for i in range(adet)]
+    gunler = [0, 0] + list(range(1, max(0, adet - 2) + 1))
+    return [(ilk + dt.timedelta(days=g)).astimezone(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            for g in gunler[:adet]]
 
 
 def main() -> int:

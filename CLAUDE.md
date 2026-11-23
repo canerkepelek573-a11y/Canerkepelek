@@ -128,7 +128,9 @@ Her adım kanalın büyümesine hizmet eder. **Her yüklemede şu kontrol listes
 7. **Kapak fotoğrafı** yüklenir.
 8. **Oynatma listesi:** video, konusuna uygun tema listesine eklenir.
 9. **Shorts:** başlık + açıklamada ana videonun adı ve anahtar kelimeleri; ana videoya yönlendirme.
-10. **Yayın saati:** Türk izleyicinin aktif olduğu saatler (başlangıçta 18:00–21:00 TSİ).
+10. **Yayın saati ve takvim:** Türk izleyicinin aktif olduğu saatler (başlangıçta 19:00 TSİ).
+    Ana video + en güçlü Shorts aynı gün; diğer 3 Shorts sonraki 3 gün her gün birer tane (kanal sahibiyle
+    kararlaştırıldı, 23.11.2026).
 11. Sabitlenmiş yorum ve bitiş ekranı API ile eklenemiyor; bunlar için kanal sahibine kısa bir hatırlatma yapılır.
 
 ## 6. Görseller: Olayın Kendi Arşiv Fotoğrafları
