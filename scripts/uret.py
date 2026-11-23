@@ -47,6 +47,26 @@ def aciklama(veri: dict, zaman: dict, atiflar: list[str]) -> str:
     return metin
 
 
+def yukleme_bilgisi(veri: dict, kok: Path) -> None:
+    """Yükleme için tüm metadatayı (başlık, açıklama, etiket, hashtag) tek yerde toplar (CLAUDE.md §5)."""
+    hashtag = " ".join(veri.get("hashtagler", []))
+    ana_aciklama = (kok / "ana" / "aciklama.txt").read_text(encoding="utf-8") if (kok / "ana" / "aciklama.txt").exists() else ""
+    bilgi = {"ana": {"baslik": veri["baslik"], "aciklama": ana_aciklama, "etiketler": veri.get("etiketler", []),
+                     "video": "ana/video.mp4", "altyazi": "ana/altyazi.srt", "kapak": "kapak.jpg"},
+             "shorts": []}
+    for i, kisa in enumerate(veri.get("shorts", []) or [], 1):
+        aciklama_k = f"{kisa.get('aciklama', '')}\n\nTam belgesel: {veri['baslik']}\n\n{hashtag} #Shorts"
+        bilgi["shorts"].append({"baslik": kisa["baslik"], "aciklama": aciklama_k, "etiketler": veri.get("etiketler", []),
+                                "video": f"shorts{i}/video.mp4"})
+    (kok / "yukleme.json").write_text(json.dumps(bilgi, ensure_ascii=False, indent=1), encoding="utf-8")
+    satirlar = [f"# Yükleme bilgileri — {veri['baslik']}", "", "## Ana video", f"**Başlık:** {veri['baslik']}", "",
+                "**Etiketler:** " + ", ".join(veri.get("etiketler", [])), "", "**Açıklama:**", "", "```", ana_aciklama, "```", ""]
+    for i, k in enumerate(bilgi["shorts"], 1):
+        satirlar += [f"## Shorts {i}", f"**Başlık:** {k['baslik']}", "", "```", k["aciklama"], "```", ""]
+    (kok / "onizleme").mkdir(parents=True, exist_ok=True)
+    (kok / "onizleme" / "yukleme_bilgileri.md").write_text("\n".join(satirlar), encoding="utf-8")
+
+
 async def sesi_uret(paragraflar, klasor: Path) -> dict:
     return await seslendir(paragraflar, klasor)
 
@@ -109,6 +129,9 @@ def main() -> int:
         ozet["uyarilar"] += [f"shorts{i}: {u}" for u in rapor["uyarilar"]]
         if rapor["sure"] > 60:
             ozet["uyarilar"].append(f"shorts{i}: süre {rapor['sure']:.0f} sn (hedef 20–50 sn)")
+
+    if arg.sadece == "hepsi":
+        yukleme_bilgisi(veri, kok)
 
     if arg.sadece == "hepsi" and (kok / "kapak.jpg").exists():
         (kok / "onizleme").mkdir(exist_ok=True)

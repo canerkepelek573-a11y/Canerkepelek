@@ -11,6 +11,10 @@ on:
         description: "hepsi | ana | shorts1..shorts4 | kapak"
         required: true
         default: "hepsi"
+      yukle:
+        description: "YouTube'a yükle (hayir | private | unlisted | public)"
+        required: true
+        default: "hayir"
   push:
     paths:
       - "bolumler/*/senaryo.yaml"
@@ -39,7 +43,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
-          pip install -q edge-tts==7.3.1 pyyaml pillow requests faster-whisper
+          pip install -q edge-tts==7.3.1 pyyaml pillow requests faster-whisper google-api-python-client google-auth
 
       - name: Önbellek (ses ve görseller)
         uses: actions/cache@v4
@@ -70,6 +74,14 @@ jobs:
       - name: Üret
         run: python scripts/uret.py "${{ steps.bolum.outputs.yol }}" --sadece "${{ steps.bolum.outputs.sadece }}" --kontrol
 
+      - name: YouTube'a yükle
+        if: github.event_name == 'workflow_dispatch' && inputs.yukle != 'hayir'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/yukle.py "${{ steps.bolum.outputs.yol }}" --gizlilik "${{ inputs.yukle }}" --zamanla
+
       - name: Videoları sakla (indirilebilir)
         if: always()
         uses: actions/upload-artifact@v4
@@ -95,6 +107,7 @@ jobs:
           cp cikti/"$ad"/ozet.json "$yol/onizleme/" 2>/dev/null || true
           cp cikti/"$ad"/ana/aciklama.txt "$yol/onizleme/" 2>/dev/null || true
           cp cikti/"$ad"/ana/kaynaklar.txt "$yol/onizleme/" 2>/dev/null || true
+          git add "$yol/yuklendi.json" 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
           git add "$yol/onizleme"
