@@ -1,0 +1,46 @@
+name: Örnek kanal analizi
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/kanal_analizi.py"
+      - ".github/workflows/kanal-analizi.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kanal-analizi
+  cancel-in-progress: true
+
+jobs:
+  analiz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Kütüphaneleri kur
+        run: pip install -U yt-dlp
+
+      - name: Kanal verilerini topla
+        run: python scripts/kanal_analizi.py
+
+      - name: Verileri depoya kaydet
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add analiz/ || true
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok."
+          else
+            git commit -m "Örnek kanal analiz verileri toplandı"
+            git pull --rebase
+            git push
+          fi
