@@ -59,7 +59,10 @@ def uret_bir(ad: str, paragraflar, bicim: str, kok: Path, **kwargs) -> tuple[dic
     zaman = asyncio.run(sesi_uret(paragraflar, klasor))
     if KONTROL:
         from derin import kontrol
-        sonuc = kontrol.denetle(klasor / "ses.wav", zaman, [p.konusma for p in paragraflar])
+        try:
+            sonuc = kontrol.denetle(klasor / "ses.wav", zaman, [p.konusma for p in paragraflar])
+        except Exception as hata:      # kontrol aracı bozulursa video yine üretilsin, durum raporlansın
+            sonuc = {"hata": f"Ses kontrolü çalışmadı: {type(hata).__name__}: {hata}"}
         (kok / "onizleme").mkdir(parents=True, exist_ok=True)
         (kok / "onizleme" / f"{ad}_ses_kontrol.json").write_text(
             json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")

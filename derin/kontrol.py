@@ -35,8 +35,16 @@ def wer(beklenen: list[str], duyulan: list[str]) -> tuple[float, list[str]]:
 def denetle(ses: Path, zaman: dict, konusmalar: list[str], model_boyutu: str = "small") -> dict:
     from faster_whisper import WhisperModel
 
+    import subprocess
+
+    import numpy as np
+
+    # sesi kendimiz çözüyoruz (faster-whisper'ın PyAV sürüm uyumsuzluğundan bağımsız)
+    ham = subprocess.run(["ffmpeg", "-v", "error", "-i", str(ses), "-ac", "1", "-ar", "16000", "-f", "f32le", "-"],
+                         check=True, capture_output=True).stdout
+    dalga = np.frombuffer(ham, dtype=np.float32)
     model = WhisperModel(model_boyutu, device="cpu", compute_type="int8")
-    parcalar, _ = model.transcribe(str(ses), language="tr", word_timestamps=True, vad_filter=False)
+    parcalar, _ = model.transcribe(dalga, language="tr", word_timestamps=True, vad_filter=False)
     kelimeler = [(w.word, w.start, w.end) for p in parcalar for w in (p.words or [])]
 
     sorunlu = []

@@ -43,14 +43,23 @@ def _dosya_adi(anahtar: str, uzanti: str) -> Path:
 
 
 def _indir(url: str, hedef: Path) -> Path:
+    """Dosyayı indirir; 429 / 5xx durumunda artan beklemeyle yeniden dener."""
+    import time
+
     if hedef.exists() and hedef.stat().st_size > 0:
         return hedef
-    yanit = requests.get(url, headers=UA, timeout=120, stream=True)
-    yanit.raise_for_status()
-    with open(hedef, "wb") as f:
-        for parca in yanit.iter_content(1 << 16):
-            f.write(parca)
-    return hedef
+    for deneme in range(6):
+        yanit = requests.get(url, headers=UA, timeout=120, stream=True)
+        if yanit.status_code == 429 or yanit.status_code >= 500:
+            time.sleep(min(60, 8 * (deneme + 1)))
+            continue
+        yanit.raise_for_status()
+        with open(hedef, "wb") as f:
+            for parca in yanit.iter_content(1 << 16):
+                f.write(parca)
+        time.sleep(1.0)          # kaynak sitelere nazik davran
+        return hedef
+    raise RuntimeError(f"İndirilemedi (çok fazla istek): {url}")
 
 
 def _json(url: str, params: dict | None = None, deneme_sayisi: int = 5) -> dict:
@@ -93,7 +102,7 @@ def commons(dosya: str) -> dict:
         "https://commons.wikimedia.org/w/api.php",
         {
             "action": "query", "format": "json", "titles": baslik, "prop": "imageinfo",
-            "iiprop": "url|extmetadata|mime", "iiurlwidth": 3840,
+            "iiprop": "url|extmetadata|mime", "iiurlwidth": 2560,
         },
     )
     sayfa = next(iter(yanit["query"]["pages"].values()))
@@ -120,7 +129,7 @@ def commons_ara(ara: str, sira: int = 0) -> dict:
     veri = _json("https://commons.wikimedia.org/w/api.php", {
         "action": "query", "format": "json", "generator": "search", "gsrnamespace": 6,
         "gsrsearch": f"{ara} filetype:bitmap", "gsrlimit": 30, "prop": "imageinfo",
-        "iiprop": "url|extmetadata|size", "iiurlwidth": 3840,
+        "iiprop": "url|extmetadata|size", "iiurlwidth": 2560,
     })
     uygun = []
     for sayfa in sorted(veri.get("query", {}).get("pages", {}).values(), key=lambda p: p.get("index", 0)):
@@ -142,7 +151,7 @@ def openverse(ara: str, sira: int = 0, yon: str | None = None) -> dict:
     if yon:
         params["aspect_ratio"] = {"yatay": "wide", "dikey": "tall"}.get(yon, yon)
     sonuclar = _json("https://api.openverse.org/v1/images/", params)
-    sonuclar = [r for r in sonuclar.get("results", []) if (r.get("width") or 0) >= 1200]
+    sonuclar = [r for r in sonuclar.get("results", []) if (r.get("width") or 1600) >= 1000]
     if len(sonuclar) <= sira:
         raise FileNotFoundError(f"Openverse'te yeterli sonuç yok: '{ara}' (sıra {sira})")
     r = sonuclar[sira]
