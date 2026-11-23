@@ -146,6 +146,8 @@ def sayfa_adaylari(adres: str) -> list[dict]:
         if tam in gorulen or any(k in tam.lower() for k in ("logo", "icon", "sprite", "avatar", "banner")):
             continue
         gorulen.add(tam)
+        if len(sonuc) >= 48:
+            break
         sonuc.append({"tanim": {"kaynak": "url", "adres": tam, "sayfa": adres}, "kucuk": tam,
                       "baslik": tam.rsplit("/", 1)[-1][:60], "lisans": "kaynak sayfa", "boyut": ""})
     return sonuc
