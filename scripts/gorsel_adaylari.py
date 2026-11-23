@@ -64,6 +64,51 @@ def commons_adaylar(ara: str, adet: int = 8) -> list[dict]:
     return sonuc
 
 
+def kategori_dosyalari(kategori: str, derinlik: int = 2) -> list[str]:
+    """Commons kategorisindeki (ve alt kategorilerindeki) dosya adları."""
+    dosyalar, ziyaret, kuyruk = [], set(), [(kategori, 0)]
+    while kuyruk:
+        kat, d = kuyruk.pop(0)
+        if kat in ziyaret:
+            continue
+        ziyaret.add(kat)
+        devam = {}
+        while True:
+            veri = _json("https://commons.wikimedia.org/w/api.php", {
+                "action": "query", "format": "json", "list": "categorymembers", "cmtitle": f"Category:{kat}",
+                "cmtype": "file|subcat", "cmlimit": 500, **devam})
+            for u in veri.get("query", {}).get("categorymembers", []):
+                if u["ns"] == 6:
+                    dosyalar.append(u["title"])
+                elif u["ns"] == 14 and d < derinlik:
+                    kuyruk.append((u["title"].removeprefix("Category:"), d + 1))
+            if "continue" not in veri:
+                break
+            devam = veri["continue"]
+    return list(dict.fromkeys(dosyalar))
+
+
+def commons_dosya_adaylari(basliklar: list[str]) -> list[dict]:
+    sonuc = []
+    for i in range(0, len(basliklar), 40):
+        veri = _json("https://commons.wikimedia.org/w/api.php", {
+            "action": "query", "format": "json", "titles": "|".join(basliklar[i:i + 40]), "prop": "imageinfo",
+            "iiprop": "url|extmetadata|size|mime", "iiurlwidth": 330})
+        for sayfa in veri.get("query", {}).get("pages", {}).values():
+            bilgi = (sayfa.get("imageinfo") or [{}])[0]
+            if not bilgi.get("mime", "").startswith("image/"):
+                continue
+            lisans = bilgi.get("extmetadata", {}).get("LicenseShortName", {}).get("value", "")
+            try:
+                _lisans_kontrol(lisans, sayfa["title"])
+            except LisansHatasi:
+                continue
+            sonuc.append({"tanim": {"kaynak": "commons", "dosya": sayfa["title"]}, "kucuk": bilgi.get("thumburl"),
+                          "baslik": sayfa["title"].removeprefix("File:"), "lisans": lisans,
+                          "boyut": f"{bilgi.get('width')}x{bilgi.get('height')}"})
+    return sorted(sonuc, key=lambda a: a["baslik"])
+
+
 def kucuk_resim(url: str | None) -> Image.Image:
     bos = Image.new("RGB", KUCUK, (40, 40, 45))
     if not url:
@@ -87,7 +132,7 @@ def kucuk_resim(url: str | None) -> Image.Image:
     return bos
 
 
-def tablo(ad: str, ara: str, adaylar: list[dict], hedef: Path) -> None:
+def tablo(ad: str, ara: str, adaylar: list[dict], hedef: Path, baslangic: int = 0) -> None:
     satir = max(1, (len(adaylar) + SUTUN - 1) // SUTUN)
     hucre_y = KUCUK[1] + 46
     im = Image.new("RGB", (SUTUN * (KUCUK[0] + 10) + 10, 60 + satir * (hucre_y + 10)), (15, 15, 18))
@@ -99,7 +144,9 @@ def tablo(ad: str, ara: str, adaylar: list[dict], hedef: Path) -> None:
         y = 60 + (i // SUTUN) * (hucre_y + 10)
         im.paste(kucuk_resim(a["kucuk"]), (x, y))
         ciz.rectangle([x, y, x + 44, y + 40], fill=(232, 72, 38))
-        ciz.text((x + 8, y + 2), str(i), font=fn, fill=(255, 255, 255))
+        no = str(baslangic + i)
+        ciz.rectangle([x, y, x + 20 + 22 * len(no), y + 40], fill=(232, 72, 38))
+        ciz.text((x + 8, y + 2), no, font=fn, fill=(255, 255, 255))
         kaynak = "OV" if a["tanim"]["kaynak"] == "openverse" else "WC"
         ciz.text((x, y + KUCUK[1] + 4), f"{kaynak} · {a['lisans'][:18]} · {a['boyut']}", font=fk, fill=(200, 200, 200))
         ciz.text((x, y + KUCUK[1] + 24), a["baslik"][:46], font=fk, fill=(150, 150, 150))
@@ -112,18 +159,32 @@ def main() -> int:
     klasor = bolum / "adaylar"
     klasor.mkdir(exist_ok=True)
     hepsi = {}
+    json_yolu = klasor / "adaylar.json"
+    hepsi = json.loads(json_yolu.read_text(encoding="utf-8")) if json_yolu.exists() else {}
     for ad, ara in aramalar.items():
+        if ad in hepsi:          # daha önce üretilmiş tabloyu yeniden üretme
+            continue
         adaylar = []
-        for kaynak in (commons_adaylar, openverse_adaylar):
+        if ara.startswith("kategori:"):
             try:
-                adaylar += kaynak(ara)
+                adaylar = commons_dosya_adaylari(kategori_dosyalari(ara.removeprefix("kategori:")))
             except Exception as hata:
-                print(f"{ad}: {kaynak.__name__} başarısız: {hata}")
-        tablo(ad, ara, adaylar, klasor / f"{ad}.jpg")
+                print(f"{ad}: kategori okunamadı: {hata}")
+        else:
+            for kaynak in (commons_adaylar, openverse_adaylar):
+                try:
+                    adaylar += kaynak(ara)
+                except Exception as hata:
+                    print(f"{ad}: {kaynak.__name__} başarısız: {hata}")
+        sayfa_boyu = 24
+        for s in range(0, max(1, len(adaylar)), sayfa_boyu):
+            parca = adaylar[s:s + sayfa_boyu]
+            ek = "" if len(adaylar) <= sayfa_boyu else f"_{s // sayfa_boyu + 1}"
+            tablo(f"{ad}{ek}", ara, parca, klasor / f"{ad}{ek}.jpg", baslangic=s)
         hepsi[ad] = {"ara": ara, "adaylar": [{"no": i, **a["tanim"], "baslik": a["baslik"], "lisans": a["lisans"]}
                                             for i, a in enumerate(adaylar)]}
+        json_yolu.write_text(json.dumps(hepsi, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"{ad}: {len(adaylar)} aday")
-    (klasor / "adaylar.json").write_text(json.dumps(hepsi, ensure_ascii=False, indent=1), encoding="utf-8")
     return 0
 
 
