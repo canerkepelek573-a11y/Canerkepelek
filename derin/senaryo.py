@@ -42,6 +42,9 @@ class Paragraf:
     sessizlik: float = 0.0
 
 
+CUMLE_SINIRI = re.compile(r'(?<=[.!?…])\s+(?=[A-ZÇĞİÖŞÜ"“])')   # ses.py ile aynı cümle sınırı
+
+
 def okunus_uygula(metin: str, okunus: dict[str, str]) -> str:
     """Yabancı isimleri Türkçe okunuşlarıyla değiştirir (uzun isimler önce)."""
     for yazilis in sorted(okunus, key=len, reverse=True):
@@ -87,10 +90,18 @@ def oku(yol: Path) -> dict:
     for kisa in veri.get("shorts", []) or []:
         if "paragraflar" in kisa:
             # Shorts = ana videonun seçilen anları (aynı anlatım, aynı görseller; CLAUDE.md §1)
+            # Öğe: paragraf numarası (ör. 29) ya da {p: 29, cumleler: [0, 1]} — o paragrafın seçilen cümleleri
             secilen = []
-            for yeni_sira, i in enumerate(kisa["paragraflar"]):
+            for yeni_sira, oge in enumerate(kisa["paragraflar"]):
+                i = oge["p"] if isinstance(oge, dict) else oge
                 ana = veri["paragraflar"][i]
-                secilen.append(Paragraf(sira=yeni_sira, metin=ana.metin, konusma=ana.konusma,
+                metin = ana.metin
+                if isinstance(oge, dict) and "cumleler" in oge:
+                    cumleler = CUMLE_SINIRI.split(ana.metin)
+                    metin = " ".join(cumleler[j] for j in oge["cumleler"])
+                konusma = cevir(okunus_uygula(metin, okunus))
+                kontrol(konusma)
+                secilen.append(Paragraf(sira=yeni_sira, metin=metin, konusma=konusma,
                                         gorseller=ana.gorseller, bolum=None, yazi=ana.yazi, abone=False,
                                         sessizlik=0.0))
             kisa["paragraflar"] = secilen

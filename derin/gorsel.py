@@ -43,23 +43,31 @@ def _dosya_adi(anahtar: str, uzanti: str) -> Path:
 
 
 def _indir(url: str, hedef: Path) -> Path:
-    """Dosyayı indirir; 429 / 5xx durumunda artan beklemeyle yeniden dener."""
+    """Dosyayı indirir; 429 / 5xx durumunda (Retry-After'a uyarak) artan beklemeyle yeniden dener."""
     import time
 
     if hedef.exists() and hedef.stat().st_size > 0:
         return hedef
     wikimedia = "upload.wikimedia.org" in url
-    for deneme in range(7):
+    for deneme in range(10):
         if wikimedia:
-            time.sleep(4)        # Wikimedia hız sınırına takılmamak için
+            time.sleep(5)        # Wikimedia hız sınırına takılmamak için
         yanit = requests.get(url, headers=UA, timeout=120, stream=True)
         if yanit.status_code == 429 or yanit.status_code >= 500:
-            time.sleep(min(150, 30 * (deneme + 1)))
+            try:
+                bekle = float(yanit.headers.get("Retry-After", ""))
+            except ValueError:
+                bekle = 0
+            bekle = max(bekle, 30 * (deneme + 1))
+            print(f"  {yanit.status_code}; {bekle:.0f} sn bekleniyor: {url[:90]}")
+            time.sleep(min(300, bekle))
             continue
         yanit.raise_for_status()
-        with open(hedef, "wb") as f:
+        gecici = hedef.with_suffix(hedef.suffix + ".part")
+        with open(gecici, "wb") as f:
             for parca in yanit.iter_content(1 << 16):
                 f.write(parca)
+        gecici.replace(hedef)
         time.sleep(1.0)          # kaynak sitelere nazik davran
         return hedef
     raise RuntimeError(f"İndirilemedi (çok fazla istek): {url}")

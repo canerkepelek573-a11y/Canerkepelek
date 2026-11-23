@@ -317,7 +317,7 @@ akis:
       Ne bir suçlu, ne bir saldırgan, ne de net bir açıklama. Ve bölge, sonraki üç yıl boyunca yürüyüşçülere kapatıldı.
   - gorseller:
       - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-photos-marinner966-04.jpg", sayfa: "https://dyatlovpass.com/contemporary-photos", aciklama: "Night sky with glowing clouds over the forest near Dyatlov Pass"}
-      - {kaynak: openverse, id: "17c48333-000b-4610-a2aa-ce6c659289a6"}
+      - {kaynak: kart, tur: belge, baslik: "Arama ekibinin telsiz mesajı · 31 Mart 1959", satirlar: ["Saat 04.00, güneydoğu yönünde,", "nöbetçi büyük bir ateş halkası gördü.", "Halka yirmi dakika boyunca bize doğru", "ilerledi, sonra tepenin ardında kayboldu.", "Ortasından bir yıldız çıktı; ay kadar büyüdü."]}
     metin: >
       Peki o dönemde başka neler oluyordu? Şubat ve Mart bin dokuz yüz elli dokuzda, bölgede farklı kişiler gökyüzünde parlak, turuncu küreler gördüklerini bildirdi.
       Bunlardan biri, bizzat arama ekibinin otuz bir Mart gecesi gördüğü ve telgrafla bildirdiği bir ışıktı.
@@ -545,8 +545,8 @@ akis:
 
 # ================================================================ SHORTS (her biri tek başına "vay be" dedirtmeli)
 # ================================================================ SHORTS
-# Kural (CLAUDE.md §1): Shorts'lar ana videonun en çarpıcı anlarından kesilir; ayrı metin yazılmaz.
-# `paragraflar`: ana videodaki anlatım paragraflarının sıra numaraları (aynı ses, aynı görseller, dikey format).
+# `paragraflar`: ana videodaki paragrafların sıra numaraları, ya da {p: 29, cumleler: [0, 1]} ile o paragrafın seçilen cümleleri
+# (aynı anlatım, aynı görseller, dikey format; Shorts 20–60 sn olmalı).
 shorts:
   - baslik: "Çadırı İçeriden Kesip Karanlığa Koştular #Shorts"
     aciklama: "1959'da dokuz deneyimli yürüyüşçü, çadırlarını içeriden kesip eksi otuz derecede karanlığa yürüdü. Dyatlov Geçidi'nin tam hikâyesi kanalda."
@@ -556,7 +556,7 @@ shorts:
     paragraflar: [19, 20]
   - baslik: "Dyatlov Dosyasını Kapatan Savcı 31 Yıl Sonra Konuştu #Shorts"
     aciklama: "Davayı 'karşı konulamaz bir doğa gücü' diyerek kapatan savcı Lev İvanov, 1990'da bambaşka bir şey söyledi. Tam belgesel kanalda."
-    paragraflar: [29, 32]
+    paragraflar: [{p: 29, cumleler: [0, 1]}, {p: 32, cumleler: [0, 1, 2, 3]}]
   - baslik: "Dyatlov Grubundan Geri Dönen Tek Kişi: Yuri Yudin #Shorts"
     aciklama: "Yolun başında hastalanıp geri dönen Yuri Yudin, 54 yıl boyunca aynı soruyu sordu. Tam belgesel kanalda."
-    paragraflar: [8, 54]
+    paragraflar: [{p: 8, cumleler: [1, 2, 3, 4, 5]}, {p: 54, cumleler: [3, 4, 5, 6]}]

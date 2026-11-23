@@ -125,6 +125,28 @@ def main() -> int:
             print(parca, json.dumps(sonuc, ensure_ascii=False, indent=1))
         return 0
 
+    if arg.sadece == "gorseller":
+        # Tüm arşiv görsellerini render'dan önce tek seferde, sırayla indirir (önbelleğe).
+        # Paralel işler aynı anda Wikimedia'ya yüklenip "çok fazla istek" hatası almasın diye.
+        from derin import gorsel
+        tanimlar = [g for p in veri["paragraflar"] for g in p.gorseller]
+        tanimlar += [g for k in veri.get("shorts", []) or [] for p in k["paragraflar"] for g in p.gorseller]
+        tanimlar.append(veri["kapak"]["gorsel"])
+        gorulen, hatalar = set(), []
+        for t in tanimlar:
+            anahtar = json.dumps(t, sort_keys=True, ensure_ascii=False)
+            if t.get("kaynak") in ("kart", "harita") or anahtar in gorulen:
+                continue
+            gorulen.add(anahtar)
+            try:
+                gorsel.coz(t, kok / "gecici_gorsel", (1920, 1080))
+            except Exception as hata:
+                hatalar.append(f"{t}: {type(hata).__name__}: {hata}")
+        print(f"{len(gorulen)} görsel denendi, {len(hatalar)} hata")
+        for h in hatalar:
+            print("HATA:", h)
+        return 1 if hatalar else 0
+
     if arg.sadece in ("hepsi", "kapak"):
         kapak.olustur(veri["kapak"], veri["bolum_no"], kok / "kapak.jpg")
 

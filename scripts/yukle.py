@@ -31,6 +31,23 @@ def yayin_zamanlari(adet: int) -> list[str]:
             for g in gunler[:adet]]
 
 
+def kalite_kapisi(kok: Path) -> list[str]:
+    """Yüklemeden önce son kontrol: eksik görsel, hatalı ses, uzun Shorts varsa yükleme yapılmaz (CLAUDE.md §1, §3)."""
+    sorunlar = []
+    ozet_yol = kok / "ozet.json"
+    if not ozet_yol.exists():
+        return ["ozet.json yok"]
+    ozet = json.loads(ozet_yol.read_text(encoding="utf-8"))
+    sorunlar += [u for u in ozet.get("uyarilar", []) if "alınamadı" in u or "süre" in u]
+    if ozet.get("ana", {}).get("sure_dk", 0) < 20:
+        sorunlar.append(f"ana video 20 dakikadan kısa: {ozet.get('ana')}")
+    for f in sorted((kok / "onizleme").glob("*_ses_kontrol.json")):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        if d.get("hata") or d.get("sorunlu"):
+            sorunlar.append(f"{f.name}: {d.get('hata') or d.get('sorunlu')}")
+    return sorunlar
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("bolum", type=Path)
@@ -39,6 +56,12 @@ def main() -> int:
     arg = ap.parse_args()
 
     kok = Path("cikti") / arg.bolum.name
+    sorunlar = kalite_kapisi(kok)
+    if sorunlar:
+        print("YÜKLENMEDİ — kalite kontrolünden geçmedi:")
+        for s_ in sorunlar:
+            print(" -", str(s_)[:300])
+        return 1
     bilgi = json.loads((kok / "yukleme.json").read_text(encoding="utf-8"))
     zamanlar = yayin_zamanlari(1 + len(bilgi["shorts"])) if arg.zamanla else [None] * (1 + len(bilgi["shorts"]))
     sonuc = {"yuklenen": []}

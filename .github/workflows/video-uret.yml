@@ -40,9 +40,35 @@ jobs:
             echo "yol=$(git diff --name-only HEAD~1 HEAD -- 'bolumler/*/senaryo.yaml' | head -1 | xargs dirname)" >> "$GITHUB_OUTPUT"
           fi
 
+  # Tüm arşiv görselleri önce tek makinede, sırayla ve sabırla indirilir; eksik varsa üretim başlamaz.
+  gorseller:
+    needs: hazirla
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q edge-tts==7.3.1 pyyaml pillow requests
+      - name: Görsel önbelleği
+        uses: actions/cache/restore@v4
+        with:
+          path: .onbellek/gorsel
+          key: gorsel-${{ github.run_id }}
+          restore-keys: gorsel-
+      - name: Görselleri indir
+        run: python scripts/uret.py "${{ needs.hazirla.outputs.yol }}" --sadece gorseller
+      - name: Önbelleği kaydet (hata olsa da, indirilenler sonraki denemede tekrar indirilmesin)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .onbellek/gorsel
+          key: gorsel-${{ github.run_id }}
+
   # Ana video, 4 Shorts ve kapak aynı anda, ayrı makinelerde üretilir.
   uret:
-    needs: hazirla
+    needs: [hazirla, gorseller]
     runs-on: ubuntu-latest
     timeout-minutes: 240
     strategy:
@@ -59,14 +85,22 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
           pip install -q edge-tts==7.3.1 pyyaml pillow requests faster-whisper
-      - name: Önbellek (ses ve görseller)
+      - name: Görseller (önceden indirilmiş)
+        uses: actions/cache/restore@v4
+        with:
+          path: .onbellek/gorsel
+          key: gorsel-${{ github.run_id }}
+          fail-on-cache-miss: true
+      - name: Önbellek (ses ve haritalar)
         uses: actions/cache@v4
         with:
-          path: .onbellek
-          key: onbellek-${{ matrix.parca }}-${{ github.run_id }}
+          path: |
+            .onbellek/ses
+            .onbellek/harita
+          key: onbellek2-${{ matrix.parca }}-${{ github.run_id }}
           restore-keys: |
-            onbellek-${{ matrix.parca }}-
-            onbellek-
+            onbellek2-${{ matrix.parca }}-
+            onbellek2-
       - name: Testler
         run: python -m unittest discover -s tests -t .
       - name: Üret
