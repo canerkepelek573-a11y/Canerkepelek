@@ -2578,5 +2578,103 @@
  "arsiv_sovyet_kayak": {
   "ara": "Soviet ski tourists 1950s",
   "adaylar": []
+ },
+ "gercek_wiki_ru": {
+  "ara": "wikipedia:ru:Гибель тургруппы Дятлова",
+  "adaylar": [
+   {
+    "no": 0,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Soviet_Union_location_map.svg?utm_source=ru.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://ru.wikipedia.org/wiki/Гибель_тургруппы_Дятлова",
+    "baslik": "Soviet Union location map.svg",
+    "lisans": "CC BY-SA 3.0"
+   },
+   {
+    "no": 1,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Relief-Sverdlovskaya.png?utm_source=ru.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://ru.wikipedia.org/wiki/Гибель_тургруппы_Дятлова",
+    "baslik": "Relief-Sverdlovskaya.png",
+    "lisans": "CC BY-SA 3.0"
+   },
+   {
+    "no": 2,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/commons/a/ab/%D0%90%D1%83%D1%81%D0%BF%D0%B8%D1%8F_2015.JPG?utm_source=ru.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://ru.wikipedia.org/wiki/Гибель_тургруппы_Дятлова",
+    "baslik": "Ауспия 2015.JPG",
+    "lisans": "CC BY-SA 4.0"
+   },
+   {
+    "no": 3,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/commons/7/71/Dyatlov_Pass_incident_02.jpg?utm_source=ru.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://ru.wikipedia.org/wiki/Гибель_тургруппы_Дятлова",
+    "baslik": "Dyatlov Pass incident 02.jpg",
+    "lisans": "Public domain"
+   },
+   {
+    "no": 4,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/ru/4/4e/%D0%9C%D0%B5%D0%BC%D0%BE%D1%80%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%87%D0%BA%D0%B0_2015.jpg?utm_source=ru.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://ru.wikipedia.org/wiki/Гибель_тургруппы_Дятлова",
+    "baslik": "Мемориальная табличка 2015.jpg",
+    "lisans": "CC BY-SA 4.0"
+   },
+   {
+    "no": 5,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/ru/8/8f/%D0%A4%D0%BE%D1%82%D0%BE_%D1%87%D0%BB%D0%B5%D0%BD%D0%BE%D0%B2_%D1%82%D1%83%D1%80%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B_%D0%98%D0%B3%D0%BE%D1%80%D1%8F_%D0%94%D1%8F%D1%82%D0%BB%D0%BE%D0%B2%D0%B0.jpg?utm_source=ru.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://ru.wikipedia.org/wiki/Гибель_тургруппы_Дятлова",
+    "baslik": "Фото членов тургруппы Игоря Дятлова.jpg",
+    "lisans": "Общественное достояние"
+   }
+  ]
+ },
+ "gercek_wiki_en": {
+  "ara": "wikipedia:en:Dyatlov Pass incident",
+  "adaylar": [
+   {
+    "no": 0,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Russia_rel_location_map.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://en.wikipedia.org/wiki/Dyatlov_Pass_incident",
+    "baslik": "Russia rel location map.png",
+    "lisans": "CC BY-SA 4.0"
+   },
+   {
+    "no": 1,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/commons/5/52/%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D0%BD%D0%B8%D0%BA_%D0%B4%D1%8F%D1%82%D0%BB%D0%BE%D0%B2%D1%86%D0%B0%D0%BC_%D0%BD%D0%B0_%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%BC_%D0%BA%D0%BB%D0%B0%D0%B4%D0%B1%D0%B8%D1%89%D0%B5.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://en.wikipedia.org/wiki/Dyatlov_Pass_incident",
+    "baslik": "Памятник дятловцам на Михайловском кладбище.jpg",
+    "lisans": "Public domain"
+   },
+   {
+    "no": 2,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/commons/9/99/Sverdlovskaya-pozkarta.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://en.wikipedia.org/wiki/Dyatlov_Pass_incident",
+    "baslik": "Sverdlovskaya-pozkarta.png",
+    "lisans": "Public domain"
+   },
+   {
+    "no": 3,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/commons/7/71/Dyatlov_Pass_incident_02.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://en.wikipedia.org/wiki/Dyatlov_Pass_incident",
+    "baslik": "Dyatlov Pass incident 02.jpg",
+    "lisans": "Public domain"
+   },
+   {
+    "no": 4,
+    "kaynak": "url",
+    "adres": "https://upload.wikimedia.org/wikipedia/commons/8/8f/%D0%A4%D0%BE%D1%82%D0%BE_%D1%87%D0%BB%D0%B5%D0%BD%D0%BE%D0%B2_%D1%82%D1%83%D1%80%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B_%D0%98%D0%B3%D0%BE%D1%80%D1%8F_%D0%94%D1%8F%D1%82%D0%BB%D0%BE%D0%B2%D0%B0.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "sayfa": "https://en.wikipedia.org/wiki/Dyatlov_Pass_incident",
+    "baslik": "Фото членов тургруппы Игоря Дятлова.jpg",
+    "lisans": "Public domain"
+   }
+  ]
  }
 }
