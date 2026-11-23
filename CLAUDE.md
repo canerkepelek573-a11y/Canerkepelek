@@ -41,6 +41,8 @@ Antik mitolojiler yalnızca bir antik gizemin tarihsel bağlamı olarak geçebil
    - Video boyunca açık uçlu merak noktaları (cevabı sonra gelecek sorular) bırakılır.
 2. **Doğruluk dengesi:**
    - Bilgilerin %100 doğru olma zorunluluğu yoktur; söylentiler, iddialar ve efsaneler anlatılabilir.
+   - **Doğrulanmamış bilgiler ve iddialar da mutlaka anlatılır** (kanal sahibinin talimatı); her konunun
+     araştırmasında doğrulanmış bilgilerin yanında iddialar ve söylentiler de ayrıca toplanır.
    - Ancak **çok fazla yanlış bilgi içermez.** Bilinen gerçekler doğru aktarılır.
    - Hiçbir şey için "**%100 gerçektir**" denmez; hiçbir şey için "**%100 yalandır**" da denmez.
    - Söylentiler söylenti olarak sunulur: "iddiaya göre", "anlatılanlara göre", "söylentiye göre",
