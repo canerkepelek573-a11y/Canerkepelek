@@ -1,4 +1,4 @@
-# Derin Gizem — ElevenLabs ile Hatasız Türkçe Seslendirme Araştırması
+# Gerçek Gizem — ElevenLabs ile Hatasız Türkçe Seslendirme Araştırması
 
 > Araştırma tarihi: 23.11.2026. Kaynaklar: ElevenLabs'in resmî Python SDK'sı (resmî API tanımından üretilir)
 > ve resmî doküman / yardım merkezi arama özetleri. ⚠ = canlı dokümandan veya küçük bir API testiyle doğrulanmalı.

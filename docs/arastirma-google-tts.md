@@ -1,4 +1,4 @@
-# Derin Gizem — Google Cloud Text-to-Speech ile Türkçe Seslendirme Araştırması
+# Gerçek Gizem — Google Cloud Text-to-Speech ile Türkçe Seslendirme Araştırması
 
 > Araştırma tarihi: Kasım 2026. Kaynaklar: Google resmî sayfalarının arama alıntıları ve
 > Google'ın resmî API tanımı (googleapis deposu, `cloud_tts.proto`). Resmî dokümana doğrudan erişilemedi.

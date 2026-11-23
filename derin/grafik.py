@@ -260,5 +260,5 @@ def uret(t: dict, cikti: Path, boyut: tuple[int, int]) -> dict:
         else:
             im = baslik_karti(t, boyut)
         im.save(yol)
-    kaynak = "Natural Earth (kamu malı) verisiyle Derin Gizem" if t["kaynak"] == "harita" else "Derin Gizem"
+    kaynak = "Natural Earth (kamu malı) verisiyle Gerçek Gizem" if t["kaynak"] == "harita" else "Gerçek Gizem"
     return {"yol": str(yol), "tur": "foto", "atif": f"Özgün grafik — {kaynak}", "grafik": True}

@@ -264,7 +264,7 @@ def srt_dosyasi(zaman: dict, hedef: Path) -> Path:
 
 # ----------------------------------------------------------------------------- ana akış
 
-def olustur(zaman: dict, ses: Path, bicim: str, klasor: Path, marka: str = "Derin Gizem",
+def olustur(zaman: dict, ses: Path, bicim: str, klasor: Path, marka: str = "Gerçek Gizem",
             son_kart_sure: float = 0.0, son_kart: dict | None = None) -> dict:
     """Videoyu üretir; klasor/video.mp4, klasor/altyazi.srt ve klasor/kaynaklar.txt yazar."""
     boyut = BICIMLER[bicim]["boyut"]

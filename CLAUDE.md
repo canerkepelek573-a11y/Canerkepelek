@@ -1,8 +1,12 @@
-# DERİN GİZEM — YouTube Kanalı Kural Dosyası
+# GERÇEK GİZEM — YouTube Kanalı Kural Dosyası
 
-Bu dosya, "Derin Gizem" YouTube kanalı için yapılan tüm çalışmaların ana kural dosyasıdır.
+Bu dosya, "Gerçek Gizem" YouTube kanalı için yapılan tüm çalışmaların ana kural dosyasıdır.
 Her oturumda önce bu dosya okunur ve buradaki kurallara **eksiksiz** uyulur.
 Kurallar kanal sahibi tarafından belirlenmiştir; değişiklik yalnızca kanal sahibinin onayıyla yapılır.
+
+**Kanal adı: "Gerçek Gizem"** (YouTube'daki gerçek kanal adı). Videolardaki marka yazısı, açılış/kapanış
+cümleleri, kapak rozetleri ve hashtag'ler daima kanalın YouTube'daki adıyla yapılır (kanal sahibinin talimatı,
+23.11.2026). Kanal adı değişirse her şey yeni ada göre güncellenir.
 
 Detaylı araştırma notları: `docs/arastirma-google-tts.md`, `docs/arastirma-seslendirme.md` ve `docs/arastirma-youtube.md`
 
@@ -24,7 +28,7 @@ Her iş **en dikkatli şekilde** yapılır; aceleye getirilmiş, özensiz çıkt
 
 ## 1.1 Kanalın Konu Alanı
 
-Kanal sahibinin kararı (23.11.2026): Derin Gizem'in genel konusu şunlardır:
+Kanal sahibinin kararı (23.11.2026): Gerçek Gizem'in genel konusu şunlardır:
 - **Antik gizemler** (açıklanamayan yapılar, antik teknoloji, kayıp eserler)
 - **Kayıp medeniyetler**
 - **Çözülmemiş olaylar** (kayıplar, esrarengiz ölümler, açıklanamayan vakalar)
@@ -116,19 +120,21 @@ Her adım kanalın büyümesine hizmet eder:
 - Oynatma listeleri, sabitlenmiş yorum, bitiş ekranı kullanılır.
 - Yükleme saati Türk izleyicinin aktif olduğu saatlere göre seçilir.
 
-## 6. Telifsiz Görsel ve Video
+## 6. Görseller: Olayın Kendi Arşiv Fotoğrafları
 
-1. Kullanılan tüm video ve fotoğraflar **başımıza dert açmayacak şekilde telifsiz** kaynaklardan seçilir.
-   Anahtar (API key) gerektirmeyen kaynaklar kullanılır (Pexels/Pixabay API'si alınamadı, 23.11.2026):
-   - **Wikimedia Commons** — yalnızca kamu malı (PD), CC0, CC BY, CC BY-SA lisanslı dosyalar (atıf yapılarak)
-   - **Openverse** — yalnızca ticari kullanıma ve değiştirmeye izin veren lisanslar
-   - **NASA** görsel ve video arşivi (kamu malı)
-   - **Library of Congress** ve **Internet Archive** — yalnızca kamu malı fotoğraf ve eski filmler
-   - **The Met / Art Institute of Chicago** açık erişim (CC0) eser görselleri
-   - **Kendi ürettiğimiz görseller** — haritalar (kamu malı Natural Earth verisinden), zaman çizelgeleri,
-     belge ve alıntı kartları. Özgün görseller kanalın "özgün içerik" değerini de artırır.
-2. Lisansı belirsiz hiçbir materyal kullanılmaz.
-3. Her video için kullanılan materyallerin kaynak ve lisans listesi tutulur.
+1. **Ana görsel, anlatılan olayın kendi arşiv fotoğrafları ve görüntüleridir** (kanal sahibinin talimatı,
+   23.11.2026): olay yerinin, kişilerin, belgelerin, arama çalışmalarının, nesnelerin gerçek fotoğrafları,
+   eski gazete sayfaları, dönemin görüntüleri. Belgesel kanallarının çoğu bu şekilde çalışır.
+2. Arşiv görselleri, yayınlandığı yerde **kamu malı veya serbest lisanslı** olarak sunulan kaynaklardan alınır
+   (Wikimedia Commons, Openverse, NASA, Library of Congress, Internet Archive, müze açık erişim arşivleri vb.).
+   Haber ajansı / TV / ücretli arşiv fotoğrafları (telif sahibi belli olanlar) kullanılmaz.
+3. Olayın kendi görseli olmayan anlarda, **o anın konusuna birebir uyan** serbest lisanslı fotoğraflar kullanılır
+   (ör. aynı bölgenin bugünkü fotoğrafı, aynı tür nesne). Konuyla alakasız "dolgu" görsel kullanılmaz.
+4. **Kendi ürettiğimiz görseller** (haritalar, tarih/alıntı/belge kartları) yalnızca destek amaçlıdır:
+   tarih vurgusu, alıntı, harita, rota. Videonun ana görsel dili arşiv fotoğraflarıdır.
+5. Görseller otomatik aramayla değil, **aday tablolarından bakılarak tek tek seçilir** (`scripts/gorsel_adaylari.py`).
+6. Otopsi / ceset fotoğrafları gibi rahatsız edici görseller kullanılmaz (YouTube politikası).
+7. Her video için kullanılan görsellerin kaynak ve lisans listesi tutulur ve açıklamaya eklenir.
 
 ## 7. Depolama ve Temizlik
 

@@ -39,7 +39,7 @@ Ara sıra 1,5–2 saatlik **derleme videolar** (eski bölümlerin birleşimi) de
   - Yapı örnekleri (konuları farklı, kalıbı aynı): "X Dosyası: …", "X Aslında Kimdi? …",
     "Tarihi Değiştiren İddia: … mı?", "X: A mı, B mi?"
 - Kesin hüküm yerine **soru** soruluyor ("… mı?"); karar izleyiciye bırakılıyor.
-- "Dosya" kelimesi seri hissi veriyor (bizim "Derin Gizem Dosya #" fikrimizle örtüşüyor).
+- "Dosya" kelimesi seri hissi veriyor (bizim "Gerçek Gizem Dosya #" fikrimizle örtüşüyor).
 
 **En çok izlenen konu türleri:** kayıp/bilinmeyen medeniyetler, kutsal metinlerin kökeni, antik yapıların sırrı
 (yer altı şehirleri, antik teknoloji), "kayıp kıta", gizli Sovyet deneyleri, simülasyon/paralel evren,
@@ -69,7 +69,7 @@ kıyamet ve tufan anlatıları.
 5. **Dosya/seri dili** — her bölüm bir "dosya" gibi açılıyor; kanal kimliği güçleniyor.
 6. **Derleme videolar** — eski bölümler uzun derlemelere dönüştürülüp ikinci hayat kazanıyor.
 
-## 5. Derin Gizem'e Uygulanacak İlkeler
+## 5. Gerçek Gizem'e Uygulanacak İlkeler
 
 **Alacaklarımız:**
 1. Ana video **25–35 dakika** hedeflenir (en az 20 dakika kuralı korunur).
@@ -156,12 +156,12 @@ Kaynak: kanal sahibinin paylaştığı transkript ekran görüntüleri (0:00–6
 | 29:03 | "Kaynaklar açıklamada… kendi bağlantılarınızı kurun, yorumlarda paylaşın." | **Kaynak şeffaflığı + yorum çağrısı** |
 | 29:10 | Teşekkür, beğen/paylaş/abone ol, sabit kapanış cümlesi ("Bir sonraki videoda görüşene kadar…") | **Sabit veda cümlesi** |
 
-### Kapanıştan çıkan ilkeler (Derin Gizem için)
+### Kapanıştan çıkan ilkeler (Gerçek Gizem için)
 
 1. **Kapanış ~2,5 dakika ve sırası:** ana fikir özeti → misyon cümlesi ("karar sizin") → sinematik son imge →
    üçlü ihtimal → izleyiciye dönen son soru → kaynaklar + yorum çağrısı → abone çağrısı + sabit veda.
-2. **Derin Gizem'in kendi misyon cümlesi** olacak (özgün, her videoda aynı ruhla ama farklı kelimelerle).
-3. **Derin Gizem'in sabit veda cümlesi** olacak (özgün; marka gibi her videoda aynı).
+2. **Gerçek Gizem'in kendi misyon cümlesi** olacak (özgün, her videoda aynı ruhla ama farklı kelimelerle).
+3. **Gerçek Gizem'in sabit veda cümlesi** olacak (özgün; marka gibi her videoda aynı).
 4. **Yorum çağrısı somut bir soruyla:** "Sizce hangisi?" — yorum sayısını artırır.
 5. **Onlardan farklı olarak:** abone çağrısını yalnızca en sona bırakmayız (izleyicinin çoğu o noktaya gelmeden ayrılır);
    ~3. dakika ve ortalarda kısa ekran çağrıları + son 20 saniyede **sonraki dosyaya köprü** ve bitiş ekranı.

@@ -1,4 +1,4 @@
-# DERİN GİZEM · DOSYA #1 — DYATLOV GEÇİDİ
+# GERÇEK GİZEM · DOSYA #1 — DYATLOV GEÇİDİ
 # Araştırma: docs/konular/dyatlov.md  ·  Kurallar: CLAUDE.md
 # Yazım kuralları: sayılar rakamla yazılabilir (otomatik yazıya çevrilir); aralık (1–2) ve
 # "2. Dünya" gibi büyük harfle devam eden sıra sayıları YAZIYLA yazılır.
@@ -8,10 +8,10 @@ baslik: "Dyatlov Geçidi: Çadırı İçeriden Kesip Karanlığa Neden Kaçtıla
 aciklama: |
   1959'un şubatında, Kuzey Urallarda dokuz deneyimli yürüyüşçü bir dağ yamacında kamp kurdu ve bir daha geri dönmedi. Çadırları içeriden kesilmişti; izler, eksi otuz derecede karanlık ormana uzanıyordu. Peki o gece Dyatlov Geçidi'nde gerçekte ne oldu?
 
-  Derin Gizem'in ilk dosyasında bilinen gerçekleri, resmî açıklamaları, çığ teorisini, askerî test ve KGB iddialarını, Yeti söylentilerini ve yıllardır dolaşan efsaneleri tek tek masaya koyuyoruz. Karar sizin.
-hashtagler: ["#DyatlovGeçidi", "#gizem", "#çözülemeyenolaylar", "#DerinGizem"]
+  Gerçek Gizem'in ilk dosyasında bilinen gerçekleri, resmî açıklamaları, çığ teorisini, askerî test ve KGB iddialarını, Yeti söylentilerini ve yıllardır dolaşan efsaneleri tek tek masaya koyuyoruz. Karar sizin.
+hashtagler: ["#DyatlovGeçidi", "#gizem", "#çözülemeyenolaylar", "#GerçekGizem"]
 etiketler: ["Dyatlov Geçidi", "Dyatlov", "Dyatlov Pass", "Holat Siyahl", "Kholat Syakhl", "Ural Dağları",
-            "çözülemeyen olaylar", "gizemli olaylar", "Sovyet gizemleri", "belgesel", "Derin Gizem"]
+            "çözülemeyen olaylar", "gizemli olaylar", "Sovyet gizemleri", "belgesel", "Gerçek Gizem"]
 kaynaklar:
   - "Gaume & Puzrin (2021), Mechanisms of slab avalanche release and impact in the Dyatlov Pass incident in 1959, Communications Earth & Environment"
   - "Puzrin & Gaume (2022), Communications Earth & Environment"
@@ -25,7 +25,7 @@ kapak:
   metin: "ÇADIR|İÇERİDEN KESİLDİ"
   odak: sag
 
-son_kart: {kaynak: kart, ust: "Derin Gizem", baslik: "Bir Sonraki Dosyada Görüşmek Üzere", alt: "Abone olun, dosyalar açılmaya devam ediyor"}
+son_kart: {kaynak: kart, ust: "Gerçek Gizem", baslik: "Bir Sonraki Dosyada Görüşmek Üzere", alt: "Abone olun, dosyalar açılmaya devam ediyor"}
 
 okunus:
   Dyatlov: Dyatlof
@@ -63,9 +63,9 @@ akis:
       Resmî açıklamayı, gizli kalmış iddiaları, söylentileri ve hiç kapanmayan soruları tek tek açacağız.
       Çünkü bu dosyada, ilk bakışta göründüğünden çok daha fazlası olabilir.
   - gorseller:
-      - {kaynak: kart, ust: "Dosya #1", baslik: "Derin Gizem", alt: "Dyatlov Geçidi Olayı"}
+      - {kaynak: kart, ust: "Dosya #1", baslik: "Gerçek Gizem", alt: "Dyatlov Geçidi Olayı"}
     metin: >
-      Derin Gizem'e hoş geldiniz.
+      Gerçek Gizem'e hoş geldiniz.
     sessizlik: 0.6
 
   # ============================================================ BÖLÜM: GRUP
@@ -454,9 +454,9 @@ akis:
       Bazıları donarak, bazıları açıklanması güç yaralarla öldü. Resmî dosya, karşı konulamaz bir doğa gücü diyerek kapandı.
       Yıllar sonra bilim, küçük bir çığı işaret etti. Ama sorular hiçbir zaman tam olarak susmadı.
   - gorseller:
-      - {kaynak: kart, ust: "Derin Gizem", baslik: "Bilinenler · İddialar · Sorular", alt: "Kararı siz veriyorsunuz"}
+      - {kaynak: kart, ust: "Gerçek Gizem", baslik: "Bilinenler · İddialar · Sorular", alt: "Kararı siz veriyorsunuz"}
     metin: >
-      Derin Gizem'de size neye inanmanız gerektiğini söylemiyoruz. Bizim işimiz, bilinenleri, iddiaları ve cevapsız soruları
+      Gerçek Gizem'de size neye inanmanız gerektiğini söylemiyoruz. Bizim işimiz, bilinenleri, iddiaları ve cevapsız soruları
       karanlıktan çıkarıp masaya koymak. Bağlantıları kurmak ise sizin işiniz.
   - gorseller:
       - {kaynak: openverse, ara: "tent alone snow mountain dusk", yon: yatay}
@@ -477,9 +477,9 @@ akis:
       Ve yorumlarda bana şunu yazın: sizce o gece Dyatlov Geçidi'nde ne oldu? Çığ mı, askerî bir test mi, bir casusluk operasyonu mu,
       yoksa hâlâ adını koyamadığımız bir şey mi?
   - gorseller:
-      - {kaynak: kart, ust: "Derin Gizem", baslik: "Dosya Şimdilik Kapanıyor"}
+      - {kaynak: kart, ust: "Gerçek Gizem", baslik: "Dosya Şimdilik Kapanıyor"}
     metin: >
-      Bu dosyayı beğendiyseniz, kanala abone olmayı ve videoyu paylaşmayı unutmayın. Derin Gizem'de daha açılacak çok dosya var.
+      Bu dosyayı beğendiyseniz, kanala abone olmayı ve videoyu paylaşmayı unutmayın. Gerçek Gizem'de daha açılacak çok dosya var.
       Dosya şimdilik kapanıyor. Ama unutmayın, bazı gizemler sadece peşini bırakmayanlara kapılarını aralar.
       Bir sonraki dosyada görüşmek üzere.
 
@@ -498,7 +498,7 @@ shorts:
           - {kaynak: kart, baslik: "Neden?", alt: "Dyatlov Geçidi · 1959"}
         metin: >
           Altmış yılı aşkın süredir kimse bu soruya kesin bir cevap veremedi. Onları o sıcak çadırdan ne çıkardı?
-          Tam dosya, Derin Gizem kanalında.
+          Tam dosya, Gerçek Gizem kanalında.
   - baslik: "Ağaçta 5 Metre Yükseğe Kadar Kırık Dallar… #Shorts"
     aciklama: "Dyatlov Geçidi'ndeki sedir ağacının gizemi. Tam belgesel kanalda."
     akis:
@@ -510,7 +510,7 @@ shorts:
           - {kaynak: kart, ust: "Sedir ağacı", baslik: "5 Metre Yukarıda Kırık Dallar"}
         metin: >
           Ama asıl tuhaf olan, ağacın dallarıydı. Beş metre yüksekliğe kadar kırılmıştı. Biri, o soğukta ağaca tırmanmıştı.
-          Ateş için mi? Yoksa çadırın olduğu yöne bakıp bir şeyi mi gözlüyordu? Tam dosya, Derin Gizem'de.
+          Ateş için mi? Yoksa çadırın olduğu yöne bakıp bir şeyi mi gözlüyordu? Tam dosya, Gerçek Gizem'de.
   - baslik: "Savcı 31 Yıl Sonra Konuştu #Shorts"
     aciklama: "Dyatlov dosyasını kapatan savcı, 1990'da bambaşka bir şey söyledi. Tam belgesel kanalda."
     akis:
@@ -523,7 +523,7 @@ shorts:
           - {kaynak: openverse, ara: "strange light night sky winter", yon: yatay}
         metin: >
           Otuz bir yıl sonra ise bir gazeteye konuştu. İddiasına göre davayı kapatması emredilmişti.
-          Ve o dönem gökyüzünde görülen parlak turuncu kürelerin, ölümlerle doğrudan ilgili olduğundan neredeyse emindi. Tam dosya, Derin Gizem'de.
+          Ve o dönem gökyüzünde görülen parlak turuncu kürelerin, ölümlerle doğrudan ilgili olduğundan neredeyse emindi. Tam dosya, Gerçek Gizem'de.
   - baslik: "Geri Dönen Tek Kişi #Shorts"
     aciklama: "Dyatlov grubundan sağ kalan tek kişi Yuri Yudin'in hikâyesi. Tam belgesel kanalda."
     akis:
@@ -536,4 +536,4 @@ shorts:
           - {kaynak: kart, ust: "Yuri Yudin", baslik: "54 Yıl Süren Soru"}
         metin: >
           Geride kalan dokuz kişinin hiçbiri eve dönmedi. Yudin, hayatının geri kalanında onlara ne olduğunu sordu.
-          Cevabını alamadan öldü ve son isteği üzerine arkadaşlarının yanına gömüldü. Tam dosya, Derin Gizem'de.
+          Cevabını alamadan öldü ve son isteği üzerine arkadaşlarının yanına gömüldü. Tam dosya, Gerçek Gizem'de.

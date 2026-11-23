@@ -1,4 +1,4 @@
-# Derin Gizem — Gizem Türü YouTube Araştırması
+# Gerçek Gizem — Gizem Türü YouTube Araştırması
 
 > Araştırma tarihi: Kasım 2026. Kaynak: web aramaları (arama sonucu özetleri).
 > Abone/izlenme rakamları üçüncü taraf takip sitelerinden (vidIQ, Social Blade vb.) alınmıştır; resmi değildir.
@@ -40,7 +40,7 @@ vidIQ 2026 çalışması (4 milyon+ video): **somut hikâye çerçevesi, genel f
 - **Yüz:** Fark yaratmıyor (başarılılarda %84, başarısızlarda %82). Yüzsüz kanal için **tek odak nesne** yeterli (kapı, siluet, belge, harita noktası).
 - **Ok/daire:** Etkisi küçük; kullanılacaksa en fazla bir tane, ince.
 - **Renk:** Koyu zemin (siyah/lacivert) + tek sıcak vurgu rengi (kırmızı/turuncu/sarı), yüksek kontrast, küçük boyutta okunaklı.
-- **Marka tutarlılığı:** Sabit yazı tipi, sabit renk, köşede sabit "DERİN GİZEM / DOSYA #" rozeti.
+- **Marka tutarlılığı:** Sabit yazı tipi, sabit renk, köşede sabit "GERÇEK GİZEM / DOSYA #" rozeti.
 - **Test & Compare:** YouTube Studio'da (masaüstü) 3 başlık / 3 kapak testi; kazanan izlenme süresine göre seçilir, en fazla 2 hafta. Shorts'ta yok.
 
 ## 4. 20+ Dakikalık Videoda İzleyiciyi Tutma Yapısı
@@ -87,14 +87,14 @@ vidIQ 2026 çalışması (4 milyon+ video): **somut hikâye çerçevesi, genel f
 
 1. Her başlık **somut detay** (yıl/yer/sayı/isim) + **merak boşluğu** içerir; 40–60 karakter, anahtar kelime ilk 40 karakterde.
 2. Yasak: "ŞOK", "SON DAKİKA", tamamı büyük harf, "kanıtlandı", "gerçek ortaya çıktı". Komplo konularında "iddia/söylenti" veya soru kalıbı.
-3. Kapak: tek odak nesne, 2–4 kelime metin (başlığı tekrarlamaz), koyu zemin + tek vurgu rengi, köşede "DERİN GİZEM / DOSYA #" rozeti, en fazla bir ok/daire.
+3. Kapak: tek odak nesne, 2–4 kelime metin (başlığı tekrarlamaz), koyu zemin + tek vurgu rengi, köşede "GERÇEK GİZEM / DOSYA #" rozeti, en fazla bir ok/daire.
 4. Kapakta videoda olmayan sahne yok. Gerçekçi yapay zekâ sahnesi varsa yapay zekâ beyanı "Evet".
 5. Test & Compare açıldığında her uzun videoda 3 kapak test edilir, kazanan formül not edilir.
 6. Akış: 0–8 sn soğuk açılış → 45 sn'ye kadar vaadin doğrulanması → her 2–3 dk yeni döngü → en geç 15 sn'de bir görsel değişim → final sonraki dosyaya köprü.
 7. Abone çağrısı ~3. dakikada (3–4 sn animasyon + tek cümle), ortalarda ve sona doğru tekrar; son 20 sn bitiş ekranı.
 8. En az 3 bölüm (00:00 ile başlar); açıklamada kaynaklar ve "söylentiler iddia olarak aktarılmıştır" notu.
 9. Shorts: 20–50 sn, ilk saniyede kanca, büyük kalın altyazı, döngüsel kapanış, ana videoya "İlgili video" bağlantısı + sabitlenmiş yorum, 2 günde bir yayın.
-10. SEO: ilk 2 satırda anahtar kelime, 3–5 hashtag (#gizem #çözülemeyenolaylar #DerinGizem), 5–10 etiket, her video bir tema oynatma listesine.
+10. SEO: ilk 2 satırda anahtar kelime, 3–5 hashtag (#gizem #çözülemeyenolaylar #GerçekGizem), 5–10 etiket, her video bir tema oynatma listesine.
 11. Her bölüm özgün senaryo, gerçek araştırma, karşılaştırmalı yorum ve özgün kurgu içerir; seri üretim hissinden kaçınılır.
 12. Yayın: önce 18:00–21:00 (TSİ) denenir, 28 gün sonra izleyici saatlerine göre ayarlanır.
 
@@ -109,7 +109,7 @@ vidIQ 2026 çalışması (4 milyon+ video): **somut hikâye çerçevesi, genel f
 7. "Söylentiye Göre [İddia]. Belgeler Ne Diyor?"
 8. "[Saat]'te Durdu, [Sayı] Gün Sonra Yeniden Çaldı: [Vaka Adı]"
 9. "[Sayı] Tanık, [Sayı] Farklı Hikâye: [Olay]'ın Çözülmeyen Gecesi"
-10. "Derin Gizem Dosya #[No]: [Yer]'in Lanetli Diye Anılan [Mekânı]"
+10. "Gerçek Gizem Dosya #[No]: [Yer]'in Lanetli Diye Anılan [Mekânı]"
 
 ## Kaynaklar
 

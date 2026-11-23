@@ -2,7 +2,7 @@
 
 Son güncelleme: 23 Kasım 2026
 
-"Derin Gizem Yükleyici", Derin Gizem YouTube kanalının sahibi tarafından, **yalnızca kendi kanalına**
+"Derin Gizem Yükleyici", Gerçek Gizem YouTube kanalının sahibi tarafından, **yalnızca kendi kanalına**
 video yüklemek için kullanılan özel bir araçtır. Başka kullanıcılara hizmet vermez.
 
 ## Hangi verilere erişilir?

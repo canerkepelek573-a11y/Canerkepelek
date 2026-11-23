@@ -3,7 +3,7 @@ bolum_no: 0
 baslik: "Sistem denemesi"
 aciklama: |
   Bu bir sistem denemesidir.
-hashtagler: ["#gizem", "#DerinGizem"]
+hashtagler: ["#gizem", "#GerçekGizem"]
 kapak:
   gorsel: {kaynak: openverse, ara: "ural mountains winter"}
   metin: "ÇADIR İÇERİDEN|KESİLMİŞTİ"
@@ -15,7 +15,7 @@ akis:
   - bolum: "Giriş: Deneme"
     yazi: "1 Şubat 1959 · Kuzey Urallar"
     gorseller:
-      - {kaynak: kart, ust: "Derin Gizem · Dosya #0", baslik: "Sistem Denemesi", alt: "Kuzey Urallar · Şubat 1959"}
+      - {kaynak: kart, ust: "Gerçek Gizem · Dosya #0", baslik: "Sistem Denemesi", alt: "Kuzey Urallar · Şubat 1959"}
       - {kaynak: openverse, ara: "ural mountains winter"}
     metin: >
       1959 yılının şubat ayında, dokuz deneyimli yürüyüşçü Kholat Syakhl yamacında kamp kurdu.

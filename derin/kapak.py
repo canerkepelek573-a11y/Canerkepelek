@@ -1,7 +1,7 @@
 """YouTube kapak fotoğrafı (1280x720).
 
 Araştırmaya göre (docs/arastirma-youtube.md): tek odak nesne, 2–4 kelime büyük yazı,
-koyu zemin + tek vurgu rengi, köşede sabit "DERİN GİZEM · DOSYA #N" rozeti.
+koyu zemin + tek vurgu rengi, köşede sabit "GERÇEK GİZEM · DOSYA #N" rozeti.
 
     kapak:
       gorsel: {kaynak: commons, dosya: "File:..."}
@@ -21,7 +21,7 @@ from derin.grafik import BEYAZ, SIYAH, VURGU, buyuk, font
 BOYUT = (1280, 720)
 
 
-def olustur(tanim: dict, bolum_no: int, hedef: Path, marka: str = "Derin Gizem") -> Path:
+def olustur(tanim: dict, bolum_no: int, hedef: Path, marka: str = "Gerçek Gizem") -> Path:
     g, y = BOYUT
     try:
         kaynak = gorsel.coz(tanim["gorsel"], hedef.parent, BOYUT)

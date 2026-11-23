@@ -208,7 +208,7 @@ def loc(ara: str, sira: int = 0) -> dict:
             "atif": f"{r.get('title')} — Library of Congress — No known restrictions ({r.get('id')})"}
 
 
-def yerel(dosya: str, lisans: str, sahibi: str = "Derin Gizem") -> dict:
+def yerel(dosya: str, lisans: str, sahibi: str = "Gerçek Gizem") -> dict:
     yol = Path(dosya)
     if not yol.exists():
         raise FileNotFoundError(dosya)
@@ -236,7 +236,7 @@ def coz(tanim: dict, cikti: Path, boyut: tuple[int, int]) -> dict:
     if k == "loc":
         return loc(tanim["ara"], tanim.get("sira", 0))
     if k == "yerel":
-        return yerel(tanim["dosya"], tanim.get("lisans", "Derin Gizem özgün içerik"), tanim.get("sahibi", "Derin Gizem"))
+        return yerel(tanim["dosya"], tanim.get("lisans", "Gerçek Gizem özgün içerik"), tanim.get("sahibi", "Gerçek Gizem"))
     if k in ("kart", "harita"):
         from derin import grafik
         return grafik.uret(tanim, cikti, boyut)

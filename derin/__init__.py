@@ -1,1 +1,1 @@
-"""Derin Gizem video üretim sistemi."""
+"""Gerçek Gizem video üretim sistemi."""
