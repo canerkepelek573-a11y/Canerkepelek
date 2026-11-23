@@ -1,0 +1,14 @@
+{
+ "esik": 0.06,
+ "paragraf_sayisi": 1,
+ "sorunlu": [
+  {
+   "paragraf": 0,
+   "wer": 0.151,
+   "farklar": [
+    "'bin dokuz yüz elli dokuzda' → ''"
+   ],
+   "metin": "1959'da dokuz kişi karlı bir dağda kayboldu. Çadırları içeriden kesilmişti. Neden?"
+  }
+ ]
+}

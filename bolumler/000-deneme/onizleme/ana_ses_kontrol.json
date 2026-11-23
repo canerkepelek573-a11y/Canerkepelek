@@ -1,0 +1,16 @@
+{
+ "esik": 0.06,
+ "paragraf_sayisi": 3,
+ "sorunlu": [
+  {
+   "paragraf": 0,
+   "wer": 0.089,
+   "farklar": [
+    "'bin dokuz yüz elli dokuz' → ''",
+    "'siyahl' → 'siyal'",
+    "'kamp' → 'kam'"
+   ],
+   "metin": "1959 yılının şubat ayında, dokuz deneyimli yürüyüşçü Kholat Syakhl yamacında kamp kurdu. Ertesi sabah… çadır, içeriden k"
+  }
+ ]
+}
