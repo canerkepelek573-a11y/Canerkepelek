@@ -125,9 +125,13 @@ Her adım kanalın büyümesine hizmet eder:
 1. **Ana görsel, anlatılan olayın kendi arşiv fotoğrafları ve görüntüleridir** (kanal sahibinin talimatı,
    23.11.2026): olay yerinin, kişilerin, belgelerin, arama çalışmalarının, nesnelerin gerçek fotoğrafları,
    eski gazete sayfaları, dönemin görüntüleri. Belgesel kanallarının çoğu bu şekilde çalışır.
-2. Arşiv görselleri, yayınlandığı yerde **kamu malı veya serbest lisanslı** olarak sunulan kaynaklardan alınır
-   (Wikimedia Commons, Openverse, NASA, Library of Congress, Internet Archive, müze açık erişim arşivleri vb.).
-   Haber ajansı / TV / ücretli arşiv fotoğrafları (telif sahibi belli olanlar) kullanılmaz.
+2. Olayın gerçek görüntüleri **Google Görseller araştırmasıyla da bulunur** (kanal sahibinin talimatı, 23.11.2026):
+   - Google'da "<olay adı> gerçek görüntüleri" gibi aramalarla olayın gerçek fotoğrafları bulunur;
+     görsel, Google'ın gösterdiği **asıl kaynak sayfadan** (arşivler, olay araştırma siteleri, müzeler) alınır.
+   - Kanal sahibi de telefonundan bulduğu görselleri sohbete gönderebilir; bunlar doğrudan kullanılır.
+   - Mümkün olduğunda kamu malı / serbest lisanslı kopyası (Wikimedia Commons vb.) tercih edilir.
+   - Filigranlı (watermark) haber ajansı / TV görüntüleri ve başka YouTube videolarından alınmış kareler kullanılmaz.
+   - Her görselin alındığı kaynak sayfa kaydedilir ve video açıklamasında kaynak olarak belirtilir.
 3. Olayın kendi görseli olmayan anlarda, **o anın konusuna birebir uyan** serbest lisanslı fotoğraflar kullanılır
    (ör. aynı bölgenin bugünkü fotoğrafı, aynı tür nesne). Konuyla alakasız "dolgu" görsel kullanılmaz.
 4. **Kendi ürettiğimiz görseller** (haritalar, tarih/alıntı/belge kartları) yalnızca destek amaçlıdır:
