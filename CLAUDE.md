@@ -22,6 +22,17 @@ Her bölüm için şu paket eksiksiz üretilir:
 Videolar **çok ilgi çekecek**, izleyiciyi **sonuna kadar kanalda tutacak** şekilde hazırlanır.
 Her iş **en dikkatli şekilde** yapılır; aceleye getirilmiş, özensiz çıktı yüklenmez.
 
+## 1.1 Kanalın Konu Alanı
+
+Kanal sahibinin kararı (23.11.2026): Derin Gizem'in genel konusu şunlardır:
+- **Antik gizemler** (açıklanamayan yapılar, antik teknoloji, kayıp eserler)
+- **Kayıp medeniyetler**
+- **Çözülmemiş olaylar** (kayıplar, esrarengiz ölümler, açıklanamayan vakalar)
+- **Uç bilim** (zaman, evren, bilinç, açıklanamayan sinyaller ve deneyler)
+
+**Din ve inanç konuları ana konu yapılmaz** (peygamberler, kutsal kitaplar, ibadetler, dinlerin kökeni vb.).
+Antik mitolojiler yalnızca bir antik gizemin tarihsel bağlamı olarak geçebilir; hiçbir inanç hakkında hüküm verilmez.
+
 ## 2. İçerik ve Anlatım Kuralları
 
 1. **İlk dakikalar her şeydir.** Videonun ilk dakikaları çok güçlü bir gizem uyandırmalı:

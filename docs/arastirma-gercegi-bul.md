@@ -141,11 +141,37 @@ Kaynak: kanal sahibinin paylaştığı transkript ekran görüntüleri (0:00–6
 - Genelleyici ve kaynaksız kesin cümleler (ör. "X hepsini yok etti") yerine "iddiaya göre / bazı tarihçilere göre" denir.
 - "Ya … ise?" hipotezi her zaman **soru** olarak kalır; finalde karşı görüş de verilir, karar izleyicide.
 
+## 7. Konuşma Metni Analizi — Kapanış (Enok videosu, 27:00–29:25)
+
+| Zaman | Ne oluyor | Teknik |
+|---|---|---|
+| 27:00 | Eleştirmenleri küçümseyen ifadeler | ❌ **Bizde yok** — kimse aşağılanmaz |
+| 27:06 | "Anlatılan her şey kelimesi kelimesine doğru değil; bu video bile…" + "geriye doğru araştırdığınızda keşfedersiniz" | **Dürüst kabul + izleyiciyi araştırmaya davet** |
+| 27:23 | "X bunu yok etti", "Y tezi kanıtlandı" gibi kesin hükümler | ❌ **Bizde yok** — tartışmalı tezler "kanıtlandı" diye sunulmaz |
+| 27:38 | "Şunu unutmamak lazım…" → videonun büyük fikri tek cümlede | **Ana tezin özeti** |
+| 28:05 | "Size neye inanmanız gerektiğini söylemeyeceğim… benim işim bağlantıları gün yüzüne çıkarmak, bağlantıyı siz kurun." | **Kanalın misyon cümlesi, karar izleyicide** |
+| 28:20 | Sinematik son sahne: zihinde canlanan tek bir görüntü tarif ediliyor | **Şiirsel kapanış imgesi** |
+| 28:40 | "Belki A, belki B, belki sadece C." | **Üçlü ihtimal** |
+| 28:49 | Son soru izleyicinin kendisine dönüyor ("…yoksa biz miyiz?") | **Ayna soru — akılda kalan final** |
+| 29:03 | "Kaynaklar açıklamada… kendi bağlantılarınızı kurun, yorumlarda paylaşın." | **Kaynak şeffaflığı + yorum çağrısı** |
+| 29:10 | Teşekkür, beğen/paylaş/abone ol, sabit kapanış cümlesi ("Bir sonraki videoda görüşene kadar…") | **Sabit veda cümlesi** |
+
+### Kapanıştan çıkan ilkeler (Derin Gizem için)
+
+1. **Kapanış ~2,5 dakika ve sırası:** ana fikir özeti → misyon cümlesi ("karar sizin") → sinematik son imge →
+   üçlü ihtimal → izleyiciye dönen son soru → kaynaklar + yorum çağrısı → abone çağrısı + sabit veda.
+2. **Derin Gizem'in kendi misyon cümlesi** olacak (özgün, her videoda aynı ruhla ama farklı kelimelerle).
+3. **Derin Gizem'in sabit veda cümlesi** olacak (özgün; marka gibi her videoda aynı).
+4. **Yorum çağrısı somut bir soruyla:** "Sizce hangisi?" — yorum sayısını artırır.
+5. **Onlardan farklı olarak:** abone çağrısını yalnızca en sona bırakmayız (izleyicinin çoğu o noktaya gelmeden ayrılır);
+   ~3. dakika ve ortalarda kısa ekran çağrıları + son 20 saniyede **sonraki dosyaya köprü** ve bitiş ekranı.
+6. **Onlardan farklı olarak:** eleştirmenler küçümsenmez; tartışmalı tezler "kanıtlandı" diye sunulmaz.
+
 ## Doğrulanamayanlar
 
 - Anlatıcının insan mı yapay zekâ mı olduğu ⚠
 - İzleyici yorumlarındaki benzerlik ve kaynak iddiaları ⚠
-- Videoların orta ve kapanış bölümlerinin yapısı (yalnızca ilk 6 dakika incelendi).
+- Videonun orta bölümünün (6.–27. dakika) yapısı incelenmedi.
 
 ## Kaynaklar
 
