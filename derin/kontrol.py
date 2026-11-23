@@ -14,22 +14,27 @@ import re
 from difflib import SequenceMatcher
 from pathlib import Path
 
-ESIK = 0.12      # paragraf başına izin verilen kelime hata oranı
+ESIK = 0.06      # paragraf başına izin verilen harf düzeyi hata oranı
 
 
 def _norm(metin: str) -> list[str]:
+    from derin.sayilar import cevir
+
+    metin = cevir(metin)   # duyulan metindeki '1959' → 'bin dokuz yüz elli dokuz'
     metin = metin.replace("İ", "i").replace("I", "ı").lower()
+    metin = metin.translate(str.maketrans("âîû", "aiu"))
     return [k for k in re.sub(r"[^\wçğıöşü\s]", " ", metin).split() if k]
 
 
 def wer(beklenen: list[str], duyulan: list[str]) -> tuple[float, list[str]]:
-    eslesme = SequenceMatcher(a=beklenen, b=duyulan, autojunk=False)
-    hata, farklar = 0, []
-    for etiket, i1, i2, j1, j2 in eslesme.get_opcodes():
-        if etiket != "equal":
-            hata += max(i2 - i1, j2 - j1)
+    """Harf düzeyinde hata oranı (kelime birleşme/ayrılma farklarından etkilenmez) + kelime farkları."""
+    a, b = "".join(beklenen), "".join(duyulan)
+    oran = 1 - SequenceMatcher(a=a, b=b, autojunk=False).ratio()
+    farklar = []
+    for etiket, i1, i2, j1, j2 in SequenceMatcher(a=beklenen, b=duyulan, autojunk=False).get_opcodes():
+        if etiket != "equal" and "".join(beklenen[i1:i2]) != "".join(duyulan[j1:j2]):
             farklar.append(f"'{' '.join(beklenen[i1:i2])}' → '{' '.join(duyulan[j1:j2])}'")
-    return hata / max(1, len(beklenen)), farklar
+    return oran, farklar
 
 
 def denetle(ses: Path, zaman: dict, konusmalar: list[str], model_boyutu: str = "small") -> dict:

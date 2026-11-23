@@ -1,0 +1,48 @@
+name: Görsel aday tabloları
+
+on:
+  workflow_dispatch:
+    inputs:
+      bolum:
+        description: "Bölüm klasörü"
+        required: true
+        default: "bolumler/001-dyatlov"
+  push:
+    paths:
+      - "bolumler/*/aday_aramalari.yaml"
+
+permissions:
+  contents: write
+
+jobs:
+  adaylar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml pillow requests
+      - name: Bölüm
+        id: bolum
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "yol=${{ inputs.bolum }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "yol=$(git diff --name-only HEAD~1 HEAD -- 'bolumler/*/aday_aramalari.yaml' | head -1 | xargs dirname)" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Tabloları üret
+        run: python scripts/gorsel_adaylari.py "${{ steps.bolum.outputs.yol }}"
+      - name: Depoya kaydet
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.bolum.outputs.yol }}/adaylar"
+          if ! git diff --cached --quiet; then
+            git commit -m "Görsel adayları: ${{ steps.bolum.outputs.yol }}"
+            git pull --rebase
+            git push
+          fi

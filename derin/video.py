@@ -112,7 +112,7 @@ def klip(sahne: Sahne, boyut: tuple[int, int], hedef: Path) -> Path:
             on_olcek = (f"split[a][b];[a]scale={2 * g}:{2 * y}:force_original_aspect_ratio=increase,"
                         f"crop={2 * g}:{2 * y},boxblur=40:5[z];[b]scale={2 * g}:{2 * y}:"
                         f"force_original_aspect_ratio=decrease[o];[z][o]overlay=(W-w)/2:(H-h)/2")
-            if g > y:   # yatay videoda fotoğraf ekranı doldursun
+            if g > y or not sahne.gorsel.get("sigdir"):   # varsayılan: fotoğraf ekranı doldursun
                 on_olcek = f"scale={2 * g}:{2 * y}:force_original_aspect_ratio=increase,crop={2 * g}:{2 * y}"
         vf = (f"{on_olcek},zoompan=z='{z}':x='{x}':y='{yy}':d={kare}:s={g}x{y}:fps={FPS},"
               f"{ton},format=yuv420p")
@@ -279,6 +279,7 @@ def olustur(zaman: dict, ses: Path, bicim: str, klasor: Path, marka: str = "Deri
         for tanim in p.get("gorseller", []):
             try:
                 g = gorsel.coz(tanim, gecici, boyut)
+                g["sigdir"] = tanim.get("sigdir", False)
             except Exception as hata:
                 uyarilar.append(f"Paragraf {p['sira']}: görsel alınamadı ({tanim}): {hata}")
                 continue

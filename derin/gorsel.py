@@ -48,10 +48,13 @@ def _indir(url: str, hedef: Path) -> Path:
 
     if hedef.exists() and hedef.stat().st_size > 0:
         return hedef
-    for deneme in range(6):
+    wikimedia = "upload.wikimedia.org" in url
+    for deneme in range(7):
+        if wikimedia:
+            time.sleep(4)        # Wikimedia hız sınırına takılmamak için
         yanit = requests.get(url, headers=UA, timeout=120, stream=True)
         if yanit.status_code == 429 or yanit.status_code >= 500:
-            time.sleep(min(60, 8 * (deneme + 1)))
+            time.sleep(min(150, 30 * (deneme + 1)))
             continue
         yanit.raise_for_status()
         with open(hedef, "wb") as f:
@@ -146,6 +149,11 @@ def commons_ara(ara: str, sira: int = 0) -> dict:
     return commons(uygun[sira])
 
 
+def openverse_kimlik(kimlik: str) -> dict:
+    """Aday tablosundan elle seçilmiş Openverse görseli."""
+    return _openverse_sonuc(_json(f"https://api.openverse.org/v1/images/{kimlik}/"))
+
+
 def openverse(ara: str, sira: int = 0, yon: str | None = None) -> dict:
     params = {"q": ara, "license_type": "commercial,modification", "page_size": 20, "mature": "false"}
     if yon:
@@ -154,7 +162,10 @@ def openverse(ara: str, sira: int = 0, yon: str | None = None) -> dict:
     sonuclar = [r for r in sonuclar.get("results", []) if (r.get("width") or 1600) >= 1000]
     if len(sonuclar) <= sira:
         raise FileNotFoundError(f"Openverse'te yeterli sonuç yok: '{ara}' (sıra {sira})")
-    r = sonuclar[sira]
+    return _openverse_sonuc(sonuclar[sira])
+
+
+def _openverse_sonuc(r: dict) -> dict:
     lisans = f"CC {r['license'].upper()} {r.get('license_version', '')}".strip()
     if r["license"] in ("cc0", "pdm"):
         lisans = "CC0" if r["license"] == "cc0" else "Public domain"
@@ -210,6 +221,8 @@ def coz(tanim: dict, cikti: Path, boyut: tuple[int, int]) -> dict:
     k = tanim["kaynak"]
     if k == "commons":
         return commons(tanim["dosya"])
+    if k == "openverse" and tanim.get("id"):
+        return openverse_kimlik(tanim["id"])
     if k == "openverse":
         try:
             return openverse(tanim["ara"], tanim.get("sira", 0), tanim.get("yon"))
