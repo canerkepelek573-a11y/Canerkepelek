@@ -118,8 +118,15 @@ Her adım kanalın büyümesine hizmet eder:
 
 ## 6. Telifsiz Görsel ve Video
 
-1. Kullanılan tüm video ve fotoğraflar **başımıza dert açmayacak şekilde telifsiz** kaynaklardan seçilir
-   (ör. Pexels, Pixabay, Wikimedia Commons'ta kamu malı / CC0 olanlar, NASA gibi kamu kaynakları).
+1. Kullanılan tüm video ve fotoğraflar **başımıza dert açmayacak şekilde telifsiz** kaynaklardan seçilir.
+   Anahtar (API key) gerektirmeyen kaynaklar kullanılır (Pexels/Pixabay API'si alınamadı, 23.11.2026):
+   - **Wikimedia Commons** — yalnızca kamu malı (PD), CC0, CC BY, CC BY-SA lisanslı dosyalar (atıf yapılarak)
+   - **Openverse** — yalnızca ticari kullanıma ve değiştirmeye izin veren lisanslar
+   - **NASA** görsel ve video arşivi (kamu malı)
+   - **Library of Congress** ve **Internet Archive** — yalnızca kamu malı fotoğraf ve eski filmler
+   - **The Met / Art Institute of Chicago** açık erişim (CC0) eser görselleri
+   - **Kendi ürettiğimiz görseller** — haritalar (kamu malı Natural Earth verisinden), zaman çizelgeleri,
+     belge ve alıntı kartları. Özgün görseller kanalın "özgün içerik" değerini de artırır.
 2. Lisansı belirsiz hiçbir materyal kullanılmaz.
 3. Her video için kullanılan materyallerin kaynak ve lisans listesi tutulur.
 
