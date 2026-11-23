@@ -53,6 +53,24 @@ def _indir(url: str, hedef: Path) -> Path:
     return hedef
 
 
+def _json(url: str, params: dict | None = None) -> dict:
+    """GET + JSON; hata olursa durum kodunu ve cevabın başını içeren açık bir hata verir."""
+    son = None
+    for deneme in range(3):
+        try:
+            yanit = requests.get(url, params=params, headers=UA, timeout=60)
+            if yanit.status_code == 429:
+                import time
+                time.sleep(5 * (deneme + 1))
+                continue
+            yanit.raise_for_status()
+            return yanit.json()
+        except Exception as hata:
+            son = f"{type(hata).__name__}: {getattr(hata, 'response', None) and hata.response.status_code} " \
+                  f"{(yanit.text[:200] if 'yanit' in locals() else '')}"
+    raise RuntimeError(f"{url} cevap vermedi: {son}")
+
+
 def _lisans_kontrol(lisans: str, kaynak: str) -> None:
     temiz = (lisans or "").strip()
     if not temiz or YASAK_LISANS.search(temiz) or not UYGUN_LISANSLAR.match(temiz):
@@ -65,14 +83,13 @@ def _html_temizle(s: str) -> str:
 
 def commons(dosya: str) -> dict:
     baslik = dosya if dosya.startswith("File:") else f"File:{dosya}"
-    yanit = requests.get(
+    yanit = _json(
         "https://commons.wikimedia.org/w/api.php",
-        params={
+        {
             "action": "query", "format": "json", "titles": baslik, "prop": "imageinfo",
             "iiprop": "url|extmetadata|mime", "iiurlwidth": 3840,
         },
-        headers=UA, timeout=60,
-    ).json()
+    )
     sayfa = next(iter(yanit["query"]["pages"].values()))
     if "imageinfo" not in sayfa:
         raise FileNotFoundError(f"Commons'ta bulunamadı: {baslik}")
@@ -96,7 +113,7 @@ def openverse(ara: str, sira: int = 0, yon: str | None = None) -> dict:
     params = {"q": ara, "license_type": "commercial,modification", "page_size": 20, "mature": "false"}
     if yon:
         params["aspect_ratio"] = {"yatay": "wide", "dikey": "tall"}.get(yon, yon)
-    sonuclar = requests.get("https://api.openverse.org/v1/images/", params=params, headers=UA, timeout=60).json()
+    sonuclar = _json("https://api.openverse.org/v1/images/", params)
     sonuclar = [r for r in sonuclar.get("results", []) if (r.get("width") or 0) >= 1200]
     if len(sonuclar) <= sira:
         raise FileNotFoundError(f"Openverse'te yeterli sonuç yok: '{ara}' (sıra {sira})")
@@ -114,15 +131,13 @@ def openverse(ara: str, sira: int = 0, yon: str | None = None) -> dict:
 
 
 def nasa(ara: str, sira: int = 0) -> dict:
-    veri = requests.get(
-        "https://images-api.nasa.gov/search", params={"q": ara, "media_type": "image"}, headers=UA, timeout=60
-    ).json()
+    veri = _json("https://images-api.nasa.gov/search", {"q": ara, "media_type": "image"})
     ogeler = veri["collection"]["items"]
     if len(ogeler) <= sira:
         raise FileNotFoundError(f"NASA arşivinde sonuç yok: '{ara}'")
     oge = ogeler[sira]
     nasa_id = oge["data"][0]["nasa_id"]
-    dosyalar = requests.get(oge["href"], headers=UA, timeout=60).json()
+    dosyalar = _json(oge["href"])
     url = next((u for u in dosyalar if re.search(r"~(orig|large)\.jpg$", u)), dosyalar[0])
     yol = _indir(url, _dosya_adi(url, ".jpg"))
     return {"yol": str(yol), "tur": "foto",
@@ -130,10 +145,7 @@ def nasa(ara: str, sira: int = 0) -> dict:
 
 
 def loc(ara: str, sira: int = 0) -> dict:
-    veri = requests.get(
-        "https://www.loc.gov/photos/", params={"q": ara, "fo": "json", "c": 25, "fa": "online-format:image"},
-        headers=UA, timeout=60,
-    ).json()
+    veri = _json("https://www.loc.gov/photos/", {"q": ara, "fo": "json", "c": 25, "fa": "online-format:image"})
     uygun = [r for r in veri.get("results", []) if "no known restrictions" in json.dumps(r.get("rights", "")).lower()
              or "no known restrictions" in json.dumps(r).lower()]
     if len(uygun) <= sira:

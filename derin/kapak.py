@@ -23,7 +23,11 @@ BOYUT = (1280, 720)
 
 def olustur(tanim: dict, bolum_no: int, hedef: Path, marka: str = "Derin Gizem") -> Path:
     g, y = BOYUT
-    kaynak = gorsel.coz(tanim["gorsel"], hedef.parent, BOYUT)
+    try:
+        kaynak = gorsel.coz(tanim["gorsel"], hedef.parent, BOYUT)
+    except Exception as hata:   # görsel alınamazsa koyu zeminle devam et ve bildir
+        print(f"UYARI: kapak görseli alınamadı: {hata}")
+        kaynak = gorsel.coz({"kaynak": "kart", "baslik": ""}, hedef.parent, BOYUT)
     im = Image.open(kaynak["yol"]).convert("RGB")
     odak = {"sol": (0.0, 0.5), "sag": (1.0, 0.5)}.get(tanim.get("odak", "orta"), (0.5, 0.5))
     im = ImageOps.fit(im, BOYUT, Image.LANCZOS, centering=odak)
