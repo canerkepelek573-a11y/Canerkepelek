@@ -21,7 +21,7 @@ kaynaklar:
   - "The Moscow Times, History.com, Live Science, Snopes"
 
 kapak:
-  gorsel: {kaynak: openverse, ara: "ural mountains winter night", yon: yatay}
+  gorsel: {kaynak: commons, dosya: "File:Dyatlov Pass incident 02.jpg"}
   metin: "ÇADIR|İÇERİDEN KESİLDİ"
   odak: sag
 
@@ -44,19 +44,21 @@ akis:
   # ============================================================ GİRİŞ (kanca ~45 sn)
   - bolum: "Giriş: Çadırdaki Kesik"
     gorseller:
-      - {kaynak: openverse, ara: "snowy mountain slope night", yon: yatay}
-      - {kaynak: kart, tur: belge, baslik: "26 Şubat 1959 · Arama raporu", satirlar: ["Çadır yamaçta, yarı kar altında bulundu.", "Bez, içeriden bıçakla kesilmiş.", "Ekip üyelerinden iz yok."]}
+      - {kaynak: commons, dosya: "File:Dyatlov Pass incident 02.jpg"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/GASO_R-2259_1_660_110_4.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "The Dyatlov group's tent reassembled for examination in 1959, showing the cuts in the canvas"}
     metin: >
       Kuzey Urallarda, karla kaplı bir dağ yamacında, yarı gömülü bir çadır bulundu.
       Çadırın bezi kesilmişti… ama dışarıdan değil. İçeriden.
   - gorseller:
-      - {kaynak: openverse, ara: "footprints in snow", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-valenki.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Felt boots (valenki) of the kind left behind in the tent"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-steps-01.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Footprints leading down the slope from the tent, photographed by searchers in 1959"}
     metin: >
       İçeride botlar, kalın montlar, yiyecek ve fenerler duruyordu. Dışarıda ise, eksi otuz dereceye yaklaşan bir soğukta,
       karanlığa doğru uzanan ayak izleri vardı. Çoraplı ayaklar. Yalın ayaklar. Dokuz deneyimli insan, bir gece yarısı,
       sıcak çadırlarını kesip ölümcül soğuğa koşmuştu.
   - gorseller:
       - {kaynak: kart, ust: "1 Şubat 1959", baslik: "Dokuz Kişi, Tek Bir Gece", alt: "Holat Siyahl · Kuzey Urallar"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_33-1.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "The Dyatlov group skiing into a blizzard, one of the last photos, 1 February 1959"}
     metin: >
       Altmış yılı aşkın süredir sorulan soru hep aynı. Onları o çadırdan ne çıkardı?
       Bugün sizi, bin dokuz yüz elli dokuzun şubatına, Sovyetler Birliği'nin en ıssız köşelerinden birine götüreceğim.
@@ -78,12 +80,15 @@ akis:
         isaretler:
           - {ad: "Moskova", konum: [37.62, 55.75]}
           - {ad: "Sverdlovsk", konum: [60.6, 56.84], ana: true}
-      - {kaynak: openverse, ara: "old train winter snow", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/B-01.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "Dyatlov group members in the train compartment, January 1959"}
+      - {kaynak: commons, dosya: "File:Гора Отортен. Североуральский минимализм.jpg"}
     metin: >
       Önce elimizdeki gerçeklere bakalım. Yıl bin dokuz yüz elli dokuz. Yer, bugünkü adıyla Yekaterinburg, o zamanki adıyla Sverdlovsk.
       Ural Politeknik Enstitüsü'nden bir grup öğrenci ve mezun, kış ortasında iddialı bir kayak yürüyüşüne hazırlanıyor.
       Hedef, Kuzey Urallardaki Otorten Dağı. Rota yaklaşık 300 km. O dönemin en zor yürüyüş kategorisi.
   - gorseller:
+      - {kaynak: commons, dosya: "File:Фото членов тургруппы Игоря Дятлова.jpg"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_06.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "Members of the Dyatlov group posing on the trail, January 1959"}
       - {kaynak: kart, tur: belge, baslik: "Ekip listesi", satirlar: ["İgor Dyatlov — 23, lider", "Zinaida Kolmogorova — 22", "Lüdmila Dubinina — 20", "Rustem Slobodin — 23", "Yuri Doroşenko — 21", "Yuri Krivonişçenko — 23", "Nikolay Tibo-Brinyol — 23", "Aleksandr Kolevatov — 24", "Semyon Zolotaryov — 37", "Yuri Yudin — 21"]}
     metin: >
       Grubun lideri, yirmi üç yaşındaki radyo mühendisliği öğrencisi İgor Dyatlov. Deneyimli, disiplinli, çevresinde saygı duyulan biri.
@@ -91,6 +96,7 @@ akis:
       Yuri Krivonişçenko, Nikolay Tibo-Brinyol ve Aleksandr Kolevatov. Hepsi yirmili yaşlarında, hepsi kar ve dağ deneyimi olan insanlar.
   - gorseller:
       - {kaynak: kart, ust: "Ekibin en yaşlısı", baslik: "Semyon Zolotaryov", alt: "37 yaşında · savaş gazisi · turizm eğitmeni"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_22.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "Dyatlov group members on a forest ski trail, January 1959"}
     metin: >
       Bir de, gruba son anda katılan biri var. Otuz yedi yaşındaki Semyon Zolotaryov. İkinci Dünya Savaşı gazisi, deneyimli bir turizm eğitmeni.
       Grubun geri kalanından yaşça epey büyük ve onlar tarafından pek tanınmayan biri. Bu ismi aklınızın bir köşesinde tutun.
@@ -107,13 +113,16 @@ akis:
           - {ad: "İvdel", konum: [60.42, 60.69]}
           - {ad: "Vijay", konum: [60.21, 61.22]}
           - {ad: "Otorten", konum: [59.29, 61.84], ana: true}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Krivonischenko-camera-film6-18.jpg", sayfa: "https://dyatlovpass.com/camera-krivonischenko", aciklama: "The group riding in the back of a truck from Vizhay, January 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_01.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "Abandoned geologists' settlement (2nd Northern) reached by the group, January 1959"}
     metin: >
       Yirmi üç Ocak bin dokuz yüz elli dokuzda grup trene biniyor. Serov, sonra İvdel, sonra Vijay adlı küçük bir yerleşim.
       Bir kamyonla ormanın içindeki bir kereste kampına, oradan da atlı kızak ve kayaklarla, terk edilmiş bir jeolog köyüne ulaşıyorlar.
       Burası, insan yaşamının son izlerinin görüldüğü yer. Bundan sonrası, yalnızca kar, rüzgâr ve sessizlik.
   - gorseller:
-      - {kaynak: openverse, ara: "taiga forest winter", yon: yatay}
       - {kaynak: kart, ust: "28 Ocak 1959", baslik: "Geri Dönen Tek Kişi", alt: "Yuri Yudin"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Krivonischenko-camera-film6-33.jpg", sayfa: "https://dyatlovpass.com/camera-krivonischenko", aciklama: "Yuri Yudin's farewell embrace with the group at the 2nd Northern settlement, 28 January 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Krivonischenko-camera-film6-34.jpg", sayfa: "https://dyatlovpass.com/camera-krivonischenko", aciklama: "Farewell to Yuri Yudin at the 2nd Northern settlement, 28 January 1959"}
     metin: >
       Ve burada, hikâyenin ilk tuhaf dönemeci yaşanıyor. Yirmi sekiz Ocak'ta, grubun üyelerinden Yuri Yudin hastalanıyor.
       Bacağındaki ağrı yüzünden yürüyüşe devam edemiyor. Arkadaşlarıyla vedalaşıyor ve geri dönüyor.
@@ -121,7 +130,9 @@ akis:
       Ve ölene kadar, yani tam elli dört yıl boyunca, aynı soruyu sormaktan vazgeçmeyecekti.
   - abone: true
   - gorseller:
-      - {kaynak: openverse, ara: "cross country skiing winter forest", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Slobodin-camera-film4-23.jpg", sayfa: "https://dyatlovpass.com/camera-slobodin", aciklama: "The group skiing along a snowy river valley in the Northern Urals, late January 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_07.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "Two group members joking on the trail, January 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Thibeaux-Brignolle-camera-film3-09.jpg", sayfa: "https://dyatlovpass.com/camera-thibeaux-brignolle", aciklama: "The group skiing along a frozen river, Thibeaux-Brignolle camera, 1959"}
     metin: >
       Dokuz kişi kalan grup, sonraki günlerde Lozva ve Auspiya nehirlerinin vadilerinden kuzeye ilerliyor.
       Günlüklerden ve fotoğraf makinelerinden bildiğimiz kadarıyla moraller yüksek. Şakalaşıyorlar, şarkı söylüyorlar,
@@ -132,11 +143,13 @@ akis:
   - bolum: "Son Gün: 1 Şubat 1959"
     yazi: "Auspiya vadisi · 1 Şubat 1959"
     gorseller:
-      - {kaynak: openverse, ara: "snow covered mountain pass wind", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_32-1.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "The group skiing in strong wind and blowing snow, 1 February 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_21.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "A group member writing in a notebook on the trail, 1959"}
     metin: >
       Otuz bir Ocak'ta grup, dağların arasındaki geçidi aşmayı deniyor. Ama rüzgâr o kadar sert ki geri dönmek zorunda kalıyorlar.
       O akşam Dyatlov'un günlüğe yazdığı satırlar, grubun ortak günlüğünde bilinen son satırlar olacak.
   - gorseller:
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_33.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "The group climbing toward the pass in poor visibility, 1 February 1959"}
       - {kaynak: kart, tur: belge, baslik: "Veçerniy Otorten · Sayı 1 · 1 Şubat 1959", satirlar: ["Ekibin el yazısıyla hazırladığı şaka gazetesi.", "“Son bilgilere göre Yeti, Kuzey Urallarda, Otorten Dağı yakınlarında yaşıyor.”"], damga: "ŞAKA"}
     metin: >
       Bir Şubat sabahı, yüklerinin bir kısmını sonra almak üzere küçük bir depoya bırakıyorlar ve geç yola çıkıyorlar.
@@ -152,13 +165,15 @@ akis:
           - {ad: "Son kamp", konum: [59.45, 61.755], ana: true}
           - {ad: "Otorten", konum: [59.29, 61.84]}
           - {ad: "Auspiya vadisi", konum: [59.55, 61.70]}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Tent-location-Aleksander-Konstantinov-18-thumb.jpg", sayfa: "https://dyatlovpass.com/tent-location", aciklama: "Open eastern slope of Kholat Syakhl at the tent site, photographed by searchers in 1959"}
     metin: >
       O akşam grup, planladıkları rotadan yaklaşık yarım kilometre sapıyor. Ve ormanın korunaklı sınırında değil,
       Holat Siyahl adlı dağın çıplak, rüzgâra açık doğu yamacında kamp kuruyor.
       Bu karar bugün hâlâ tartışılıyor. Neden ağaçların arasında değil de açık bir yamaçta? Yorgunluk mu, hava mı,
       yoksa ertesi gün kaybedecekleri yüksekliği korumak mı istediler? Bilmiyoruz.
   - gorseller:
-      - {kaynak: openverse, ara: "tent in snow night", yon: yatay}
+      - {kaynak: openverse, id: "d34e1931-287b-4982-bb15-d3bb6eeed20b"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/gallery/GASO_R-2259_1_660_109_4.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Close-up of a cut in the Dyatlov group's tent canvas, 1959 case photo"}
     metin: >
       Bildiğimiz tek şey şu. Bir Şubat'ı iki Şubat'a bağlayan gece, o yamaçta bir şey oldu.
       Ve o şey, dokuz insanı, birkaç dakika içinde, çadırlarını kesip yarı çıplak hâlde karanlığa koşmaya zorladı.
@@ -168,34 +183,39 @@ akis:
   - bolum: "Arama: Yamaçtaki Çadır"
     yazi: "12 Şubat 1959 · Beklenen dönüş günü"
     gorseller:
-      - {kaynak: kart, tur: belge, baslik: "Telgraf bekleniyor", satirlar: ["Planlanan dönüş: 12 Şubat 1959.", "Vijay'dan haber gelmedi."]}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-Anisimova-telegram-thumb.jpg", sayfa: "https://dyatlovpass.com/rescuers", aciklama: "Government telegram from a parent urging a search for the missing group, February 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-special-report.jpg", sayfa: "https://dyatlovpass.com/rescuers", aciklama: "Official special report on the missing Dyatlov group, 1959"}
     metin: >
       Grubun on iki Şubat'ta Vijay'a dönüp bir telgraf çekmesi gerekiyordu. Telgraf gelmedi.
       Dyatlov, yola çıkmadan önce birkaç gün gecikebileceklerini söylemişti, bu yüzden ilk başta kimse fazla endişelenmedi.
       Ama günler geçtikçe aileler alarm verdi. Şubatın yirmisine doğru, büyük bir arama başladı.
   - gorseller:
-      - {kaynak: openverse, ara: "search party snow mountains", yon: yatay}
-      - {kaynak: openverse, ara: "small plane snow winter", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1S-10B.jpg", sayfa: "https://dyatlovpass.com/search-photos", aciklama: "Members of the search party photographed in February 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1S-02A.jpg", sayfa: "https://dyatlovpass.com/search-photos", aciklama: "Search helicopter and searchers in the snow, 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-1959-search-Mansi-03.jpg", sayfa: "https://dyatlovpass.com/mansi", aciklama: "Mansi hunters who took part in the 1959 search"}
     metin: >
       Arama, kısa sürede Sovyet ölçülerinde bile büyük bir operasyona dönüştü. Enstitüden öğrenci gönüllüler, deneyimli dağcılar,
       askerler, uçaklar ve helikopterler. Ve bölgeyi herkesten iyi tanıyan yerel Mansi avcıları.
       İlginç bir not: soruşturmayı açacak olan savcı, grubun kaybolduğunu, bölgede kaçak mahkûmları arayan bir ekibin toplantısında öğrendiğini anlatacaktı.
       Bu küçük detay, ileride ortaya atılacak teorilerden birinin kapısını aralayacaktı.
   - gorseller:
-      - {kaynak: commons, dosya: "File:Dyatlov Pass incident 02.jpg"}
-      - {kaynak: openverse, ara: "snow covered tent", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-1959-search-Boris-Slobtsov.jpg", sayfa: "https://dyatlovpass.com/rescuers", aciklama: "Boris Slobtsov, one of the two student searchers who found the tent"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1S-09.jpg", sayfa: "https://dyatlovpass.com/search-photos", aciklama: "The Dyatlov tent half-buried in snow as found by searchers, February 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-tent-cuts-01.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Cuts in the tent canvas marked by investigators"}
     metin: >
       Yirmi altı Şubat'ta, iki öğrenci gönüllü, Mihail Şaravin ve Boris Slobtsov, Holat Siyahl'ın yamacında çadırı buldu.
       Çadır yarı yarıya karla örtülmüş, çökmüş hâldeydi. Ve yan tarafındaki bez… kesilmişti.
       Sonraki incelemelere göre bu kesikler, içeriden açılmıştı. Sanki içeridekiler, girişi kullanacak zamanı bile bulamamıştı.
   - gorseller:
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/gallery/3-018-1.jpg", sayfa: "https://dyatlovpass.com/tent-location", aciklama: "Searchers' skis at the excavated tent site with the group's belongings, 1959"}
       - {kaynak: kart, tur: belge, baslik: "Çadırın içinde bulunanlar", satirlar: ["Botlar ve keçe çizmeler", "Montlar, battaniyeler", "Yiyecek, para, belgeler", "Fotoğraf makineleri ve günlükler"]}
     metin: >
       Çadırın içindekiler, hikâyeyi daha da karanlık hâle getiriyordu. Ayakkabılar oradaydı. Kalın kıyafetler oradaydı. Yiyecek, para, belgeler… hepsi yerli yerinde.
       Bir soygun yoktu. Bir boğuşma izi yoktu. Sadece, aceleyle terk edilmiş bir yuva vardı.
   - gorseller:
-      - {kaynak: openverse, ara: "footprints snow slope", yon: yatay}
-      - {kaynak: kart, ust: "Ayak izleri", baslik: "8 ya da 9 Kişi", alt: "Çoraplı, tek botlu, yalın ayak · yamaç aşağı"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-steps-02.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Footprint preserved in the snow below the tent, 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-steps-04.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Footprints on the slope of Kholat Syakhl, February 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/gallery/Dyatlov-pass-map-16.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Slope photo marking the footprint trail from the tent down to the cedar"}
     metin: >
       Ve çadırın önünde, yamaçtan aşağı inen izler vardı. Sekiz ya da dokuz kişiye ait. Kimi çoraplı, kimi tek botlu, kimi yalın ayak.
       İzler düzenliydi. Koşar adım değil, yan yana yürüyen insanların izleri gibiydi. Yaklaşık beş yüz metre boyunca takip edilebildiler,
@@ -203,25 +223,29 @@ akis:
       Şimdi düşünün. Panik içinde kaçan insanlar mı, yoksa sakin bir şekilde bir şeyden uzaklaşan insanlar mı?
   - yazi: "27 Şubat 1959 · Sedir ağacı"
     gorseller:
-      - {kaynak: openverse, ara: "big cedar tree winter forest", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/2S-35_1.jpg", sayfa: "https://dyatlovpass.com/dead-cedar", aciklama: "The large cedar at the forest edge, photographed by searchers in 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/6S-19-dead-cedar.jpg", sayfa: "https://dyatlovpass.com/dead-cedar", aciklama: "Searchers next to the cedar tree, 1959"}
     metin: >
       Ertesi gün, çadırdan yaklaşık bir buçuk kilometre aşağıda, ormanın kenarındaki büyük bir sedir ağacının dibinde,
       ilk iki ceset bulundu. Yuri Doroşenko ve Yuri Krivonişçenko. İkisinin üzerinde de neredeyse sadece iç çamaşırı vardı.
       Yanlarında, küçük ve sönmüş bir ateşin kalıntıları duruyordu.
   - gorseller:
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-Pass-Yakimenko-1963-72-dead-cedar.jpg", sayfa: "https://dyatlovpass.com/dead-cedar", aciklama: "The cedar tree photographed by Valentin Yakimenko in 1963"}
       - {kaynak: kart, ust: "Sedir ağacı", baslik: "5 Metre Yükseklikte Kırık Dallar"}
     metin: >
       Ama asıl tuhaf olan, ağacın kendisiydi. Sedirin dalları, yaklaşık beş metre yüksekliğe kadar kırılmıştı.
       Biri, o dondurucu soğukta ağaca tırmanmıştı. Neden? Ateş için dal mı topluyordu? Yoksa iddia edildiği gibi,
       yukarıdan çadırın olduğu yöne bakıp bir şeyi mi gözlüyordu? Eğer öyleyse, neyi?
   - gorseller:
-      - {kaynak: openverse, ara: "snowy slope forest edge dusk", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1S-06A.jpg", sayfa: "https://dyatlovpass.com/search-photos", aciklama: "Searchers on the slope between the cedar and the tent, 1959"}
+      - {kaynak: commons, dosya: "File:Dyatlov pass incident accurate fancy map 2.svg"}
     metin: >
       Aynı gün, sedir ile çadır arasındaki yamaçta iki ceset daha bulundu. Grubun lideri İgor Dyatlov ve Zinaida Kolmogorova.
       Birkaç gün sonra, beş Mart'ta, ikisinin arasında Rustem Slobodin. Üçünün de pozisyonu aynı şeyi anlatıyordu:
       çadıra geri dönmeye çalışıyorlardı. Soğuğa, rüzgâra ve karanlığa karşı, yamaç yukarı.
   - gorseller:
-      - {kaynak: kart, tur: belge, baslik: "Adli tıp ön raporu", satirlar: ["Beş kişi: ölüm nedeni hipotermi.", "Slobodin: kafatasında çatlak.", "Dış yaralanmalar sınırlı."]}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-case-files-386-thumb.jpg", sayfa: "https://dyatlovpass.com/the-den", aciklama: "Excerpt from the 1959 forensic conclusion in the criminal case file"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-1959-search-Boris-Vozrozhdenniy.jpg", sayfa: "https://dyatlovpass.com/rescuers", aciklama: "Forensic expert Boris Vozrozhdenny"}
     metin: >
       Bu beş kişinin ölüm nedeni hipotermiydi. Yani donarak ölmüşlerdi. Slobodin'in kafatasında bir çatlak vardı,
       ama adli tabibe göre ölümcül değildi. Bu noktada tablo korkunç ama bir ölçüde açıklanabilir görünüyordu.
@@ -233,25 +257,32 @@ akis:
   - bolum: "Mayıs: Derenin Sırrı"
     yazi: "4 Mayıs 1959"
     gorseller:
-      - {kaynak: openverse, ara: "snow ravine creek melting spring", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-the-den-07.jpg", sayfa: "https://dyatlovpass.com/the-den", aciklama: "Searchers standing in the snow-filled ravine, May 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-Pass-radiograms-may-1959-191-11-51-01-N4_1.jpg", sayfa: "https://dyatlovpass.com/the-den", aciklama: "Search radiogram from May 1959"}
+      - {kaynak: commons, dosya: "File:Map of djatlov pass incident 2.svg"}
     metin: >
       Dört Mayıs bin dokuz yüz elli dokuz. Karlar erimeye başladığında, arama ekibi sedir ağacından yaklaşık yetmiş beş metre ötede,
       bir derenin dibinde, dört metreye yakın karın altında son dört kişiyi buldu.
       Lüdmila Dubinina, Semyon Zolotaryov, Nikolay Tibo-Brinyol ve Aleksandr Kolevatov.
   - gorseller:
-      - {kaynak: kart, ust: "Kar sığınağı", baslik: "Dallarla Döşenmiş Bir Oyuk", alt: "Derenin hemen yakınında"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-the-den-08.jpg", sayfa: "https://dyatlovpass.com/the-den", aciklama: "Searcher standing in the excavated den with its floor of branches, May 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-the-den-10.jpg", sayfa: "https://dyatlovpass.com/the-den", aciklama: "Floor of cut spruce branches found in the den, May 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/1959-cut-spruce-trees-thumb.jpg", sayfa: "https://dyatlovpass.com/the-den", aciklama: "Cut young spruce trees near the ravine, 1959"}
     metin: >
       Yakınlarında, dallarla döşenmiş bir kar oyuğu vardı. Yani bu dört kişi, hayatta kalmak için bir sığınak yapmaya çalışmıştı.
       Ve üzerlerinde, sedir ağacının dibinde ölen arkadaşlarının kıyafetlerinden parçalar vardı. Ölenlerin giysilerini alıp kendilerini ısıtmaya çalışmışlardı.
       Buraya kadar her şey, hayatta kalma mücadelesi veren bir grubun hikâyesine uyuyor. Ama sonra adli tıp raporları geldi.
   - gorseller:
       - {kaynak: kart, tur: belge, baslik: "Adli tıp raporu · Mayıs 1959", satirlar: ["Tibo-Brinyol: ağır kafatası kırığı.", "Dubinina: çok sayıda kaburga kırığı.", "Zolotaryov: göğüs kafesinde ağır kırıklar.", "Dış yaralanma: neredeyse yok."]}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-1959-search-Boris-Vozrozhdenniy.jpg", sayfa: "https://dyatlovpass.com/rescuers", aciklama: "Forensic expert Boris Vozrozhdenny"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-case-files-341.jpg", sayfa: "https://dyatlovpass.com/the-den", aciklama: "Case file protocol of the May 1959 ravine examination (page 341)"}
     metin: >
       Tibo-Brinyol'un kafatasında ağır bir kırık vardı. Dubinina ve Zolotaryov'un göğüs kafeslerinde çok sayıda kırık.
       Adli tabip Boris Vozrojdenni'ye göre bu yaralanmalar, yüksek hızlı bir araba kazasında oluşabilecek kadar büyük bir kuvvetle meydana gelmişti.
       Ve işin en tuhaf yanı şuydu: vücutların dışında, bu kuvveti açıklayacak neredeyse hiçbir yara yoktu.
   - gorseller:
-      - {kaynak: openverse, ara: "dark frozen creek water", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-the-den-13.jpg", sayfa: "https://dyatlovpass.com/the-den", aciklama: "The ravine site with search probes and branches, May 1959"}
+      - {kaynak: commons, dosya: "File:Ауспия 2015.JPG"}
     metin: >
       Raporlarda bir detay daha vardı. Bu detay, yıllar içinde sayısız teoriyi besleyecekti.
       Dubinina'nın dili ve gözleri, Zolotaryov'un ise gözleri yoktu. Bazıları bunu bir saldırının, hatta bir ritüelin işareti olarak yorumladı.
@@ -259,11 +290,13 @@ akis:
       ve bu tür kayıplar, çürüme ve doğadaki hayvanlarla açıklanabiliyordu.
   - gorseller:
       - {kaynak: kart, tur: belge, baslik: "Radyolojik inceleme", satirlar: ["Bazı giysilerde normalin üzerinde beta radyasyonu.", "Yıkamadan sonra değerler düştü."], damga: "İNCELEME"}
+      - {kaynak: commons, dosya: "File:Dyatlov.Volume 1.Page 370.jpg"}
     metin: >
       Ve sonra, belki de dosyanın en çok konuşulan bulgusu. Dere grubunun bazı giysilerinde, normalin biraz üzerinde radyasyon tespit edildi.
       Bir kayak yürüyüşünde, ıssız bir dağda, radyoaktif giysilerin işi ne olabilirdi?
       Hatırlıyor musunuz, başta Zolotaryov'un ismini aklınızda tutmanızı istemiştim? Bu soruya, birazdan o isimle birlikte döneceğiz.
   - gorseller:
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Thibeaux-Brignolle-camera-film3-03.jpg", sayfa: "https://dyatlovpass.com/camera-thibeaux-brignolle", aciklama: "Group member looking at his wrist on the trail, Thibeaux-Brignolle camera, 1959"}
       - {kaynak: kart, ust: "Tibo-Brinyol'un bileğinde", baslik: "İki Saat · İki Farklı Zaman", alt: "Biri sekizi on dört, diğeri sekizi otuz dokuz geçe durmuş"}
     metin: >
       Küçük ama ürpertici bir detay daha. Tibo-Brinyol'un bileğinde iki kol saati vardı. Biri sekizi on dört geçe, diğeri sekizi otuz dokuz geçe durmuştu.
@@ -275,13 +308,16 @@ akis:
   - bolum: "Kapanan Dosya ve Gökyüzündeki Işıklar"
     yazi: "28 Mayıs 1959"
     gorseller:
+      - {kaynak: commons, dosya: "File:Dyatlov.Volume 1.Page 384.jpg"}
       - {kaynak: kart, tur: belge, baslik: "Ceza davası · Karar", satirlar: ["Ölüm nedeni: insanların üstesinden gelemediği, karşı konulamaz bir doğa gücü.", "Suç unsuru bulunmamıştır.", "Dava kapatılmıştır."], damga: "KAPANDI"}
+      - {kaynak: commons, dosya: "File:Dyatlov.Volume 1.Page 387.jpg"}
     metin: >
       Yirmi sekiz Mayıs bin dokuz yüz elli dokuzda, savcı Lev İvanov davayı kapattı. Resmî sonuç tek bir cümleydi:
       ölüm nedeni, insanların üstesinden gelemediği, karşı konulamaz bir doğa gücüydü.
       Ne bir suçlu, ne bir saldırgan, ne de net bir açıklama. Ve bölge, sonraki üç yıl boyunca yürüyüşçülere kapatıldı.
   - gorseller:
-      - {kaynak: openverse, ara: "strange light night sky winter", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-photos-marinner966-04.jpg", sayfa: "https://dyatlovpass.com/contemporary-photos", aciklama: "Night sky with glowing clouds over the forest near Dyatlov Pass"}
+      - {kaynak: openverse, id: "17c48333-000b-4610-a2aa-ce6c659289a6"}
     metin: >
       Peki o dönemde başka neler oluyordu? Şubat ve Mart bin dokuz yüz elli dokuzda, bölgede farklı kişiler gökyüzünde parlak, turuncu küreler gördüklerini bildirdi.
       Bunlardan biri, bizzat arama ekibinin otuz bir Mart gecesi gördüğü ve telgrafla bildirdiği bir ışıktı.
@@ -293,6 +329,7 @@ akis:
       Ve bazı araştırmacılara göre, aynı tarihlerde Sovyetler Birliği'nde kıtalararası füze denemeleri yapılıyordu.
       Yani turuncu küreler, gökyüzünde yükselen füzeler olabilirdi. Olabilirdi… ama soruşturmayı yürüten savcı, yıllar sonra çok farklı bir şey söyleyecekti.
   - gorseller:
+      - {kaynak: commons, dosya: "File:Dyatlov.Volume 1.Original cover.jpg"}
       - {kaynak: kart, tur: belge, baslik: "Uralskiy Raboçiy · 1990", satirlar: ["Lev İvanov: “Davayı kapatmam söylendi.”", "“O parlak uçan kürelerin grubun ölümüyle doğrudan bir ilişkisi olduğundan neredeyse eminim.”"]}
     metin: >
       Bin dokuz yüz doksanda, Sovyetler Birliği dağılmak üzereyken, Lev İvanov bir gazeteye konuştu.
@@ -301,6 +338,7 @@ akis:
       Bu sözler, dosyayı yeniden açtı. Belki resmî olarak değil… ama insanların zihninde.
   - abone: true
   - gorseller:
+      - {kaynak: commons, dosya: "File:Dyatlov.Volume 1.Page 1 verso.jpg"}
       - {kaynak: kart, tur: belge, baslik: "Dosyadaki tutarsızlıklar", satirlar: ["Bir sorgu tutanağının tarihi: 6 Şubat 1959.", "Arama ise 20 Şubat civarında başladı."], damga: "?"}
     metin: >
       Bir iddia daha var. Ceza dosyasında, tarihi altı Şubat olarak görünen bir sorgu tutanağı bulunuyor. Yani aramanın başlamasından iki hafta önce.
@@ -316,19 +354,23 @@ akis:
       Altmış yılı aşkın sürede, bu olay için yüzlerce teori ortaya atıldı. Şimdi en önemlilerine tek tek bakalım.
       Hangisinin daha güçlü olduğuna, sonunda siz karar vereceksiniz.
   - gorseller:
-      - {kaynak: openverse, ara: "reindeer herd snow north", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-Mansi-1251.jpg", sayfa: "https://dyatlovpass.com/mansi", aciklama: "Mansi people of the Northern Urals, mid-20th century"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-1959-search-Stepan-Kurikov.jpg", sayfa: "https://dyatlovpass.com/rescuers", aciklama: "Stepan Kurikov, a Mansi hunter who joined the 1959 search"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-tent-cuts-03.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "The tent canvas cut from the inside, marked by investigators"}
     metin: >
       İlk şüphe, bölgenin yerli halkı Mansilere yöneldi. Kutsal saydıkları topraklara giren yabancılara saldırmış olabilirler miydi?
       Ancak bu teori hızla çöktü. Mansiler sorgulandı ve aramaya bizzat yardım ettiler. Çadırın çevresinde başka birine ait tek bir iz yoktu.
       Ve unutmayın, çadır dışarıdan değil, içeriden kesilmişti.
   - gorseller:
-      - {kaynak: openverse, ara: "barbed wire snow winter", yon: yatay}
+      - {kaynak: commons, dosya: "File:Snow on Barbed Wire.jpg"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/gallery/3-018-1.jpg", sayfa: "https://dyatlovpass.com/tent-location", aciklama: "Searchers' skis at the excavated tent site with the group's belongings, 1959"}
     metin: >
       Benzer bir teori, bölgedeki çalışma kamplarından kaçan mahkûmları işaret ediyor. Hatırlarsanız, o günlerde bölgede gerçekten kaçak araması yapılıyordu.
       Ama bu teori de aynı duvara çarpıyor. Çadırın etrafında yabancı izler yoktu. Ve çadırdaki para ile değerli eşyalara kimse dokunmamıştı.
       Kaçan bir mahkûmun, sıcak kıyafetleri ve yiyeceği bırakıp gitmesi mantıklı mı?
   - gorseller:
-      - {kaynak: openverse, ara: "foggy snowy forest mysterious", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_18.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "Tree with carved Mansi signs photographed by the group, 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/2_04.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "Misty forest with long shadows, from the group's film, 1959"}
     metin: >
       Sonra, Yeti. Ya da Ural efsanelerindeki adıyla Menk. Grubun kendi şaka gazetesindeki o cümleyi hatırlıyorsunuz.
       Bu teori, yıllar sonra bir televizyon belgeseliyle yeniden gündeme geldi. Ancak belgesel ağır eleştiriler aldı ve bu teoriyi destekleyen
@@ -341,37 +383,45 @@ akis:
       Ancak bölgede o tarihte bir test yapıldığını gösteren hiçbir belge bugüne kadar ortaya çıkmadı.
   - gorseller:
       - {kaynak: kart, tur: belge, baslik: "İddia · Kontrollü teslimat", satirlar: ["Kaynak: Aleksey Rakitin'in kitabı.", "Belgeyle desteklenmiyor."], damga: "İDDİA"}
+      - {kaynak: commons, dosya: "File:Фото членов тургруппы Игоря Дятлова.jpg"}
     metin: >
       Şimdi, başta söz verdiğim yere geliyoruz. En çarpıcı teorilerden biri, yazar Aleksey Rakitin'e ait.
       İddiasına göre grubun içinde, gizli servis adına çalışan birkaç kişi vardı ve radyoaktif giysiler, yabancı ajanlara kasten teslim edilecek bir tuzaktı.
       Bu teoride, savaş gazisi Zolotaryov'un geçmişi ve nükleer bir tesiste çalışmış olan Krivonişçenko'nun özgeçmişi önemli rol oynuyor.
   - gorseller:
       - {kaynak: kart, ust: "Zolotaryov dosyası", baslik: "İddialar", alt: "Kendini farklı bir isimle tanıtması · dövmeler · fazladan bir fotoğraf makinesi"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-frame-34-23.jpg", sayfa: "https://dyatlovpass.com/frame-34", aciklama: "Zorkiy camera of the type carried by the group"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Zolotaryov-camera-08.jpg", sayfa: "https://dyatlovpass.com/camera-zolotaryov", aciklama: "Frame from the film found in Zolotaryov's camera"}
     metin: >
       Zolotaryov hakkında anlatılanlar da bu teoriyi besliyor. İddiaya göre kendisini gruba farklı bir isimle, Aleksandr olarak tanıtmıştı.
       Vücudunda anlamı tartışılan dövmeler olduğu söyleniyor. Cesedinde, envanterde yer almayan bir fotoğraf makinesi bulunduğu da iddialar arasında.
       Ancak şunu açıkça söylemek gerekiyor: bu casusluk teorisini doğrulayan tek bir resmî belge yok. Bu, şimdilik bir iddiadan ibaret.
   - gorseller:
-      - {kaynak: openverse, ara: "wind blowing snow mountain ridge", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-monday-photo-2024-01-15.jpg", sayfa: "https://dyatlovpass.com/contemporary-photos", aciklama: "Wind-driven snow at Dyatlov Pass, January 2024"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_32.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "The group pushing through a blizzard, 1 February 1959"}
     metin: >
       Bir başka teori, doğanın kendisini işaret ediyor. Yazar Donnie Eichar'a göre, dağın şekli yüzünden oluşan güçlü rüzgâr girdapları,
       insan kulağının duyamadığı düşük frekanslı sesler, yani infrases üretmiş olabilir. Bu seslerin insanlarda açıklanamayan bir korku ve panik yarattığı öne sürülüyor.
       İlginç bir fikir. Ama infrasesin bu kadar güçlü bir paniğe yol açtığına dair kanıtlar oldukça zayıf.
   - gorseller:
       - {kaynak: kart, ust: "Tıbbi bir açıklama", baslik: "Paradoksal Soyunma", alt: "Donan insan, son anlarda sıcaklık hisseder"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-steps-01.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Footprints leading down the slope from the tent, photographed by searchers in 1959"}
     metin: >
       Peki neden neredeyse çıplaktılar? Burada tıbbın bilinen bir olgusu devreye giriyor: paradoksal soyunma.
       Ağır hipotermide, ölüme yakın anlarda, vücut aniden yanıyormuş gibi bir sıcaklık hissedebiliyor ve insanlar kıyafetlerini çıkarabiliyor.
       Bu, bazı detayları açıklayabilir. Ama hepsini değil. Çünkü grubun çadırdan zaten yarı giyinik hâlde çıktığı anlaşılıyor.
       Yani asıl soru yine aynı yerde duruyor: onları o hâlde çadırdan çıkaran neydi?
   - gorseller:
-      - {kaynak: openverse, ara: "avalanche snow slab", yon: yatay}
+      - {kaynak: commons, dosya: "File:Schneebrett keschhuette 20130316.jpg"}
+      - {kaynak: commons, dosya: "File:Dyatlov pass incident avalanche possibility map 1.svg"}
     metin: >
       Ve son olarak, bugün resmî kabul gören açıklama. İki bin on dokuzda Rusya Başsavcılığı dosyayı yeniden inceledi.
       İki bin yirmide açıklanan sonuç: küçük bir kar levhası çığı, kötü görüş koşulları ve hipotermi.
       Savcılığa göre grup panik yapmamıştı. Hatta açıklamada, bunun kahramanca bir mücadele olduğu vurgulanıyordu.
   - gorseller:
       - {kaynak: kart, tur: belge, baslik: "Communications Earth & Environment · 2021", satirlar: ["Gaume ve Puzrin:", "Yamaca açılan kesik + rüzgârın taşıdığı kar", "→ saatler sonra küçük bir kar levhası kopuyor."]}
+      - {kaynak: commons, dosya: "File:Dyatlov pass incident slope map 1.svg"}
+      - {kaynak: commons, dosya: "File:Piz Nair with slab avalanche.jpg"}
     metin: >
       İki bin yirmi birde iki bilim insanı, Johan Gaume ve Alexander Puzrin, bu senaryoyu bilimsel olarak modelledi.
       Teorilerine göre grup, çadırı kurmak için yamaca bir kesik açtı. Gece boyunca rüzgârın taşıdığı kar bu kesiğin üzerinde birikti
@@ -379,6 +429,8 @@ akis:
       İki yıl sonra, bölgede bu tür küçük çığların gerçekten oluştuğunu gösteren görüntüler de kaydedildi.
   - gorseller:
       - {kaynak: kart, ust: "Ama…", baslik: "Çığ Teorisinin Açıkları", alt: "Hafif eğim · görülmeyen çığ izleri · ayakta kalan çadır direği"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Tent-location-Aleksander-Konstantinov-18-thumb.jpg", sayfa: "https://dyatlovpass.com/tent-location", aciklama: "Open eastern slope of Kholat Syakhl at the tent site, photographed by searchers in 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1S-09.jpg", sayfa: "https://dyatlovpass.com/search-photos", aciklama: "The Dyatlov tent half-buried in snow with a pole still standing, February 1959"}
     metin: >
       Peki bu, dosyayı kapatıyor mu? Herkese göre değil. Eleştirmenlere göre yamacın eğimi çığ için fazla hafif.
       Arama ekipleri çevrede çığ izine rastlamadıklarını söylemişti. Çadırın bir kısmı ve bazı kayaklar ayakta duruyordu.
@@ -395,36 +447,40 @@ akis:
       Bu kadar ünlü bir gizemin etrafında, doğal olarak sayısız söylenti de oluştu. Şimdi en çok anlatılanlara bakalım.
       Hangisinin gerçek bir temeli var, hangisi zamanla büyüyüp efsaneye dönüştü?
   - gorseller:
-      - {kaynak: openverse, ara: "old cemetery winter snow", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Mihaylovskoe-cemetery-2009-2.jpg", sayfa: "https://dyatlovpass.com/contemporary-photos", aciklama: "Dyatlov group memorial at Mikhailovskoe cemetery in winter"}
     metin: >
       Yaygın bir söylentiye göre, cesetlerin teni turuncuya dönmüş, saçları bembeyaz olmuştu. Cenazelere katılan bazı kişiler,
       yüzlerin çok koyu renkte olduğunu anlattı. Ancak araştırmacılar bunu donma, haftalarca güneş ve kar altında kalma ve çürümeyle açıklıyor.
       Turuncu ten hikâyesi, anlatıldıkça renklenmiş bir detay gibi görünüyor.
   - gorseller:
       - {kaynak: kart, tur: belge, baslik: "Söylenti · Gerçek", satirlar: ["Söylenti: Cesetler aşırı radyoaktifti.", "Kayıt: Yalnızca birkaç giyside hafif beta radyasyonu ölçüldü."]}
+      - {kaynak: commons, dosya: "File:Dyatlov.Volume 1.Page 370.jpg"}
     metin: >
       Bir diğer yaygın söylenti, cesetlerin son derece radyoaktif olduğu. Oysa kayıtlara göre ölçülen şey,
       sadece birkaç giyside, normalin biraz üzerindeki bir radyasyon değeriydi. Gizemli mi? Evet. Ama anlatıldığı kadar büyük değil.
   - gorseller:
-      - {kaynak: openverse, ara: "mountain silhouette fog dark", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-Boot-Rock-09.jpg", sayfa: "https://dyatlovpass.com/contemporary-photos", aciklama: "Boot Rock near Kholat Syakhl in winter"}
+      - {kaynak: commons, dosya: "File:Вид с Отортена - panoramio.jpg"}
     metin: >
       Bir de dağın adı var. İnternette çok sık okuyacağınız iddiaya göre Holat Siyahl, Ölüler Dağı anlamına geliyor
       ve Otorten de yerel dilde “oraya gitme” demek. Ancak bu iki çeviri de tartışmalı. Holat Siyahl'ın anlamı daha çok, ıssız, av hayvanı olmayan dağ
       olarak açıklanıyor. “Oraya gitme” anlamı ise büyük ihtimalle tamamen uydurma.
   - gorseller:
-      - {kaynak: kart, ust: "Son film karesi", baslik: "Bulanık Bir Işık", alt: "Bir fotoğraf makinesindeki son kare"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-frame-34-hi-res.jpg", sayfa: "https://dyatlovpass.com/frame-34", aciklama: "Frame 34, the disputed last frame of the group's film"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-frame-34-12.jpg", sayfa: "https://dyatlovpass.com/frame-34", aciklama: "Camera lens examined in the frame 34 study"}
     metin: >
       Bir fotoğraf makinesinden çıkan son kare de yıllardır tartışılıyor. Karede, karanlığın içinde bulanık bir ışık görünüyor.
       Kimilerine göre bu, o gece gökyüzündeki ateş topunun ta kendisi. Kimilerine göre ise sadece netlemeden çekilmiş, yanlışlıkla basılmış bir kare.
       Aynı görüntüye bakıp iki farklı hikâye görmek… bu dosyanın belki de en iyi özeti.
   - gorseller:
       - {kaynak: kart, ust: "Söylenti", baslik: "Onuncu Kişi?", alt: "Envanterde yer almayan fotoğraf makineleri"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Krivonischenko-camera-film6-24.jpg", sayfa: "https://dyatlovpass.com/camera-krivonischenko", aciklama: "A group member taking a photograph, Krivonischenko camera, 1959"}
     metin: >
       Bir başka söylenti, o gece yamaçta dokuz değil, on kişinin olduğu yönünde. Bu iddianın dayanağı, envanterle tam örtüşmeyen fotoğraf makineleri
       ve sonradan teşhis edilemeyen bazı eşyalar. Ancak resmî kayıtlarda, çadırın çevresinde gruba ait olmayan tek bir iz bile yok.
       Onuncu kişi, şimdilik sadece bu dosyanın gölgelerinde dolaşan bir ihtimal.
   - gorseller:
-      - {kaynak: openverse, ara: "old wooden church winter", yon: yatay}
+      - {kaynak: commons, dosya: "File:Mikhailovskoe Cemetery in Yekaterinburg (June 2024) - 4.jpg"}
     metin: >
       Sık duyacağınız iki söylenti daha var. Birincisi, cenazelerin mühürlü tabutlarla yapıldığı ve ailelerin cesetleri görmesine izin verilmediği.
       Ancak cenazeye katılanların anlatımları bunu doğrulamıyor. İkincisi, birkaç yıl sonra aynı bölgede başka insanların da benzer şekilde öldüğü.
@@ -437,7 +493,8 @@ akis:
       Ancak daha sonra yapılan ikinci bir test, eşleşme buldu. Yine de bu gelgit, Zolotaryov etrafındaki sis perdesini kaldırmak yerine biraz daha kalınlaştırdı.
   - abone: true
   - gorseller:
-      - {kaynak: kart, ust: "Yuri Yudin", baslik: "54 Yıl Süren Soru", alt: "Hayatta kalan tek üye · 2013"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Krivonischenko-camera-film6-34.jpg", sayfa: "https://dyatlovpass.com/camera-krivonischenko", aciklama: "Farewell to Yuri Yudin at the 2nd Northern settlement, 28 January 1959"}
+      - {kaynak: commons, dosya: "File:Памятник дятловцам на Михайловском кладбище.jpg"}
     metin: >
       Peki ya geri dönen tek kişi, Yuri Yudin? Arkadaşlarının eşyalarını teşhis etmek için çağrılan oydu.
       Hayatının geri kalanında bu olayı anlattı, sorguladı ve cevap aradı. Yudin, iki bin on üçte hayatını kaybetti.
@@ -448,7 +505,8 @@ akis:
   # ============================================================ KAPANIŞ
   - bolum: "Kapanış: Karar Sizin"
     gorseller:
-      - {kaynak: openverse, ara: "lonely mountain winter dawn", yon: yatay}
+      - {kaynak: url, adres: "https://upload.wikimedia.org/wikipedia/ru/4/4e/%D0%9C%D0%B5%D0%BC%D0%BE%D1%80%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%87%D0%BA%D0%B0_2015.jpg?utm_source=ru.wikipedia.org&utm_campaign=imageinfo&utm_content=original", sayfa: "https://ru.wikipedia.org/wiki/Гибель_тургруппы_Дятлова", aciklama: "Memorial plaque at Dyatlov Pass in the snow, 2015"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-photos-Alexey-B-02.jpg", sayfa: "https://dyatlovpass.com/contemporary-photos", aciklama: "Sun through blowing snow on the pass"}
     metin: >
       Şimdi, elimizdekileri bir araya getirelim. Dokuz deneyimli insan, sıcak çadırlarını içeriden keserek, eksi otuz derecede karanlığa çıktı.
       Bazıları donarak, bazıları açıklanması güç yaralarla öldü. Resmî dosya, karşı konulamaz bir doğa gücü diyerek kapandı.
@@ -459,7 +517,9 @@ akis:
       Gerçek Gizem'de size neye inanmanız gerektiğini söylemiyoruz. Bizim işimiz, bilinenleri, iddiaları ve cevapsız soruları
       karanlıktan çıkarıp masaya koymak. Bağlantıları kurmak ise sizin işiniz.
   - gorseller:
-      - {kaynak: openverse, ara: "tent alone snow mountain dusk", yon: yatay}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-monday-photo-2024-01-15.jpg", sayfa: "https://dyatlovpass.com/contemporary-photos", aciklama: "Wind-driven snow at Dyatlov Pass, January 2024"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/gallery/GASO_R-2259_1_659_400_4.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "The cut tent reassembled for the investigation, 1959"}
+      - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_33-1.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "The Dyatlov group skiing into a blizzard, one of the last photos, 1 February 1959"}
     metin: >
       Ama şunu söyleyebilirim. Bu dosyanın en derininde, hep aynı sahne duruyor. Karla kaplı, rüzgârın uğuldadığı bir yamaç.
       İçeriden kesilmiş bir çadır. Ve karanlıkta, yan yana, sessizce yürüyen dokuz insan.
@@ -489,12 +549,13 @@ shorts:
     aciklama: "1959'da dokuz yürüyüşçü çadırlarını içeriden kesip eksi otuz derecede karanlığa kaçtı. Tam belgesel kanalda: Dyatlov Geçidi."
     akis:
       - gorseller:
-          - {kaynak: openverse, ara: "tent in snow night", yon: dikey}
-          - {kaynak: openverse, ara: "footprints in snow", yon: dikey}
+          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1S-09.jpg", sayfa: "https://dyatlovpass.com/search-photos", aciklama: "The Dyatlov tent half-buried in snow as found by searchers, February 1959"}
+          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/Dyatlov-pass-steps-01.jpg", sayfa: "https://dyatlovpass.com/1959-search", aciklama: "Footprints leading down the slope from the tent, photographed by searchers in 1959"}
         metin: >
           Dokuz deneyimli yürüyüşçü, gece yarısı çadırlarını içeriden kesti ve eksi otuz derecede, çoraplarla karanlığa yürüdü.
           Botları, montları, yiyecekleri çadırda kaldı. Hiçbiri geri dönmedi.
       - gorseller:
+          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/1_33-1.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "The Dyatlov group skiing into a blizzard, one of the last photos, 1 February 1959"}
           - {kaynak: kart, baslik: "Neden?", alt: "Dyatlov Geçidi · 1959"}
         metin: >
           Altmış yılı aşkın süredir kimse bu soruya kesin bir cevap veremedi. Onları o sıcak çadırdan ne çıkardı?
@@ -503,10 +564,11 @@ shorts:
     aciklama: "Dyatlov Geçidi'ndeki sedir ağacının gizemi. Tam belgesel kanalda."
     akis:
       - gorseller:
-          - {kaynak: openverse, ara: "big cedar tree winter forest", yon: dikey}
+          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/6S-19-dead-cedar.jpg", sayfa: "https://dyatlovpass.com/dead-cedar", aciklama: "Searchers next to the cedar tree, 1959"}
         metin: >
           Dondurucu bir gecede, iki adam yalnızca iç çamaşırlarıyla, bir sedir ağacının dibinde bulundu. Yanlarında sönmüş bir ateş vardı.
       - gorseller:
+          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-Pass-Yakimenko-1963-72-dead-cedar.jpg", sayfa: "https://dyatlovpass.com/dead-cedar", aciklama: "The cedar tree photographed by Valentin Yakimenko in 1963"}
           - {kaynak: kart, ust: "Sedir ağacı", baslik: "5 Metre Yukarıda Kırık Dallar"}
         metin: >
           Ama asıl tuhaf olan, ağacın dallarıydı. Beş metre yüksekliğe kadar kırılmıştı. Biri, o soğukta ağaca tırmanmıştı.
@@ -515,12 +577,13 @@ shorts:
     aciklama: "Dyatlov dosyasını kapatan savcı, 1990'da bambaşka bir şey söyledi. Tam belgesel kanalda."
     akis:
       - gorseller:
+          - {kaynak: commons, dosya: "File:Dyatlov.Volume 1.Page 384.jpg"}
           - {kaynak: kart, tur: belge, baslik: "Ceza davası · Karar", satirlar: ["Ölüm nedeni: karşı konulamaz bir doğa gücü."], damga: "KAPANDI"}
         metin: >
           Bin dokuz yüz elli dokuzda dokuz yürüyüşçünün ölümünü soruşturan savcı, dosyayı tek bir cümleyle kapattı:
           karşı konulamaz bir doğa gücü.
       - gorseller:
-          - {kaynak: openverse, ara: "strange light night sky winter", yon: yatay}
+          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Dyatlov-pass-photos-marinner966-04.jpg", sayfa: "https://dyatlovpass.com/contemporary-photos", aciklama: "Night sky with glowing clouds over the forest near Dyatlov Pass"}
         metin: >
           Otuz bir yıl sonra ise bir gazeteye konuştu. İddiasına göre davayı kapatması emredilmişti.
           Ve o dönem gökyüzünde görülen parlak turuncu kürelerin, ölümlerle doğrudan ilgili olduğundan neredeyse emindi. Tam dosya, Gerçek Gizem'de.
@@ -528,11 +591,13 @@ shorts:
     aciklama: "Dyatlov grubundan sağ kalan tek kişi Yuri Yudin'in hikâyesi. Tam belgesel kanalda."
     akis:
       - gorseller:
-          - {kaynak: openverse, ara: "taiga forest winter", yon: dikey}
+          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/B-01.jpg", sayfa: "https://dyatlovpass.com/trek-photos", aciklama: "Dyatlov group members in the train compartment, January 1959"}
+          - {kaynak: url, adres: "https://dyatlovpass.com/resources/340/thumbs/Krivonischenko-camera-film6-33.jpg", sayfa: "https://dyatlovpass.com/camera-krivonischenko", aciklama: "Yuri Yudin's farewell embrace with the group at the 2nd Northern settlement, 28 January 1959"}
         metin: >
           Bin dokuz yüz elli dokuzda on kişilik bir grup, Kuzey Urallarda zorlu bir kayak yürüyüşüne çıktı.
           Yolun başında biri hastalandı ve geri döndü. Adı Yuri Yudin'di.
       - gorseller:
+          - {kaynak: commons, dosya: "File:Памятник дятловцам на Михайловском кладбище.jpg"}
           - {kaynak: kart, ust: "Yuri Yudin", baslik: "54 Yıl Süren Soru"}
         metin: >
           Geride kalan dokuz kişinin hiçbiri eve dönmedi. Yudin, hayatının geri kalanında onlara ne olduğunu sordu.
