@@ -91,7 +91,8 @@ Ses ve görüntü **net şekilde oturur** ve birbiriyle **tutarlı** olur:
    (tahmini süreyle değil).
 3. **Altyazı uyumu:** Altyazılar kelime kelime sesle eş zamanlı akar; sesten önce veya sonra görünmez.
    Altyazıda yazılan metin, seslendirmede okunan metinle birebir aynıdır (yabancı isimler orijinal yazımıyla).
-4. **Müzik yok:** Videolarda ve Shorts'ta **müzik kullanılmaz** (kanal sahibinin kararı, 23.11.2026).
+4. **Müzik ve ses efekti yok:** Videolarda ve Shorts'ta **müzik ve ses efekti kullanılmaz**; videoda yalnızca
+   anlatıcının sesi bulunur (kanal sahibinin kararı, 23.11.2026).
    Tempo ve vurgu; anlatıcının sesi, bilinçli sessizlik anları ve görüntü geçişleriyle sağlanır.
    Videonun tekdüzeleşmemesi için görsel ritim (geçişler, yakınlaştırmalar, ekran yazıları) özellikle canlı tutulur.
 5. **Kontrol:** Her video yüklenmeden önce ses–görüntü–altyazı uyumu kontrol edilir.
@@ -115,7 +116,7 @@ Her adım kanalın büyümesine hizmet eder:
 
 ## 6. Telifsiz Görsel ve Video
 
-1. Kullanılan tüm video ve fotoğraflar (ve ileride kullanılacak her türlü ses malzemesi) **başımıza dert açmayacak şekilde telifsiz** kaynaklardan seçilir
+1. Kullanılan tüm video ve fotoğraflar **başımıza dert açmayacak şekilde telifsiz** kaynaklardan seçilir
    (ör. Pexels, Pixabay, Wikimedia Commons'ta kamu malı / CC0 olanlar, NASA gibi kamu kaynakları).
 2. Lisansı belirsiz hiçbir materyal kullanılmaz.
 3. Her video için kullanılan materyallerin kaynak ve lisans listesi tutulur.
