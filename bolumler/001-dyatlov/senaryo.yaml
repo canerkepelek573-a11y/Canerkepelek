@@ -1,0 +1,539 @@
+# DERİN GİZEM · DOSYA #1 — DYATLOV GEÇİDİ
+# Araştırma: docs/konular/dyatlov.md  ·  Kurallar: CLAUDE.md
+# Yazım kuralları: sayılar rakamla yazılabilir (otomatik yazıya çevrilir); aralık (1–2) ve
+# "2. Dünya" gibi büyük harfle devam eden sıra sayıları YAZIYLA yazılır.
+
+bolum_no: 1
+baslik: "Dyatlov Geçidi: Çadırı İçeriden Kesip Karanlığa Neden Kaçtılar?"
+aciklama: |
+  1959'un şubatında, Kuzey Urallarda dokuz deneyimli yürüyüşçü bir dağ yamacında kamp kurdu ve bir daha geri dönmedi. Çadırları içeriden kesilmişti; izler, eksi otuz derecede karanlık ormana uzanıyordu. Peki o gece Dyatlov Geçidi'nde gerçekte ne oldu?
+
+  Derin Gizem'in ilk dosyasında bilinen gerçekleri, resmî açıklamaları, çığ teorisini, askerî test ve KGB iddialarını, Yeti söylentilerini ve yıllardır dolaşan efsaneleri tek tek masaya koyuyoruz. Karar sizin.
+hashtagler: ["#DyatlovGeçidi", "#gizem", "#çözülemeyenolaylar", "#DerinGizem"]
+etiketler: ["Dyatlov Geçidi", "Dyatlov", "Dyatlov Pass", "Holat Siyahl", "Kholat Syakhl", "Ural Dağları",
+            "çözülemeyen olaylar", "gizemli olaylar", "Sovyet gizemleri", "belgesel", "Derin Gizem"]
+kaynaklar:
+  - "Gaume & Puzrin (2021), Mechanisms of slab avalanche release and impact in the Dyatlov Pass incident in 1959, Communications Earth & Environment"
+  - "Puzrin & Gaume (2022), Communications Earth & Environment"
+  - "Rusya Başsavcılığı / Urallar savcılığı açıklamaları, 2019–2020 (TASS)"
+  - "Dyatlov Geçidi ceza davası dosyası çevirileri — dyatlovpass.com"
+  - "Donnie Eichar, Dead Mountain (2013)"
+  - "The Moscow Times, History.com, Live Science, Snopes"
+
+kapak:
+  gorsel: {kaynak: openverse, ara: "ural mountains winter night", yon: yatay}
+  metin: "ÇADIR|İÇERİDEN KESİLDİ"
+  odak: sag
+
+son_kart: {kaynak: kart, ust: "Derin Gizem", baslik: "Bir Sonraki Dosyada Görüşmek Üzere", alt: "Abone olun, dosyalar açılmaya devam ediyor"}
+
+okunus:
+  Dyatlov: Dyatlof
+  Kolevatov: Kolevatof
+  Zolotaryov: Zolotaryof
+  İvanov: İvanof
+  Tempalov: Tempalof
+  Kuryakov: Kuryakof
+  Slobtsov: Slobtsof
+  Tibo-Brinyol: Tibo Brinyol
+  Gaume: Gom
+  Eichar: Ayker
+  Vozrojdenni: Vozrojdenni
+
+akis:
+  # ============================================================ GİRİŞ (kanca ~45 sn)
+  - bolum: "Giriş: Çadırdaki Kesik"
+    gorseller:
+      - {kaynak: openverse, ara: "snowy mountain slope night", yon: yatay}
+      - {kaynak: kart, tur: belge, baslik: "26 Şubat 1959 · Arama raporu", satirlar: ["Çadır yamaçta, yarı kar altında bulundu.", "Bez, içeriden bıçakla kesilmiş.", "Ekip üyelerinden iz yok."]}
+    metin: >
+      Kuzey Urallarda, karla kaplı bir dağ yamacında, yarı gömülü bir çadır bulundu.
+      Çadırın bezi kesilmişti… ama dışarıdan değil. İçeriden.
+  - gorseller:
+      - {kaynak: openverse, ara: "footprints in snow", yon: yatay}
+    metin: >
+      İçeride botlar, kalın montlar, yiyecek ve fenerler duruyordu. Dışarıda ise, eksi otuz dereceye yaklaşan bir soğukta,
+      karanlığa doğru uzanan ayak izleri vardı. Çoraplı ayaklar. Yalın ayaklar. Dokuz deneyimli insan, bir gece yarısı,
+      sıcak çadırlarını kesip ölümcül soğuğa koşmuştu.
+  - gorseller:
+      - {kaynak: kart, ust: "1 Şubat 1959", baslik: "Dokuz Kişi, Tek Bir Gece", alt: "Holat Siyahl · Kuzey Urallar"}
+    metin: >
+      Altmış yılı aşkın süredir sorulan soru hep aynı. Onları o çadırdan ne çıkardı?
+      Bugün sizi, bin dokuz yüz elli dokuzun şubatına, Sovyetler Birliği'nin en ıssız köşelerinden birine götüreceğim.
+      Resmî açıklamayı, gizli kalmış iddiaları, söylentileri ve hiç kapanmayan soruları tek tek açacağız.
+      Çünkü bu dosyada, ilk bakışta göründüğünden çok daha fazlası olabilir.
+  - gorseller:
+      - {kaynak: kart, ust: "Dosya #1", baslik: "Derin Gizem", alt: "Dyatlov Geçidi Olayı"}
+    metin: >
+      Derin Gizem'e hoş geldiniz.
+    sessizlik: 0.6
+
+  # ============================================================ BÖLÜM: GRUP
+  - bolum: "Dokuz Kişi, Tek Bir Rota"
+    yazi: "Sverdlovsk · 23 Ocak 1959"
+    gorseller:
+      - kaynak: harita
+        baslik: "Sovyetler Birliği · Ural Bölgesi"
+        alan: [40, 80, 50, 66]
+        isaretler:
+          - {ad: "Moskova", konum: [37.62, 55.75]}
+          - {ad: "Sverdlovsk", konum: [60.6, 56.84], ana: true}
+      - {kaynak: openverse, ara: "old train winter snow", yon: yatay}
+    metin: >
+      Önce elimizdeki gerçeklere bakalım. Yıl bin dokuz yüz elli dokuz. Yer, bugünkü adıyla Yekaterinburg, o zamanki adıyla Sverdlovsk.
+      Ural Politeknik Enstitüsü'nden bir grup öğrenci ve mezun, kış ortasında iddialı bir kayak yürüyüşüne hazırlanıyor.
+      Hedef, Kuzey Urallardaki Otorten Dağı. Rota yaklaşık 300 km. O dönemin en zor yürüyüş kategorisi.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Ekip listesi", satirlar: ["İgor Dyatlov — 23, lider", "Zinaida Kolmogorova — 22", "Lüdmila Dubinina — 20", "Rustem Slobodin — 23", "Yuri Doroşenko — 21", "Yuri Krivonişçenko — 23", "Nikolay Tibo-Brinyol — 23", "Aleksandr Kolevatov — 24", "Semyon Zolotaryov — 37", "Yuri Yudin — 21"]}
+    metin: >
+      Grubun lideri, yirmi üç yaşındaki radyo mühendisliği öğrencisi İgor Dyatlov. Deneyimli, disiplinli, çevresinde saygı duyulan biri.
+      Yanında iki genç kadın var: Zinaida Kolmogorova ve Lüdmila Dubinina. Ardından Rustem Slobodin, Yuri Doroşenko,
+      Yuri Krivonişçenko, Nikolay Tibo-Brinyol ve Aleksandr Kolevatov. Hepsi yirmili yaşlarında, hepsi kar ve dağ deneyimi olan insanlar.
+  - gorseller:
+      - {kaynak: kart, ust: "Ekibin en yaşlısı", baslik: "Semyon Zolotaryov", alt: "37 yaşında · savaş gazisi · turizm eğitmeni"}
+    metin: >
+      Bir de, gruba son anda katılan biri var. Otuz yedi yaşındaki Semyon Zolotaryov. İkinci Dünya Savaşı gazisi, deneyimli bir turizm eğitmeni.
+      Grubun geri kalanından yaşça epey büyük ve onlar tarafından pek tanınmayan biri. Bu ismi aklınızın bir köşesinde tutun.
+      Çünkü ilerleyen dakikalarda, Zolotaryov hakkında anlatılanlar bu dosyanın en tuhaf sayfalarından birini açacak.
+  - yazi: "23 Ocak 1959"
+    gorseller:
+      - kaynak: harita
+        baslik: "Kuzey Urallara Yolculuk"
+        alan: [57, 63, 56.3, 62.3]
+        rota: true
+        isaretler:
+          - {ad: "Sverdlovsk", konum: [60.6, 56.84]}
+          - {ad: "Serov", konum: [60.58, 59.6]}
+          - {ad: "İvdel", konum: [60.42, 60.69]}
+          - {ad: "Vijay", konum: [60.21, 61.22]}
+          - {ad: "Otorten", konum: [59.29, 61.84], ana: true}
+    metin: >
+      Yirmi üç Ocak bin dokuz yüz elli dokuzda grup trene biniyor. Serov, sonra İvdel, sonra Vijay adlı küçük bir yerleşim.
+      Bir kamyonla ormanın içindeki bir kereste kampına, oradan da atlı kızak ve kayaklarla, terk edilmiş bir jeolog köyüne ulaşıyorlar.
+      Burası, insan yaşamının son izlerinin görüldüğü yer. Bundan sonrası, yalnızca kar, rüzgâr ve sessizlik.
+  - gorseller:
+      - {kaynak: openverse, ara: "taiga forest winter", yon: yatay}
+      - {kaynak: kart, ust: "28 Ocak 1959", baslik: "Geri Dönen Tek Kişi", alt: "Yuri Yudin"}
+    metin: >
+      Ve burada, hikâyenin ilk tuhaf dönemeci yaşanıyor. Yirmi sekiz Ocak'ta, grubun üyelerinden Yuri Yudin hastalanıyor.
+      Bacağındaki ağrı yüzünden yürüyüşe devam edemiyor. Arkadaşlarıyla vedalaşıyor ve geri dönüyor.
+      O an bilmiyordu… ama bu veda, hayatını kurtaracaktı. Grubu canlı gören son kişi oydu.
+      Ve ölene kadar, yani tam elli dört yıl boyunca, aynı soruyu sormaktan vazgeçmeyecekti.
+  - abone: true
+  - gorseller:
+      - {kaynak: openverse, ara: "cross country skiing winter forest", yon: yatay}
+    metin: >
+      Dokuz kişi kalan grup, sonraki günlerde Lozva ve Auspiya nehirlerinin vadilerinden kuzeye ilerliyor.
+      Günlüklerden ve fotoğraf makinelerinden bildiğimiz kadarıyla moraller yüksek. Şakalaşıyorlar, şarkı söylüyorlar,
+      akşamları çadırda soba yakıp günlük tutuyorlar. Ortada bir gerginlik, bir korku, bir uyarı işareti yok.
+      Her şey, sıradan bir kış yürüyüşü gibi görünüyor. Ta ki bir Şubat sabahına kadar.
+
+  # ============================================================ BÖLÜM: SON GÜN
+  - bolum: "Son Gün: 1 Şubat 1959"
+    yazi: "Auspiya vadisi · 1 Şubat 1959"
+    gorseller:
+      - {kaynak: openverse, ara: "snow covered mountain pass wind", yon: yatay}
+    metin: >
+      Otuz bir Ocak'ta grup, dağların arasındaki geçidi aşmayı deniyor. Ama rüzgâr o kadar sert ki geri dönmek zorunda kalıyorlar.
+      O akşam Dyatlov'un günlüğe yazdığı satırlar, grubun ortak günlüğünde bilinen son satırlar olacak.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Veçerniy Otorten · Sayı 1 · 1 Şubat 1959", satirlar: ["Ekibin el yazısıyla hazırladığı şaka gazetesi.", "“Son bilgilere göre Yeti, Kuzey Urallarda, Otorten Dağı yakınlarında yaşıyor.”"], damga: "ŞAKA"}
+    metin: >
+      Bir Şubat sabahı, yüklerinin bir kısmını sonra almak üzere küçük bir depoya bırakıyorlar ve geç yola çıkıyorlar.
+      Ve o gün, grubun mizah anlayışını gösteren bir şey yazıyorlar: Akşam Otorteni adını verdikleri, el yazısıyla bir şaka gazetesi.
+      İçindeki cümlelerden biri, yıllar sonra herkesin dilinde olacak. “Son bilgilere göre Yeti, Kuzey Urallarda, Otorten Dağı yakınlarında yaşıyor.”
+      Sadece bir şakaydı. Ama bu şaka, ileride bambaşka bir anlam kazanacaktı.
+  - gorseller:
+      - kaynak: harita
+        baslik: "Son Kamp"
+        alan: [58.6, 60.4, 61.45, 62.05]
+        isaretler:
+          - {ad: "Holat Siyahl", konum: [59.42, 61.76]}
+          - {ad: "Son kamp", konum: [59.45, 61.755], ana: true}
+          - {ad: "Otorten", konum: [59.29, 61.84]}
+          - {ad: "Auspiya vadisi", konum: [59.55, 61.70]}
+    metin: >
+      O akşam grup, planladıkları rotadan yaklaşık yarım kilometre sapıyor. Ve ormanın korunaklı sınırında değil,
+      Holat Siyahl adlı dağın çıplak, rüzgâra açık doğu yamacında kamp kuruyor.
+      Bu karar bugün hâlâ tartışılıyor. Neden ağaçların arasında değil de açık bir yamaçta? Yorgunluk mu, hava mı,
+      yoksa ertesi gün kaybedecekleri yüksekliği korumak mı istediler? Bilmiyoruz.
+  - gorseller:
+      - {kaynak: openverse, ara: "tent in snow night", yon: yatay}
+    metin: >
+      Bildiğimiz tek şey şu. Bir Şubat'ı iki Şubat'a bağlayan gece, o yamaçta bir şey oldu.
+      Ve o şey, dokuz insanı, birkaç dakika içinde, çadırlarını kesip yarı çıplak hâlde karanlığa koşmaya zorladı.
+    sessizlik: 1.2
+
+  # ============================================================ BÖLÜM: ARAMA
+  - bolum: "Arama: Yamaçtaki Çadır"
+    yazi: "12 Şubat 1959 · Beklenen dönüş günü"
+    gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Telgraf bekleniyor", satirlar: ["Planlanan dönüş: 12 Şubat 1959.", "Vijay'dan haber gelmedi."]}
+    metin: >
+      Grubun on iki Şubat'ta Vijay'a dönüp bir telgraf çekmesi gerekiyordu. Telgraf gelmedi.
+      Dyatlov, yola çıkmadan önce birkaç gün gecikebileceklerini söylemişti, bu yüzden ilk başta kimse fazla endişelenmedi.
+      Ama günler geçtikçe aileler alarm verdi. Şubatın yirmisine doğru, büyük bir arama başladı.
+  - gorseller:
+      - {kaynak: openverse, ara: "search party snow mountains", yon: yatay}
+      - {kaynak: openverse, ara: "small plane snow winter", yon: yatay}
+    metin: >
+      Arama, kısa sürede Sovyet ölçülerinde bile büyük bir operasyona dönüştü. Enstitüden öğrenci gönüllüler, deneyimli dağcılar,
+      askerler, uçaklar ve helikopterler. Ve bölgeyi herkesten iyi tanıyan yerel Mansi avcıları.
+      İlginç bir not: soruşturmayı açacak olan savcı, grubun kaybolduğunu, bölgede kaçak mahkûmları arayan bir ekibin toplantısında öğrendiğini anlatacaktı.
+      Bu küçük detay, ileride ortaya atılacak teorilerden birinin kapısını aralayacaktı.
+  - gorseller:
+      - {kaynak: commons, dosya: "File:Dyatlov Pass incident 02.jpg"}
+      - {kaynak: openverse, ara: "snow covered tent", yon: yatay}
+    metin: >
+      Yirmi altı Şubat'ta, iki öğrenci gönüllü, Mihail Şaravin ve Boris Slobtsov, Holat Siyahl'ın yamacında çadırı buldu.
+      Çadır yarı yarıya karla örtülmüş, çökmüş hâldeydi. Ve yan tarafındaki bez… kesilmişti.
+      Sonraki incelemelere göre bu kesikler, içeriden açılmıştı. Sanki içeridekiler, girişi kullanacak zamanı bile bulamamıştı.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Çadırın içinde bulunanlar", satirlar: ["Botlar ve keçe çizmeler", "Montlar, battaniyeler", "Yiyecek, para, belgeler", "Fotoğraf makineleri ve günlükler"]}
+    metin: >
+      Çadırın içindekiler, hikâyeyi daha da karanlık hâle getiriyordu. Ayakkabılar oradaydı. Kalın kıyafetler oradaydı. Yiyecek, para, belgeler… hepsi yerli yerinde.
+      Bir soygun yoktu. Bir boğuşma izi yoktu. Sadece, aceleyle terk edilmiş bir yuva vardı.
+  - gorseller:
+      - {kaynak: openverse, ara: "footprints snow slope", yon: yatay}
+      - {kaynak: kart, ust: "Ayak izleri", baslik: "8 ya da 9 Kişi", alt: "Çoraplı, tek botlu, yalın ayak · yamaç aşağı"}
+    metin: >
+      Ve çadırın önünde, yamaçtan aşağı inen izler vardı. Sekiz ya da dokuz kişiye ait. Kimi çoraplı, kimi tek botlu, kimi yalın ayak.
+      İzler düzenliydi. Koşar adım değil, yan yana yürüyen insanların izleri gibiydi. Yaklaşık beş yüz metre boyunca takip edilebildiler,
+      sonra karın altında kayboldular. Başka birine ait tek bir iz bile bulunmadı.
+      Şimdi düşünün. Panik içinde kaçan insanlar mı, yoksa sakin bir şekilde bir şeyden uzaklaşan insanlar mı?
+  - yazi: "27 Şubat 1959 · Sedir ağacı"
+    gorseller:
+      - {kaynak: openverse, ara: "big cedar tree winter forest", yon: yatay}
+    metin: >
+      Ertesi gün, çadırdan yaklaşık bir buçuk kilometre aşağıda, ormanın kenarındaki büyük bir sedir ağacının dibinde,
+      ilk iki ceset bulundu. Yuri Doroşenko ve Yuri Krivonişçenko. İkisinin üzerinde de neredeyse sadece iç çamaşırı vardı.
+      Yanlarında, küçük ve sönmüş bir ateşin kalıntıları duruyordu.
+  - gorseller:
+      - {kaynak: kart, ust: "Sedir ağacı", baslik: "5 Metre Yükseklikte Kırık Dallar"}
+    metin: >
+      Ama asıl tuhaf olan, ağacın kendisiydi. Sedirin dalları, yaklaşık beş metre yüksekliğe kadar kırılmıştı.
+      Biri, o dondurucu soğukta ağaca tırmanmıştı. Neden? Ateş için dal mı topluyordu? Yoksa iddia edildiği gibi,
+      yukarıdan çadırın olduğu yöne bakıp bir şeyi mi gözlüyordu? Eğer öyleyse, neyi?
+  - gorseller:
+      - {kaynak: openverse, ara: "snowy slope forest edge dusk", yon: yatay}
+    metin: >
+      Aynı gün, sedir ile çadır arasındaki yamaçta iki ceset daha bulundu. Grubun lideri İgor Dyatlov ve Zinaida Kolmogorova.
+      Birkaç gün sonra, beş Mart'ta, ikisinin arasında Rustem Slobodin. Üçünün de pozisyonu aynı şeyi anlatıyordu:
+      çadıra geri dönmeye çalışıyorlardı. Soğuğa, rüzgâra ve karanlığa karşı, yamaç yukarı.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Adli tıp ön raporu", satirlar: ["Beş kişi: ölüm nedeni hipotermi.", "Slobodin: kafatasında çatlak.", "Dış yaralanmalar sınırlı."]}
+    metin: >
+      Bu beş kişinin ölüm nedeni hipotermiydi. Yani donarak ölmüşlerdi. Slobodin'in kafatasında bir çatlak vardı,
+      ama adli tabibe göre ölümcül değildi. Bu noktada tablo korkunç ama bir ölçüde açıklanabilir görünüyordu.
+      Bir şey onları çadırdan çıkarmış, geri dönemeden soğuk onları almıştı. Ama kalan dört kişi nerede?
+      Bu sorunun cevabı, iki ay boyunca karın altında bekleyecekti.
+    sessizlik: 1.0
+
+  # ============================================================ BÖLÜM: DERE
+  - bolum: "Mayıs: Derenin Sırrı"
+    yazi: "4 Mayıs 1959"
+    gorseller:
+      - {kaynak: openverse, ara: "snow ravine creek melting spring", yon: yatay}
+    metin: >
+      Dört Mayıs bin dokuz yüz elli dokuz. Karlar erimeye başladığında, arama ekibi sedir ağacından yaklaşık yetmiş beş metre ötede,
+      bir derenin dibinde, dört metreye yakın karın altında son dört kişiyi buldu.
+      Lüdmila Dubinina, Semyon Zolotaryov, Nikolay Tibo-Brinyol ve Aleksandr Kolevatov.
+  - gorseller:
+      - {kaynak: kart, ust: "Kar sığınağı", baslik: "Dallarla Döşenmiş Bir Oyuk", alt: "Derenin hemen yakınında"}
+    metin: >
+      Yakınlarında, dallarla döşenmiş bir kar oyuğu vardı. Yani bu dört kişi, hayatta kalmak için bir sığınak yapmaya çalışmıştı.
+      Ve üzerlerinde, sedir ağacının dibinde ölen arkadaşlarının kıyafetlerinden parçalar vardı. Ölenlerin giysilerini alıp kendilerini ısıtmaya çalışmışlardı.
+      Buraya kadar her şey, hayatta kalma mücadelesi veren bir grubun hikâyesine uyuyor. Ama sonra adli tıp raporları geldi.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Adli tıp raporu · Mayıs 1959", satirlar: ["Tibo-Brinyol: ağır kafatası kırığı.", "Dubinina: çok sayıda kaburga kırığı.", "Zolotaryov: göğüs kafesinde ağır kırıklar.", "Dış yaralanma: neredeyse yok."]}
+    metin: >
+      Tibo-Brinyol'un kafatasında ağır bir kırık vardı. Dubinina ve Zolotaryov'un göğüs kafeslerinde çok sayıda kırık.
+      Adli tabip Boris Vozrojdenni'ye göre bu yaralanmalar, yüksek hızlı bir araba kazasında oluşabilecek kadar büyük bir kuvvetle meydana gelmişti.
+      Ve işin en tuhaf yanı şuydu: vücutların dışında, bu kuvveti açıklayacak neredeyse hiçbir yara yoktu.
+  - gorseller:
+      - {kaynak: openverse, ara: "dark frozen creek water", yon: yatay}
+    metin: >
+      Raporlarda bir detay daha vardı. Bu detay, yıllar içinde sayısız teoriyi besleyecekti.
+      Dubinina'nın dili ve gözleri, Zolotaryov'un ise gözleri yoktu. Bazıları bunu bir saldırının, hatta bir ritüelin işareti olarak yorumladı.
+      Ancak araştırmacıların büyük kısmına göre açıklama çok daha doğal: cesetler haftalarca bir derenin akan suyunda kalmıştı
+      ve bu tür kayıplar, çürüme ve doğadaki hayvanlarla açıklanabiliyordu.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Radyolojik inceleme", satirlar: ["Bazı giysilerde normalin üzerinde beta radyasyonu.", "Yıkamadan sonra değerler düştü."], damga: "İNCELEME"}
+    metin: >
+      Ve sonra, belki de dosyanın en çok konuşulan bulgusu. Dere grubunun bazı giysilerinde, normalin biraz üzerinde radyasyon tespit edildi.
+      Bir kayak yürüyüşünde, ıssız bir dağda, radyoaktif giysilerin işi ne olabilirdi?
+      Hatırlıyor musunuz, başta Zolotaryov'un ismini aklınızda tutmanızı istemiştim? Bu soruya, birazdan o isimle birlikte döneceğiz.
+  - gorseller:
+      - {kaynak: kart, ust: "Tibo-Brinyol'un bileğinde", baslik: "İki Saat · İki Farklı Zaman", alt: "Biri sekizi on dört, diğeri sekizi otuz dokuz geçe durmuş"}
+    metin: >
+      Küçük ama ürpertici bir detay daha. Tibo-Brinyol'un bileğinde iki kol saati vardı. Biri sekizi on dört geçe, diğeri sekizi otuz dokuz geçe durmuştu.
+      Bazıları bunların ölüm anını gösterdiğini iddia etti. Ancak yapılan deneylere göre bu tür saatler, donduklarında zaten dakikalar içinde duruyor.
+      Yani saatler bize ölüm anını değil, belki de sadece soğuğun saatlere ulaştığı anı gösteriyor.
+    sessizlik: 1.0
+
+  # ============================================================ BÖLÜM: KAPANAN DOSYA
+  - bolum: "Kapanan Dosya ve Gökyüzündeki Işıklar"
+    yazi: "28 Mayıs 1959"
+    gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Ceza davası · Karar", satirlar: ["Ölüm nedeni: insanların üstesinden gelemediği, karşı konulamaz bir doğa gücü.", "Suç unsuru bulunmamıştır.", "Dava kapatılmıştır."], damga: "KAPANDI"}
+    metin: >
+      Yirmi sekiz Mayıs bin dokuz yüz elli dokuzda, savcı Lev İvanov davayı kapattı. Resmî sonuç tek bir cümleydi:
+      ölüm nedeni, insanların üstesinden gelemediği, karşı konulamaz bir doğa gücüydü.
+      Ne bir suçlu, ne bir saldırgan, ne de net bir açıklama. Ve bölge, sonraki üç yıl boyunca yürüyüşçülere kapatıldı.
+  - gorseller:
+      - {kaynak: openverse, ara: "strange light night sky winter", yon: yatay}
+    metin: >
+      Peki o dönemde başka neler oluyordu? Şubat ve Mart bin dokuz yüz elli dokuzda, bölgede farklı kişiler gökyüzünde parlak, turuncu küreler gördüklerini bildirdi.
+      Bunlardan biri, bizzat arama ekibinin otuz bir Mart gecesi gördüğü ve telgrafla bildirdiği bir ışıktı.
+      Bu gözlemler, ilerleyen yıllarda UFO teorilerinin en büyük dayanağı olacaktı.
+  - gorseller:
+      - {kaynak: nasa, ara: "rocket launch night trail"}
+    metin: >
+      Ama burada dikkat etmemiz gereken bir nokta var. Bu gözlemlerin yapıldığı tarihler, olaydan haftalar sonrasına ait.
+      Ve bazı araştırmacılara göre, aynı tarihlerde Sovyetler Birliği'nde kıtalararası füze denemeleri yapılıyordu.
+      Yani turuncu küreler, gökyüzünde yükselen füzeler olabilirdi. Olabilirdi… ama soruşturmayı yürüten savcı, yıllar sonra çok farklı bir şey söyleyecekti.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Uralskiy Raboçiy · 1990", satirlar: ["Lev İvanov: “Davayı kapatmam söylendi.”", "“O parlak uçan kürelerin grubun ölümüyle doğrudan bir ilişkisi olduğundan neredeyse eminim.”"]}
+    metin: >
+      Bin dokuz yüz doksanda, Sovyetler Birliği dağılmak üzereyken, Lev İvanov bir gazeteye konuştu.
+      İddiasına göre, üst düzey yetkililer ona davayı kapatmasını ve bazı bulguları gizli tutmasını söylemişti.
+      Ve en çarpıcısı, artık açıkça söylüyordu: o parlak uçan kürelerin, grubun ölümüyle doğrudan bir ilişkisi olduğundan neredeyse emindi.
+      Bu sözler, dosyayı yeniden açtı. Belki resmî olarak değil… ama insanların zihninde.
+  - abone: true
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Dosyadaki tutarsızlıklar", satirlar: ["Bir sorgu tutanağının tarihi: 6 Şubat 1959.", "Arama ise 20 Şubat civarında başladı."], damga: "?"}
+    metin: >
+      Bir iddia daha var. Ceza dosyasında, tarihi altı Şubat olarak görünen bir sorgu tutanağı bulunuyor. Yani aramanın başlamasından iki hafta önce.
+      Bazılarına göre bu, yetkililerin olaydan çok daha önce haberdar olduğunun kanıtı. Bazılarına göre ise sadece bir daktilo hatası.
+      Şubat yerine Mart yazılması gereken bir rakam. Hangisi? Dosya bize kesin bir cevap vermiyor.
+    sessizlik: 1.0
+
+  # ============================================================ BÖLÜM: TEORİLER
+  - bolum: "Teoriler: O Gece Ne Oldu?"
+    gorseller:
+      - {kaynak: kart, ust: "Bölüm", baslik: "Teoriler", alt: "Yerliler · Yeti · Askerî test · Casusluk · Rüzgâr · Çığ"}
+    metin: >
+      Altmış yılı aşkın sürede, bu olay için yüzlerce teori ortaya atıldı. Şimdi en önemlilerine tek tek bakalım.
+      Hangisinin daha güçlü olduğuna, sonunda siz karar vereceksiniz.
+  - gorseller:
+      - {kaynak: openverse, ara: "reindeer herd snow north", yon: yatay}
+    metin: >
+      İlk şüphe, bölgenin yerli halkı Mansilere yöneldi. Kutsal saydıkları topraklara giren yabancılara saldırmış olabilirler miydi?
+      Ancak bu teori hızla çöktü. Mansiler sorgulandı ve aramaya bizzat yardım ettiler. Çadırın çevresinde başka birine ait tek bir iz yoktu.
+      Ve unutmayın, çadır dışarıdan değil, içeriden kesilmişti.
+  - gorseller:
+      - {kaynak: openverse, ara: "barbed wire snow winter", yon: yatay}
+    metin: >
+      Benzer bir teori, bölgedeki çalışma kamplarından kaçan mahkûmları işaret ediyor. Hatırlarsanız, o günlerde bölgede gerçekten kaçak araması yapılıyordu.
+      Ama bu teori de aynı duvara çarpıyor. Çadırın etrafında yabancı izler yoktu. Ve çadırdaki para ile değerli eşyalara kimse dokunmamıştı.
+      Kaçan bir mahkûmun, sıcak kıyafetleri ve yiyeceği bırakıp gitmesi mantıklı mı?
+  - gorseller:
+      - {kaynak: openverse, ara: "foggy snowy forest mysterious", yon: yatay}
+    metin: >
+      Sonra, Yeti. Ya da Ural efsanelerindeki adıyla Menk. Grubun kendi şaka gazetesindeki o cümleyi hatırlıyorsunuz.
+      Bu teori, yıllar sonra bir televizyon belgeseliyle yeniden gündeme geldi. Ancak belgesel ağır eleştiriler aldı ve bu teoriyi destekleyen
+      hiçbir somut kanıt bulunmadı. Yeti, bu dosyanın en ünlü ama en zayıf şüphelisi.
+  - gorseller:
+      - {kaynak: nasa, ara: "rocket engine test fire"}
+    metin: >
+      Daha ciddiye alınan bir iddia, askerî test teorisi. Buna göre bölgede gizli bir silah denemesi yapıldı. Havada patlayan bir mühimmat,
+      dışarıdan yara bırakmadan ağır iç yaralanmalara yol açtı. Turuncu küreler ve giysilerdeki radyasyon da bu teoriye göre aynı zincirin halkaları.
+      Ancak bölgede o tarihte bir test yapıldığını gösteren hiçbir belge bugüne kadar ortaya çıkmadı.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "İddia · Kontrollü teslimat", satirlar: ["Kaynak: Aleksey Rakitin'in kitabı.", "Belgeyle desteklenmiyor."], damga: "İDDİA"}
+    metin: >
+      Şimdi, başta söz verdiğim yere geliyoruz. En çarpıcı teorilerden biri, yazar Aleksey Rakitin'e ait.
+      İddiasına göre grubun içinde, gizli servis adına çalışan birkaç kişi vardı ve radyoaktif giysiler, yabancı ajanlara kasten teslim edilecek bir tuzaktı.
+      Bu teoride, savaş gazisi Zolotaryov'un geçmişi ve nükleer bir tesiste çalışmış olan Krivonişçenko'nun özgeçmişi önemli rol oynuyor.
+  - gorseller:
+      - {kaynak: kart, ust: "Zolotaryov dosyası", baslik: "İddialar", alt: "Kendini farklı bir isimle tanıtması · dövmeler · fazladan bir fotoğraf makinesi"}
+    metin: >
+      Zolotaryov hakkında anlatılanlar da bu teoriyi besliyor. İddiaya göre kendisini gruba farklı bir isimle, Aleksandr olarak tanıtmıştı.
+      Vücudunda anlamı tartışılan dövmeler olduğu söyleniyor. Cesedinde, envanterde yer almayan bir fotoğraf makinesi bulunduğu da iddialar arasında.
+      Ancak şunu açıkça söylemek gerekiyor: bu casusluk teorisini doğrulayan tek bir resmî belge yok. Bu, şimdilik bir iddiadan ibaret.
+  - gorseller:
+      - {kaynak: openverse, ara: "wind blowing snow mountain ridge", yon: yatay}
+    metin: >
+      Bir başka teori, doğanın kendisini işaret ediyor. Yazar Donnie Eichar'a göre, dağın şekli yüzünden oluşan güçlü rüzgâr girdapları,
+      insan kulağının duyamadığı düşük frekanslı sesler, yani infrases üretmiş olabilir. Bu seslerin insanlarda açıklanamayan bir korku ve panik yarattığı öne sürülüyor.
+      İlginç bir fikir. Ama infrasesin bu kadar güçlü bir paniğe yol açtığına dair kanıtlar oldukça zayıf.
+  - gorseller:
+      - {kaynak: kart, ust: "Tıbbi bir açıklama", baslik: "Paradoksal Soyunma", alt: "Donan insan, son anlarda sıcaklık hisseder"}
+    metin: >
+      Peki neden neredeyse çıplaktılar? Burada tıbbın bilinen bir olgusu devreye giriyor: paradoksal soyunma.
+      Ağır hipotermide, ölüme yakın anlarda, vücut aniden yanıyormuş gibi bir sıcaklık hissedebiliyor ve insanlar kıyafetlerini çıkarabiliyor.
+      Bu, bazı detayları açıklayabilir. Ama hepsini değil. Çünkü grubun çadırdan zaten yarı giyinik hâlde çıktığı anlaşılıyor.
+      Yani asıl soru yine aynı yerde duruyor: onları o hâlde çadırdan çıkaran neydi?
+  - gorseller:
+      - {kaynak: openverse, ara: "avalanche snow slab", yon: yatay}
+    metin: >
+      Ve son olarak, bugün resmî kabul gören açıklama. İki bin on dokuzda Rusya Başsavcılığı dosyayı yeniden inceledi.
+      İki bin yirmide açıklanan sonuç: küçük bir kar levhası çığı, kötü görüş koşulları ve hipotermi.
+      Savcılığa göre grup panik yapmamıştı. Hatta açıklamada, bunun kahramanca bir mücadele olduğu vurgulanıyordu.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Communications Earth & Environment · 2021", satirlar: ["Gaume ve Puzrin:", "Yamaca açılan kesik + rüzgârın taşıdığı kar", "→ saatler sonra küçük bir kar levhası kopuyor."]}
+    metin: >
+      İki bin yirmi birde iki bilim insanı, Johan Gaume ve Alexander Puzrin, bu senaryoyu bilimsel olarak modelledi.
+      Teorilerine göre grup, çadırı kurmak için yamaca bir kesik açtı. Gece boyunca rüzgârın taşıdığı kar bu kesiğin üzerinde birikti
+      ve saatler sonra küçük ama ağır bir kar levhası koptu. Puzrin'in sözleriyle: yamaca o kesiği açmasalardı, hiçbir şey olmayacaktı.
+      İki yıl sonra, bölgede bu tür küçük çığların gerçekten oluştuğunu gösteren görüntüler de kaydedildi.
+  - gorseller:
+      - {kaynak: kart, ust: "Ama…", baslik: "Çığ Teorisinin Açıkları", alt: "Hafif eğim · görülmeyen çığ izleri · ayakta kalan çadır direği"}
+    metin: >
+      Peki bu, dosyayı kapatıyor mu? Herkese göre değil. Eleştirmenlere göre yamacın eğimi çığ için fazla hafif.
+      Arama ekipleri çevrede çığ izine rastlamadıklarını söylemişti. Çadırın bir kısmı ve bazı kayaklar ayakta duruyordu.
+      Ayrıca iki bin on dokuzdaki incelemede yalnızca üç ihtimalin ele alındığı eleştiriliyor.
+      Ailelerin önemli bir kısmı ve olayı yıllardır araştıran gruplar, bu açıklamayı hâlâ kabul etmiyor.
+      Yani resmî bir cevap var. Ama herkesi ikna eden bir cevap yok.
+    sessizlik: 1.0
+
+  # ============================================================ BÖLÜM: SÖYLENTİLER
+  - bolum: "Söylentiler ve Gerçekler"
+    gorseller:
+      - {kaynak: kart, ust: "Yaygın söylentiler", baslik: "Hangisi Gerçek?"}
+    metin: >
+      Bu kadar ünlü bir gizemin etrafında, doğal olarak sayısız söylenti de oluştu. Şimdi en çok anlatılanlara bakalım.
+      Hangisinin gerçek bir temeli var, hangisi zamanla büyüyüp efsaneye dönüştü?
+  - gorseller:
+      - {kaynak: openverse, ara: "old cemetery winter snow", yon: yatay}
+    metin: >
+      Yaygın bir söylentiye göre, cesetlerin teni turuncuya dönmüş, saçları bembeyaz olmuştu. Cenazelere katılan bazı kişiler,
+      yüzlerin çok koyu renkte olduğunu anlattı. Ancak araştırmacılar bunu donma, haftalarca güneş ve kar altında kalma ve çürümeyle açıklıyor.
+      Turuncu ten hikâyesi, anlatıldıkça renklenmiş bir detay gibi görünüyor.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "Söylenti · Gerçek", satirlar: ["Söylenti: Cesetler aşırı radyoaktifti.", "Kayıt: Yalnızca birkaç giyside hafif beta radyasyonu ölçüldü."]}
+    metin: >
+      Bir diğer yaygın söylenti, cesetlerin son derece radyoaktif olduğu. Oysa kayıtlara göre ölçülen şey,
+      sadece birkaç giyside, normalin biraz üzerindeki bir radyasyon değeriydi. Gizemli mi? Evet. Ama anlatıldığı kadar büyük değil.
+  - gorseller:
+      - {kaynak: openverse, ara: "mountain silhouette fog dark", yon: yatay}
+    metin: >
+      Bir de dağın adı var. İnternette çok sık okuyacağınız iddiaya göre Holat Siyahl, Ölüler Dağı anlamına geliyor
+      ve Otorten de yerel dilde “oraya gitme” demek. Ancak bu iki çeviri de tartışmalı. Holat Siyahl'ın anlamı daha çok, ıssız, av hayvanı olmayan dağ
+      olarak açıklanıyor. “Oraya gitme” anlamı ise büyük ihtimalle tamamen uydurma.
+  - gorseller:
+      - {kaynak: kart, ust: "Son film karesi", baslik: "Bulanık Bir Işık", alt: "Bir fotoğraf makinesindeki son kare"}
+    metin: >
+      Bir fotoğraf makinesinden çıkan son kare de yıllardır tartışılıyor. Karede, karanlığın içinde bulanık bir ışık görünüyor.
+      Kimilerine göre bu, o gece gökyüzündeki ateş topunun ta kendisi. Kimilerine göre ise sadece netlemeden çekilmiş, yanlışlıkla basılmış bir kare.
+      Aynı görüntüye bakıp iki farklı hikâye görmek… bu dosyanın belki de en iyi özeti.
+  - gorseller:
+      - {kaynak: kart, ust: "Söylenti", baslik: "Onuncu Kişi?", alt: "Envanterde yer almayan fotoğraf makineleri"}
+    metin: >
+      Bir başka söylenti, o gece yamaçta dokuz değil, on kişinin olduğu yönünde. Bu iddianın dayanağı, envanterle tam örtüşmeyen fotoğraf makineleri
+      ve sonradan teşhis edilemeyen bazı eşyalar. Ancak resmî kayıtlarda, çadırın çevresinde gruba ait olmayan tek bir iz bile yok.
+      Onuncu kişi, şimdilik sadece bu dosyanın gölgelerinde dolaşan bir ihtimal.
+  - gorseller:
+      - {kaynak: openverse, ara: "old wooden church winter", yon: yatay}
+    metin: >
+      Sık duyacağınız iki söylenti daha var. Birincisi, cenazelerin mühürlü tabutlarla yapıldığı ve ailelerin cesetleri görmesine izin verilmediği.
+      Ancak cenazeye katılanların anlatımları bunu doğrulamıyor. İkincisi, birkaç yıl sonra aynı bölgede başka insanların da benzer şekilde öldüğü.
+      Bu iddia da hiçbir kaynakta doğrulanamıyor ve çoğu zaman, binlerce kilometre uzakta yaşanmış başka bir trajediyle karıştırılıyor.
+  - gorseller:
+      - {kaynak: kart, tur: belge, baslik: "İki bin on sekiz · Mezar açma", satirlar: ["Zolotaryov'un mezarı açıldı.", "İlk DNA testi: eşleşme yok.", "İkinci DNA testi: eşleşme var."]}
+    metin: >
+      Ve Zolotaryov'a dönüyoruz. İki bin on sekizde, bir gazetenin girişimiyle mezarı açıldı.
+      İlk DNA testinin akrabalarıyla eşleşmediği açıklanınca, gömülen kişinin gerçekten o olup olmadığı tartışılmaya başlandı.
+      Ancak daha sonra yapılan ikinci bir test, eşleşme buldu. Yine de bu gelgit, Zolotaryov etrafındaki sis perdesini kaldırmak yerine biraz daha kalınlaştırdı.
+  - abone: true
+  - gorseller:
+      - {kaynak: kart, ust: "Yuri Yudin", baslik: "54 Yıl Süren Soru", alt: "Hayatta kalan tek üye · 2013"}
+    metin: >
+      Peki ya geri dönen tek kişi, Yuri Yudin? Arkadaşlarının eşyalarını teşhis etmek için çağrılan oydu.
+      Hayatının geri kalanında bu olayı anlattı, sorguladı ve cevap aradı. Yudin, iki bin on üçte hayatını kaybetti.
+      Son isteği, arkadaşlarının yanına gömülmekti. Ve isteği yerine getirildi.
+      O gruptan kalan son tanık, cevabını alamadan gitti.
+    sessizlik: 1.2
+
+  # ============================================================ KAPANIŞ
+  - bolum: "Kapanış: Karar Sizin"
+    gorseller:
+      - {kaynak: openverse, ara: "lonely mountain winter dawn", yon: yatay}
+    metin: >
+      Şimdi, elimizdekileri bir araya getirelim. Dokuz deneyimli insan, sıcak çadırlarını içeriden keserek, eksi otuz derecede karanlığa çıktı.
+      Bazıları donarak, bazıları açıklanması güç yaralarla öldü. Resmî dosya, karşı konulamaz bir doğa gücü diyerek kapandı.
+      Yıllar sonra bilim, küçük bir çığı işaret etti. Ama sorular hiçbir zaman tam olarak susmadı.
+  - gorseller:
+      - {kaynak: kart, ust: "Derin Gizem", baslik: "Bilinenler · İddialar · Sorular", alt: "Kararı siz veriyorsunuz"}
+    metin: >
+      Derin Gizem'de size neye inanmanız gerektiğini söylemiyoruz. Bizim işimiz, bilinenleri, iddiaları ve cevapsız soruları
+      karanlıktan çıkarıp masaya koymak. Bağlantıları kurmak ise sizin işiniz.
+  - gorseller:
+      - {kaynak: openverse, ara: "tent alone snow mountain dusk", yon: yatay}
+    metin: >
+      Ama şunu söyleyebilirim. Bu dosyanın en derininde, hep aynı sahne duruyor. Karla kaplı, rüzgârın uğuldadığı bir yamaç.
+      İçeriden kesilmiş bir çadır. Ve karanlıkta, yan yana, sessizce yürüyen dokuz insan.
+  - gorseller:
+      - {kaynak: kart, baslik: "Çığ mı? Bir Sır mı? Yoksa İkisi de mi?"}
+    metin: >
+      Belki bir çığdı. Belki gökyüzündeki bir ışık. Belki de hiçbir zaman öğrenemeyeceğimiz bir sır.
+      Ama altmış yılı aşkın süredir bu hikâyeyi anlatmaya devam ediyorsak, belki de asıl soru şu:
+      O gece dokuz insanı çadırdan çıkaran şey, onları gerçekten öldüren şeyle aynı mıydı?
+    sessizlik: 1.4
+  - gorseller:
+      - {kaynak: kart, ust: "Yorumlarda buluşalım", baslik: "Sizce O Gece Ne Oldu?", alt: "Çığ · askerî test · casusluk · bilinmeyen bir şey"}
+    metin: >
+      Kaynakları her zamanki gibi açıklama kısmına bırakıyorum. Okuyun, araştırın, kendi bağlantılarınızı kurun.
+      Ve yorumlarda bana şunu yazın: sizce o gece Dyatlov Geçidi'nde ne oldu? Çığ mı, askerî bir test mi, bir casusluk operasyonu mu,
+      yoksa hâlâ adını koyamadığımız bir şey mi?
+  - gorseller:
+      - {kaynak: kart, ust: "Derin Gizem", baslik: "Dosya Şimdilik Kapanıyor"}
+    metin: >
+      Bu dosyayı beğendiyseniz, kanala abone olmayı ve videoyu paylaşmayı unutmayın. Derin Gizem'de daha açılacak çok dosya var.
+      Dosya şimdilik kapanıyor. Ama unutmayın, bazı gizemler sadece peşini bırakmayanlara kapılarını aralar.
+      Bir sonraki dosyada görüşmek üzere.
+
+# ================================================================ SHORTS (her biri tek başına "vay be" dedirtmeli)
+shorts:
+  - baslik: "Çadırı İçeriden Kestiler… Ama Neden? #Shorts"
+    aciklama: "1959'da dokuz yürüyüşçü çadırlarını içeriden kesip eksi otuz derecede karanlığa kaçtı. Tam belgesel kanalda: Dyatlov Geçidi."
+    akis:
+      - gorseller:
+          - {kaynak: openverse, ara: "tent in snow night", yon: dikey}
+          - {kaynak: openverse, ara: "footprints in snow", yon: dikey}
+        metin: >
+          Dokuz deneyimli yürüyüşçü, gece yarısı çadırlarını içeriden kesti ve eksi otuz derecede, çoraplarla karanlığa yürüdü.
+          Botları, montları, yiyecekleri çadırda kaldı. Hiçbiri geri dönmedi.
+      - gorseller:
+          - {kaynak: kart, baslik: "Neden?", alt: "Dyatlov Geçidi · 1959"}
+        metin: >
+          Altmış yılı aşkın süredir kimse bu soruya kesin bir cevap veremedi. Onları o sıcak çadırdan ne çıkardı?
+          Tam dosya, Derin Gizem kanalında.
+  - baslik: "Ağaçta 5 Metre Yükseğe Kadar Kırık Dallar… #Shorts"
+    aciklama: "Dyatlov Geçidi'ndeki sedir ağacının gizemi. Tam belgesel kanalda."
+    akis:
+      - gorseller:
+          - {kaynak: openverse, ara: "big cedar tree winter forest", yon: dikey}
+        metin: >
+          Dondurucu bir gecede, iki adam yalnızca iç çamaşırlarıyla, bir sedir ağacının dibinde bulundu. Yanlarında sönmüş bir ateş vardı.
+      - gorseller:
+          - {kaynak: kart, ust: "Sedir ağacı", baslik: "5 Metre Yukarıda Kırık Dallar"}
+        metin: >
+          Ama asıl tuhaf olan, ağacın dallarıydı. Beş metre yüksekliğe kadar kırılmıştı. Biri, o soğukta ağaca tırmanmıştı.
+          Ateş için mi? Yoksa çadırın olduğu yöne bakıp bir şeyi mi gözlüyordu? Tam dosya, Derin Gizem'de.
+  - baslik: "Savcı 31 Yıl Sonra Konuştu #Shorts"
+    aciklama: "Dyatlov dosyasını kapatan savcı, 1990'da bambaşka bir şey söyledi. Tam belgesel kanalda."
+    akis:
+      - gorseller:
+          - {kaynak: kart, tur: belge, baslik: "Ceza davası · Karar", satirlar: ["Ölüm nedeni: karşı konulamaz bir doğa gücü."], damga: "KAPANDI"}
+        metin: >
+          Bin dokuz yüz elli dokuzda dokuz yürüyüşçünün ölümünü soruşturan savcı, dosyayı tek bir cümleyle kapattı:
+          karşı konulamaz bir doğa gücü.
+      - gorseller:
+          - {kaynak: openverse, ara: "strange light night sky winter", yon: yatay}
+        metin: >
+          Otuz bir yıl sonra ise bir gazeteye konuştu. İddiasına göre davayı kapatması emredilmişti.
+          Ve o dönem gökyüzünde görülen parlak turuncu kürelerin, ölümlerle doğrudan ilgili olduğundan neredeyse emindi. Tam dosya, Derin Gizem'de.
+  - baslik: "Geri Dönen Tek Kişi #Shorts"
+    aciklama: "Dyatlov grubundan sağ kalan tek kişi Yuri Yudin'in hikâyesi. Tam belgesel kanalda."
+    akis:
+      - gorseller:
+          - {kaynak: openverse, ara: "taiga forest winter", yon: dikey}
+        metin: >
+          Bin dokuz yüz elli dokuzda on kişilik bir grup, Kuzey Urallarda zorlu bir kayak yürüyüşüne çıktı.
+          Yolun başında biri hastalandı ve geri döndü. Adı Yuri Yudin'di.
+      - gorseller:
+          - {kaynak: kart, ust: "Yuri Yudin", baslik: "54 Yıl Süren Soru"}
+        metin: >
+          Geride kalan dokuz kişinin hiçbiri eve dönmedi. Yudin, hayatının geri kalanında onlara ne olduğunu sordu.
+          Cevabını alamadan öldü ve son isteği üzerine arkadaşlarının yanına gömüldü. Tam dosya, Derin Gizem'de.
