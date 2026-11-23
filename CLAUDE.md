@@ -4,7 +4,7 @@ Bu dosya, "Derin Gizem" YouTube kanalı için yapılan tüm çalışmaların ana
 Her oturumda önce bu dosya okunur ve buradaki kurallara **eksiksiz** uyulur.
 Kurallar kanal sahibi tarafından belirlenmiştir; değişiklik yalnızca kanal sahibinin onayıyla yapılır.
 
-Detaylı araştırma notları: `docs/arastirma-seslendirme.md` ve `docs/arastirma-youtube.md`
+Detaylı araştırma notları: `docs/arastirma-google-tts.md`, `docs/arastirma-seslendirme.md` ve `docs/arastirma-youtube.md`
 
 ---
 
@@ -40,11 +40,12 @@ Her iş **en dikkatli şekilde** yapılır; aceleye getirilmiş, özensiz çıkt
    videonun ortalarında ve sona doğru). Shorts'ta sonda kısa bir çağrı yapılır.
 4. Konu anlatımı sürükleyici, karanlık ve gizemli bir belgesel anlatıcısı tonunda olur.
 
-## 3. Seslendirme Kuralları (ElevenLabs)
+## 3. Seslendirme Kuralları (Google Cloud Text-to-Speech)
 
-1. Tüm seslendirme **ElevenLabs API** ile yapılır.
+1. Tüm seslendirme **Google Cloud Text-to-Speech** ile yapılır (kanal sahibinin kararı, 23.11.2026;
+   önceki plan ElevenLabs idi, o araştırma `docs/arastirma-seslendirme.md` dosyasında referans olarak durur).
 2. API anahtarı **asla** sohbete, koda veya depoya yazılmaz. GitHub'da
-   **Settings → Secrets and variables → Actions** bölümüne `ELEVENLABS_API_KEY` adıyla eklenir.
+   **Settings → Secrets and variables → Actions** bölümüne `GOOGLE_CLOUD_API_KEY` adıyla eklenir.
 3. **Yanlış seslendirme kesinlikle olmamalı.**
    - **Noktalama işaretlerine** kesinlikle dikkat edilir; cümleler doğru yerde durur, doğru vurguyla okunur.
    - **Sayılar kesik kesik okunmamalı.** Yıllar, tarihler, büyük sayılar, yüzdeler, ondalıklar,
@@ -53,7 +54,8 @@ Her iş **en dikkatli şekilde** yapılır; aceleye getirilmiş, özensiz çıkt
    - Yabancı özel isimlerin okunuşu kontrol edilir.
 4. Üretilen ses **kontrol edilir** (yazıya geri çevrilip metinle karşılaştırılır);
    hatalı bölüm varsa o bölüm yeniden seslendirilir. Hatalı ses yüklenmez.
-5. Seslendirme en iyi sonuç için araştırmaya dayalı ayarlarla yapılır (bkz. `docs/arastirma-seslendirme.md`).
+5. Seslendirme en iyi sonuç için araştırmaya dayalı ayarlarla yapılır (bkz. `docs/arastirma-google-tts.md`).
+   Sayı çevirme, parçalara bölme ve kalite kontrol kuralları `docs/arastirma-seslendirme.md` dosyasında da geçerlidir.
 
 ## 4. Başlık ve Kapak Fotoğrafı Kuralları
 
