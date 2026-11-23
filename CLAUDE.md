@@ -39,6 +39,10 @@ Her iş **en dikkatli şekilde** yapılır; aceleye getirilmiş, özensiz çıkt
    görseller gösterilir (ilk 30 saniyede değil; izleyici merak noktasına bağlandıktan sonra,
    videonun ortalarında ve sona doğru). Shorts'ta sonda kısa bir çağrı yapılır.
 4. Konu anlatımı sürükleyici, karanlık ve gizemli bir belgesel anlatıcısı tonunda olur.
+5. **Örnek alınan kanal: "Gerçeği Bul".** Videolarımız, bu YouTube kanalındaki **anlatım biçimi ve mantığı**
+   anlaşılarak oluşturulur (açılış, anlatım tonu, hikâye kurgusu, söylenti–gerçek dengesi, merak döngüleri).
+   Öğrenilen şey **tarz ve mantıktır**; o kanalın metinleri, başlıkları, kapakları ve içeriği **kopyalanmaz**.
+   Analiz notları: `docs/arastirma-gercegi-bul.md`.
 
 ## 3. Seslendirme Kuralları (Edge TTS)
 
