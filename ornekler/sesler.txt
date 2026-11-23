@@ -1,0 +1,14 @@
+Türkçe ve çok dilli Edge TTS sesleri
+
+en-AU-WilliamMultilingualNeural  (Male)
+en-US-AndrewMultilingualNeural  (Male)
+en-US-AvaMultilingualNeural  (Female)
+en-US-BrianMultilingualNeural  (Male)
+en-US-EmmaMultilingualNeural  (Female)
+fr-FR-RemyMultilingualNeural  (Male)
+fr-FR-VivienneMultilingualNeural  (Female)
+it-IT-GiuseppeMultilingualNeural  (Male)
+ko-KR-HyunsuMultilingualNeural  (Male)
+pt-BR-ThalitaMultilingualNeural  (Female)
+tr-TR-AhmetNeural  (Male)
+tr-TR-EmelNeural  (Female)
