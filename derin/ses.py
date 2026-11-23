@@ -127,6 +127,53 @@ def cumle_zamanlari(konusma: str, kelimeler: list[Kelime]) -> list[dict]:
     return sonuc
 
 
+def _hizala(a: list[str], b: list[str]) -> list[tuple[str, int, int, int, int]]:
+    return SequenceMatcher(a=a, b=b, autojunk=False).get_opcodes()
+
+
+def goster_tokenleri(metin: str, konusma: str, kelimeler: list[Kelime]) -> list[list]:
+    """Ekranda görünecek yazılışın (rakamlı, orijinal isimli) her kelimesine ses zamanı verir.
+
+    Örn. metin '1959 yılında Dyatlov' ↔ konuşma 'bin dokuz yüz elli dokuz yılında Dyatlof':
+    '1959' kelimesi, 'bin … dokuz' kelimelerinin okunduğu zaman aralığını alır.
+    """
+    # 1) konuşma tokenleri ↔ Edge kelimeleri
+    ktok = konusma.split()
+    kzaman: list[tuple[float, float] | None] = [None] * len(ktok)
+    for etiket, i1, i2, j1, j2 in _hizala([_norm(t) for t in ktok], [_norm(k.yazi) for k in kelimeler]):
+        if etiket == "equal":
+            for d in range(i2 - i1):
+                kzaman[i1 + d] = (kelimeler[j1 + d].baslangic, kelimeler[j1 + d].bitis)
+        elif etiket == "replace" and j2 > j1:
+            bas, bit = kelimeler[j1].baslangic, kelimeler[j2 - 1].bitis
+            n = i2 - i1
+            for d in range(n):
+                kzaman[i1 + d] = (bas + (bit - bas) * d / n, bas + (bit - bas) * (d + 1) / n)
+    # eşleşmeyenleri komşulardan doldur
+    for i, z in enumerate(kzaman):
+        if z is None:
+            onceki = next((kzaman[k][1] for k in range(i - 1, -1, -1) if kzaman[k]), kelimeler[0].baslangic)
+            kzaman[i] = (onceki, onceki)
+
+    # 2) görünen tokenler ↔ konuşma tokenleri
+    gtok = metin.split()
+    sonuc: list[list] = []
+    for etiket, i1, i2, j1, j2 in _hizala([_norm(t) for t in gtok], [_norm(t) for t in ktok]):
+        if etiket == "equal":
+            for d in range(i2 - i1):
+                bas, bit = kzaman[j1 + d]
+                sonuc.append([gtok[i1 + d], bas, bit])
+        elif i2 > i1:
+            if j2 > j1:
+                bas, bit = kzaman[j1][0], kzaman[j2 - 1][1]
+            else:
+                bas = bit = kzaman[min(j1, len(kzaman) - 1)][0]
+            n = i2 - i1
+            for d in range(n):
+                sonuc.append([gtok[i1 + d], bas + (bit - bas) * d / n, bas + (bit - bas) * (d + 1) / n])
+    return sonuc
+
+
 async def seslendir(paragraflar: list[Paragraf], klasor: Path) -> dict:
     """Tüm paragrafları seslendirir; klasor/ses.wav ve klasor/zaman.json üretir."""
     klasor.mkdir(parents=True, exist_ok=True)
@@ -154,6 +201,7 @@ async def seslendir(paragraflar: list[Paragraf], klasor: Path) -> dict:
             "baslangic": round(an, 3),
             "bitis": round(an + sure, 3),
             "kelimeler": [[k.yazi, round(an + k.baslangic, 3), round(an + k.bitis, 3)] for k in kelimeler],
+            "goster": [[t, round(an + b, 3), round(an + e, 3)] for t, b, e in goster_tokenleri(p.metin, p.konusma, kelimeler)],
             "cumleler": [
                 {**c, "baslangic": round(an + c["baslangic"], 3), "bitis": round(an + c["bitis"], 3)}
                 for c in cumle_zamanlari(p.konusma, kelimeler)
