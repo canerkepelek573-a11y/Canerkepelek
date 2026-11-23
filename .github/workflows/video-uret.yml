@@ -39,7 +39,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
-          pip install -q edge-tts==7.3.1 pyyaml pillow requests
+          pip install -q edge-tts==7.3.1 pyyaml pillow requests faster-whisper
 
       - name: Önbellek (ses ve görseller)
         uses: actions/cache@v4
@@ -68,7 +68,7 @@ jobs:
           fi
 
       - name: Üret
-        run: python scripts/uret.py "${{ steps.bolum.outputs.yol }}" --sadece "${{ steps.bolum.outputs.sadece }}"
+        run: python scripts/uret.py "${{ steps.bolum.outputs.yol }}" --sadece "${{ steps.bolum.outputs.sadece }}" --kontrol
 
       - name: Videoları sakla (indirilebilir)
         if: always()
@@ -91,6 +91,7 @@ jobs:
           mkdir -p "$yol/onizleme"
           rm -f "$yol"/onizleme/*
           cp cikti/"$ad"/onizleme/* "$yol/onizleme/" 2>/dev/null || true
+          cp cikti/"$ad"/kapak.jpg "$yol/onizleme/" 2>/dev/null || true
           cp cikti/"$ad"/ozet.json "$yol/onizleme/" 2>/dev/null || true
           cp cikti/"$ad"/ana/aciklama.txt "$yol/onizleme/" 2>/dev/null || true
           cp cikti/"$ad"/ana/kaynaklar.txt "$yol/onizleme/" 2>/dev/null || true

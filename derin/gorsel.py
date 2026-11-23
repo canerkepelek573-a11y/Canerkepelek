@@ -53,21 +53,27 @@ def _indir(url: str, hedef: Path) -> Path:
     return hedef
 
 
-def _json(url: str, params: dict | None = None) -> dict:
-    """GET + JSON; hata olursa durum kodunu ve cevabın başını içeren açık bir hata verir."""
-    son = None
-    for deneme in range(3):
+def _json(url: str, params: dict | None = None, deneme_sayisi: int = 5) -> dict:
+    """GET + JSON; geçici hatalarda (429, 5xx, ağ) bekleyip yeniden dener, sonunda açık hata verir."""
+    import time
+
+    son = ""
+    for deneme in range(deneme_sayisi):
         try:
             yanit = requests.get(url, params=params, headers=UA, timeout=60)
-            if yanit.status_code == 429:
-                import time
-                time.sleep(5 * (deneme + 1))
-                continue
-            yanit.raise_for_status()
-            return yanit.json()
-        except Exception as hata:
-            son = f"{type(hata).__name__}: {getattr(hata, 'response', None) and hata.response.status_code} " \
-                  f"{(yanit.text[:200] if 'yanit' in locals() else '')}"
+        except requests.RequestException as hata:
+            son = f"{type(hata).__name__}"
+        else:
+            if yanit.ok:
+                try:
+                    return yanit.json()
+                except ValueError:
+                    son = f"JSON değil: {yanit.text[:120]!r}"
+            else:
+                son = f"HTTP {yanit.status_code}"
+                if yanit.status_code < 500 and yanit.status_code != 429:
+                    break
+        time.sleep(3 * (deneme + 1))
     raise RuntimeError(f"{url} cevap vermedi: {son}")
 
 
@@ -107,6 +113,28 @@ def commons(dosya: str) -> dict:
         "atif": f"{baslik.removeprefix('File:')} — {sahibi} — {lisans} — Wikimedia Commons "
                 f"(https://commons.wikimedia.org/wiki/{baslik.replace(' ', '_')})",
     }
+
+
+def commons_ara(ara: str, sira: int = 0) -> dict:
+    """Commons'ta arama yapar; yalnızca uygun lisanslı ve yeterince büyük fotoğrafları kabul eder."""
+    veri = _json("https://commons.wikimedia.org/w/api.php", {
+        "action": "query", "format": "json", "generator": "search", "gsrnamespace": 6,
+        "gsrsearch": f"{ara} filetype:bitmap", "gsrlimit": 30, "prop": "imageinfo",
+        "iiprop": "url|extmetadata|size", "iiurlwidth": 3840,
+    })
+    uygun = []
+    for sayfa in sorted(veri.get("query", {}).get("pages", {}).values(), key=lambda p: p.get("index", 0)):
+        bilgi = (sayfa.get("imageinfo") or [{}])[0]
+        lisans = bilgi.get("extmetadata", {}).get("LicenseShortName", {}).get("value", "")
+        try:
+            _lisans_kontrol(lisans, sayfa["title"])
+        except LisansHatasi:
+            continue
+        if (bilgi.get("width") or 0) >= 1200:
+            uygun.append(sayfa["title"])
+    if len(uygun) <= sira:
+        raise FileNotFoundError(f"Commons aramasında uygun sonuç yok: '{ara}'")
+    return commons(uygun[sira])
 
 
 def openverse(ara: str, sira: int = 0, yon: str | None = None) -> dict:
@@ -174,7 +202,13 @@ def coz(tanim: dict, cikti: Path, boyut: tuple[int, int]) -> dict:
     if k == "commons":
         return commons(tanim["dosya"])
     if k == "openverse":
-        return openverse(tanim["ara"], tanim.get("sira", 0), tanim.get("yon"))
+        try:
+            return openverse(tanim["ara"], tanim.get("sira", 0), tanim.get("yon"))
+        except Exception as hata:          # Openverse geçici olarak cevap vermezse Commons'ta ara
+            print(f"Openverse başarısız ({hata}); Commons'ta aranıyor: {tanim['ara']}")
+            return commons_ara(tanim["ara"], tanim.get("sira", 0))
+    if k == "commons_ara":
+        return commons_ara(tanim["ara"], tanim.get("sira", 0))
     if k == "nasa":
         return nasa(tanim["ara"], tanim.get("sira", 0))
     if k == "loc":

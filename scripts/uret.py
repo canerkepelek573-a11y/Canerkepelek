@@ -51,9 +51,18 @@ async def sesi_uret(paragraflar, klasor: Path) -> dict:
     return await seslendir(paragraflar, klasor)
 
 
+KONTROL = False
+
+
 def uret_bir(ad: str, paragraflar, bicim: str, kok: Path, **kwargs) -> tuple[dict, dict]:
     klasor = kok / ad
     zaman = asyncio.run(sesi_uret(paragraflar, klasor))
+    if KONTROL:
+        from derin import kontrol
+        sonuc = kontrol.denetle(klasor / "ses.wav", zaman, [p.konusma for p in paragraflar])
+        (kok / "onizleme").mkdir(parents=True, exist_ok=True)
+        (kok / "onizleme" / f"{ad}_ses_kontrol.json").write_text(
+            json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")
     rapor = video.olustur(zaman, klasor / "ses.wav", bicim, klasor, **kwargs)
     for t in (2, zaman["sure"] * 0.3, zaman["sure"] * 0.6):     # kontrol için örnek kareler
         hedef = kok / "onizleme" / f"{ad}_{int(t):05d}.jpg"
@@ -68,7 +77,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("bolum", type=Path)
     ap.add_argument("--sadece", default="hepsi", help="ana | shorts1..shorts4 | kapak | hepsi")
+    ap.add_argument("--kontrol", action="store_true", help="sesi yazıya çevirip metinle karşılaştır")
     arg = ap.parse_args()
+    global KONTROL
+    KONTROL = arg.kontrol
 
     veri = senaryo.oku(arg.bolum / "senaryo.yaml")
     kok = Path("cikti") / arg.bolum.name
