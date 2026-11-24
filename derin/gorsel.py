@@ -42,35 +42,57 @@ def _dosya_adi(anahtar: str, uzanti: str) -> Path:
     return ONBELLEK / (hashlib.sha1(anahtar.encode()).hexdigest()[:16] + uzanti)
 
 
-def _indir(url: str, hedef: Path) -> Path:
-    """Dosyayı indirir; 429 / 5xx durumunda (Retry-After'a uyarak) artan beklemeyle yeniden dener."""
+def _wikimedia_kucukleri(url: str) -> list[str]:
+    """upload.wikimedia.org orijinal dosyası için standart boyutlu küçük resim adresleri (önbellekten sunulur,
+    orijinallere göre çok daha az hız sınırına takılır)."""
+    yol = url.split("?")[0]
+    m = re.match(r"(https://upload\.wikimedia\.org/wikipedia/[^/]+)/([0-9a-f]/[0-9a-f]{2})/([^/]+)$", yol)
+    if not m or Path(m.group(3)).suffix.lower() not in (".jpg", ".jpeg", ".png"):
+        return []
+    kok, kova, ad = m.groups()
+    return [f"{kok}/thumb/{kova}/{ad}/{w}px-{ad}" for w in (1920, 1280, 960)]
+
+
+def _indir(url: str, hedef: Path, deneme_sayisi: int = 4) -> Path:
+    """Dosyayı indirir; 429 / 5xx durumunda (Retry-After'a uyarak) bekleyip yeniden dener.
+    Wikimedia orijinali vermezse aynı görselin standart boyutlu küçük resmine geçer."""
     import time
 
     if hedef.exists() and hedef.stat().st_size > 0:
         return hedef
-    wikimedia = "upload.wikimedia.org" in url
-    for deneme in range(10):
-        if wikimedia:
-            time.sleep(5)        # Wikimedia hız sınırına takılmamak için
-        yanit = requests.get(url, headers=UA, timeout=120, stream=True)
-        if yanit.status_code == 429 or yanit.status_code >= 500:
+    son_hata = ""
+    for aday in [url] + _wikimedia_kucukleri(url):
+        wikimedia = "upload.wikimedia.org" in aday
+        for deneme in range(deneme_sayisi):
+            if wikimedia:
+                time.sleep(3)        # Wikimedia hız sınırına takılmamak için
             try:
-                bekle = float(yanit.headers.get("Retry-After", ""))
-            except ValueError:
-                bekle = 0
-            bekle = max(bekle, 30 * (deneme + 1))
-            print(f"  {yanit.status_code}; {bekle:.0f} sn bekleniyor: {url[:90]}")
-            time.sleep(min(300, bekle))
-            continue
-        yanit.raise_for_status()
-        gecici = hedef.with_suffix(hedef.suffix + ".part")
-        with open(gecici, "wb") as f:
-            for parca in yanit.iter_content(1 << 16):
-                f.write(parca)
-        gecici.replace(hedef)
-        time.sleep(1.0)          # kaynak sitelere nazik davran
-        return hedef
-    raise RuntimeError(f"İndirilemedi (çok fazla istek): {url}")
+                yanit = requests.get(aday, headers=UA, timeout=120, stream=True)
+            except requests.RequestException as hata:
+                son_hata = str(hata)
+                time.sleep(10)
+                continue
+            if yanit.status_code == 429 or yanit.status_code >= 500:
+                try:
+                    bekle = float(yanit.headers.get("Retry-After", ""))
+                except ValueError:
+                    bekle = 0
+                bekle = min(120, max(bekle, 15 * (deneme + 1)))
+                son_hata = f"{yanit.status_code}"
+                print(f"  {yanit.status_code}; {bekle:.0f} sn bekleniyor: {aday[:100]}", flush=True)
+                time.sleep(bekle)
+                continue
+            if yanit.status_code >= 400:     # ör. küçük resim orijinalden büyük → sonraki boyuta geç
+                son_hata = f"{yanit.status_code}"
+                break
+            gecici = hedef.with_suffix(hedef.suffix + ".part")
+            with open(gecici, "wb") as f:
+                for parca in yanit.iter_content(1 << 16):
+                    f.write(parca)
+            gecici.replace(hedef)
+            time.sleep(1.0)          # kaynak sitelere nazik davran
+            return hedef
+    raise RuntimeError(f"İndirilemedi (çok fazla istek / {son_hata}): {url}")
 
 
 def _json(url: str, params: dict | None = None, deneme_sayisi: int = 5) -> dict:
@@ -113,7 +135,7 @@ def commons(dosya: str) -> dict:
         "https://commons.wikimedia.org/w/api.php",
         {
             "action": "query", "format": "json", "titles": baslik, "prop": "imageinfo",
-            "iiprop": "url|extmetadata|mime", "iiurlwidth": 2560,
+            "iiprop": "url|extmetadata|mime", "iiurlwidth": 1920,
         },
     )
     sayfa = next(iter(yanit["query"]["pages"].values()))
@@ -126,7 +148,9 @@ def commons(dosya: str) -> dict:
     video = bilgi.get("mime", "").startswith("video/")
     url = bilgi["url"] if video else bilgi.get("thumburl") or bilgi["url"]
     uzanti = Path(url.split("?")[0]).suffix or (".webm" if video else ".jpg")
-    yol = _indir(url, _dosya_adi(url, uzanti))
+    eski = url.replace("/1920px-", "/2560px-")      # önceki üretimlerin önbelleğindeki 2560 px kopya
+    eski_yol = _dosya_adi(eski, uzanti)
+    yol = eski_yol if eski_yol.exists() and eski_yol.stat().st_size > 0 else _indir(url, _dosya_adi(url, uzanti))
     sahibi = _html_temizle(meta.get("Artist", {}).get("value", "")) or "Bilinmiyor"
     return {
         "yol": str(yol), "tur": "video" if video else "foto",
@@ -140,7 +164,7 @@ def commons_ara(ara: str, sira: int = 0) -> dict:
     veri = _json("https://commons.wikimedia.org/w/api.php", {
         "action": "query", "format": "json", "generator": "search", "gsrnamespace": 6,
         "gsrsearch": f"{ara} filetype:bitmap", "gsrlimit": 30, "prop": "imageinfo",
-        "iiprop": "url|extmetadata|size", "iiurlwidth": 2560,
+        "iiprop": "url|extmetadata|size", "iiurlwidth": 1920,
     })
     uygun = []
     for sayfa in sorted(veri.get("query", {}).get("pages", {}).values(), key=lambda p: p.get("index", 0)):

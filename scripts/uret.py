@@ -212,19 +212,30 @@ def main() -> int:
         tanimlar = [g for p in veri["paragraflar"] for g in p.gorseller]
         tanimlar += [g for k in veri.get("shorts", []) or [] for p in k["paragraflar"] for g in p.gorseller]
         tanimlar.append(veri["kapak"]["gorsel"])
-        gorulen, hatalar = set(), []
+        bekleyen, gorulen = [], set()
         for t in tanimlar:
             anahtar = json.dumps(t, sort_keys=True, ensure_ascii=False)
-            if t.get("kaynak") in ("kart", "harita") or anahtar in gorulen:
-                continue
-            gorulen.add(anahtar)
-            try:
-                gorsel.coz(t, kok / "gecici_gorsel", (1920, 1080))
-            except Exception as hata:
-                hatalar.append(f"{t}: {type(hata).__name__}: {hata}")
-        print(f"{len(gorulen)} görsel denendi, {len(hatalar)} hata")
+            if t.get("kaynak") not in ("kart", "harita") and anahtar not in gorulen:
+                gorulen.add(anahtar)
+                bekleyen.append(t)
+        toplam = len(bekleyen)
+        hatalar: list[str] = []
+        for tur in range(1, 4):           # hız sınırına takılanlar sona bırakılıp yeniden denenir
+            kalan, hatalar = [], []
+            for n, t in enumerate(bekleyen, 1):
+                try:
+                    gorsel.coz(t, kok / "gecici_gorsel", (1920, 1080))
+                    print(f"[tur {tur}] {n}/{len(bekleyen)} tamam", flush=True)
+                except Exception as hata:
+                    kalan.append(t)
+                    hatalar.append(f"{t}: {type(hata).__name__}: {hata}")
+                    print(f"[tur {tur}] {n}/{len(bekleyen)} BEKLİYOR: {hata}", flush=True)
+            bekleyen = kalan
+            if not bekleyen:
+                break
+        print(f"{toplam} görsel, {len(hatalar)} eksik", flush=True)
         for h in hatalar:
-            print("HATA:", h)
+            print("HATA:", h, flush=True)
         return 1 if hatalar else 0
 
     if arg.sadece in ("hepsi", "kapak"):
