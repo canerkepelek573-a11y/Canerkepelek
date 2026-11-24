@@ -1,0 +1,34 @@
+{
+ "yuklenen": [
+  {
+   "tur": "ana",
+   "id": "J0dFA848dfk",
+   "yayin": "2026-11-25T16:00:00Z"
+  },
+  {
+   "tur": "shorts",
+   "id": "xXlNWa5W3tU",
+   "yayin": "2026-11-25T16:00:00Z"
+  },
+  {
+   "tur": "shorts",
+   "id": "Qm9vKmyF3r8",
+   "yayin": "2026-11-26T16:00:00Z"
+  },
+  {
+   "tur": "shorts",
+   "id": "BTY5PchrJXM",
+   "yayin": "2026-11-27T16:00:00Z"
+  },
+  {
+   "tur": "shorts",
+   "id": "iRUP4Y7uyOQ",
+   "yayin": "2026-11-28T16:00:00Z"
+  }
+ ],
+ "uyarilar": [
+  "J0dFA848dfk: oynatma listesine eklenemedi (Çözülmemiş Olaylar): <HttpError 409 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The operation was aborted.\". Details: \"[{'domain': 'youtube.CoreErrorDomain', 'reason': 'SERVICE_UNAVAILABLE'}]\">"
+ ],
+ "dogrulandi": true,
+ "oynatma_listesi": "Çözülmemiş Olaylar"
+}
