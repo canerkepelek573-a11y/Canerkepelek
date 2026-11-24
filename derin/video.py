@@ -19,6 +19,8 @@ from pathlib import Path
 from derin import gorsel, grafik
 
 FPS = 30
+# Aynı anda kodlanan klip sayısı (ölçüldü: 4 çekirdekte 2×auto, 4×1, 4×2, 4×auto iş parçacığı aynı hızda)
+KLIP_ESZAMANLI = max(1, os.cpu_count() or 2)
 FONTLAR = Path(__file__).resolve().parent.parent / "varliklar" / "fontlar"
 
 BICIMLER = {
@@ -92,16 +94,37 @@ def _hareket(sira: int, kare: int, grafik_mi: bool) -> tuple[str, str, str]:
     return f"{1 + hiz}", f"(iw-iw/zoom)*(1-on/{max(kare, 1)})", "ih/2-(ih/zoom/2)"
 
 
-def klip(sahne: Sahne, boyut: tuple[int, int], hedef: Path) -> Path:
+def kare_sayisi(sahne: Sahne) -> int:
+    """Sahnenin videodaki kare sayısı (birleştirilmiş videoda art arda gelir)."""
+    return max(1, round(sahne.bitis * FPS) - round(sahne.baslangic * FPS))
+
+
+# Son görünüm: karartma (vignette) + yazılar (ASS). Eskiden birleştirilmiş videonun üzerinde ikinci,
+# tam bir kodlama geçişiyle uygulanıyordu; artık her sahne klibinde, o klibin videodaki gerçek
+# zamanına kaydırılarak uygulanır ve klip doğrudan son kalitede kodlanır (tek kodlama).
+SON_KODLAMA = ["-c:v", "libx264", "-preset", "medium", "-crf", "20", "-profile:v", "high", "-pix_fmt", "yuv420p"]
+
+
+def _son_filtre(ofs_kare: int, ass: Path) -> str:
+    """Kareleri videodaki gerçek zamanlarına taşır (altyazı/yazı zamanlaması birebir aynı kalsın),
+    karartma + yazıları basar, sonra klibin zamanını tekrar sıfırdan başlatır."""
+    return (f"setpts=(N+{ofs_kare})/({FPS}*TB),vignette=PI/5,ass={ass}:fontsdir={FONTLAR},"
+            f"setpts=N/({FPS}*TB)")
+
+
+def klip(sahne: Sahne, boyut: tuple[int, int], hedef: Path, ofs_kare: int, ass: Path) -> Path:
+    """Sahne klibini son hâliyle üretir: Ken Burns hareketi + renk tonu + karartma + yazılar.
+
+    ofs_kare: klibin ilk karesinin bitmiş videodaki sıra numarası (önceki kliplerin kare toplamı).
+    """
     g, y = boyut
-    bas_kare, bit_kare = round(sahne.baslangic * FPS), round(sahne.bitis * FPS)
-    kare = max(1, bit_kare - bas_kare)
-    sure = kare / FPS
+    kare = kare_sayisi(sahne)
     kaynak = sahne.gorsel["yol"]
     ton = "eq=brightness=-0.03:saturation=0.82:contrast=1.05"
+    son = _son_filtre(ofs_kare, ass)
     if sahne.gorsel["tur"] == "video":
         vf = (f"scale={g}:{y}:force_original_aspect_ratio=increase,crop={g}:{y},fps={FPS},"
-              f"{ton},format=yuv420p")
+              f"{ton},format=yuv420p,{son}")
         komut = ["ffmpeg", "-v", "error", "-y", "-stream_loop", "-1", "-i", kaynak, "-an",
                  "-vf", vf, "-frames:v", str(kare)]
     else:
@@ -122,10 +145,10 @@ def klip(sahne: Sahne, boyut: tuple[int, int], hedef: Path) -> Path:
             if (g > y or not sahne.gorsel.get("sigdir")) and not kucuk_foto:   # varsayılan: ekranı doldur
                 on_olcek = f"scale={2 * g}:{2 * y}:force_original_aspect_ratio=increase,crop={2 * g}:{2 * y}"
         vf = (f"{on_olcek},zoompan=z='{z}':x='{x}':y='{yy}':d={kare}:s={g}x{y}:fps={FPS},"
-              f"{ton},format=yuv420p")
+              f"{ton},format=yuv420p,{son}")
         komut = ["ffmpeg", "-v", "error", "-y", "-loop", "1", "-i", kaynak, "-filter_complex", vf,
                  "-frames:v", str(kare)]
-    komut += ["-r", str(FPS), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", str(hedef)]
+    komut += ["-r", str(FPS), *SON_KODLAMA, str(hedef)]
     subprocess.run(komut, check=True)
     return hedef
 
@@ -271,9 +294,14 @@ def srt_dosyasi(zaman: dict, hedef: Path) -> Path:
 
 # ----------------------------------------------------------------------------- ana akış
 
-def olustur(zaman: dict, ses: Path, bicim: str, klasor: Path, marka: str = "Gerçek Gizem",
-            son_kart_sure: float = 0.0, son_kart: dict | None = None) -> dict:
-    """Videoyu üretir; klasor/video.mp4, klasor/altyazi.srt ve klasor/kaynaklar.txt yazar."""
+def plan_hazirla(zaman: dict, bicim: str, klasor: Path, son_kart_sure: float = 0.0,
+                 son_kart: dict | None = None) -> dict:
+    """Görselleri çözer ve sahne planını çıkarır (JSON'a yazılabilir).
+
+    Plan bir kez hazırlanır; ana video birden çok makinede parça parça kodlanırken her makine aynı
+    planı kullanır (görsel çözümü / ağ hataları makineden makineye farklı sonuç vermesin diye).
+    Her sahnenin `ofs_kare` değeri, o sahnenin bitmiş videodaki ilk karesinin sıra numarasıdır.
+    """
     boyut = BICIMLER[bicim]["boyut"]
     klasor.mkdir(parents=True, exist_ok=True)
     gecici = klasor / "gecici"
@@ -302,32 +330,109 @@ def olustur(zaman: dict, ses: Path, bicim: str, klasor: Path, marka: str = "Ger�
         sahneler[-1].bitis = zaman["sure"]
         sahneler.append(Sahne(kart, zaman["sure"], toplam, len(sahneler)))
 
-    with ThreadPoolExecutor(max_workers=max(1, (os.cpu_count() or 2))) as havuz:
-        klipler = list(havuz.map(lambda s: klip(s, boyut, gecici / f"sahne_{s.sira:04d}.mp4"), sahneler))
+    plan_sahneleri, ofs = [], 0
+    for s in sahneler:
+        kare = kare_sayisi(s)
+        plan_sahneleri.append({"gorsel": s.gorsel, "baslangic": s.baslangic, "bitis": s.bitis, "sira": s.sira,
+                               "ofs_kare": ofs, "kare": kare})
+        ofs += kare
+    return {"bicim": bicim, "toplam": toplam, "son_kart": [zaman["sure"], toplam] if son_kart_sure > 0 else None,
+            "sahneler": plan_sahneleri, "atiflar": atiflar, "uyarilar": uyarilar}
 
+
+def dilim(plan: dict, no: int, adet: int) -> list[int]:
+    """Planı kare sayısına göre `adet` eşit parçaya böler; `no`. parçanın (1'den başlar) sahne sıralarını verir.
+
+    Parçalar ardışıktır; her sahne tam olarak bir parçaya düşer.
+    """
+    if not 1 <= no <= adet:
+        raise ValueError(f"Geçersiz dilim {no}/{adet}")
+    toplam_kare = sum(s["kare"] for s in plan["sahneler"]) or 1
+    secilen = []
+    for k, s in enumerate(plan["sahneler"]):
+        orta = s["ofs_kare"] + s["kare"] / 2
+        if min(adet - 1, int(orta * adet / toplam_kare)) == no - 1:
+            secilen.append(k)
+    return secilen
+
+
+def _klip_yolu(klasor: Path, k: int) -> Path:
+    return klasor / "klipler" / f"sahne_{k:04d}.mp4"
+
+
+def klipleri_uret(zaman: dict, plan: dict, klasor: Path, secim: list[int] | None = None,
+                  marka: str = "Gerçek Gizem") -> list[Path]:
+    """Plandaki sahnelerin (ya da yalnızca `secim` sıralarının) kliplerini son hâliyle kodlar."""
+    bicim = plan["bicim"]
+    boyut = BICIMLER[bicim]["boyut"]
+    gecici = klasor / "gecici"
+    gecici.mkdir(parents=True, exist_ok=True)
+    (klasor / "klipler").mkdir(parents=True, exist_ok=True)
+    ass = ass_dosyasi(zaman, bicim, boyut, marka, gecici / "yazilar.ass",
+                      tuple(plan["son_kart"]) if plan.get("son_kart") else None)
+    sirala = range(len(plan["sahneler"])) if secim is None else secim
+    isler = []
+    for k in sirala:
+        d = plan["sahneler"][k]
+        if not Path(d["gorsel"]["yol"]).exists():
+            raise FileNotFoundError(f"Sahne {k} görseli yok: {d['gorsel']['yol']}")
+        isler.append((k, Sahne(d["gorsel"], d["baslangic"], d["bitis"], d["sira"]), d["ofs_kare"]))
+    # uzun klipler önce: havuzun sonunda tek bir uzun klip beklenmesin
+    isler.sort(key=lambda i: -kare_sayisi(i[1]))
+    with ThreadPoolExecutor(max_workers=KLIP_ESZAMANLI) as havuz:
+        list(havuz.map(lambda i: klip(i[1], boyut, _klip_yolu(klasor, i[0]), i[2], ass), isler))
+    return [_klip_yolu(klasor, k) for k in sirala]
+
+
+def _kare_say(video: Path) -> int:
+    cikti = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=nb_frames",
+                            "-of", "csv=p=0", str(video)], check=True, capture_output=True, text=True).stdout
+    return int(cikti.strip() or 0)
+
+
+def birlestir(plan: dict, ses: Path, klasor: Path) -> Path:
+    """Hazır klipleri yeniden kodlamadan uç uca ekler ve anlatıcının sesini ekler → klasor/video.mp4."""
+    klipler = [_klip_yolu(klasor, k) for k in range(len(plan["sahneler"]))]
+    eksik = [k.name for k in klipler if not k.exists() or k.stat().st_size == 0]
+    if eksik:
+        raise RuntimeError(f"Eksik sahne klipleri ({len(eksik)}): {', '.join(eksik[:10])}")
+    toplam = plan["toplam"]
+    gecici = klasor / "gecici"
+    gecici.mkdir(parents=True, exist_ok=True)
     liste = gecici / "liste.txt"
     liste.write_text("".join(f"file '{k.resolve()}'\n" for k in klipler), encoding="utf-8")
-    gorsel_mp4 = gecici / "gorsel.mp4"
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(liste),
-                    "-c", "copy", str(gorsel_mp4)], check=True)
-
-    ass = ass_dosyasi(zaman, bicim, boyut, marka, gecici / "yazilar.ass",
-                      (zaman["sure"], toplam) if son_kart_sure > 0 else None)
     cikti = klasor / "video.mp4"
-    vf = f"vignette=PI/5,ass={ass}:fontsdir={FONTLAR}"
     subprocess.run([
-        "ffmpeg", "-v", "error", "-y", "-i", str(gorsel_mp4), "-i", str(ses),
-        "-filter_complex", f"[0:v]{vf}[v];[1:a]apad=whole_dur={toplam:.3f}[a]",
-        "-map", "[v]", "-map", "[a]", "-t", f"{toplam:.3f}",
-        "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-profile:v", "high", "-pix_fmt", "yuv420p",
-        "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", str(cikti),
+        "ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(liste), "-i", str(ses),
+        "-filter_complex", f"[1:a]apad=whole_dur={toplam:.3f}[a]",
+        "-map", "0:v", "-map", "[a]", "-t", f"{toplam:.3f}",
+        "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", str(cikti),
     ], check=True)
+    # Görüntü–ses kayması olmasın: bitmiş videodaki kare sayısı plandakiyle aynı olmalı.
+    beklenen = min(sum(s["kare"] for s in plan["sahneler"]), math.ceil(round(toplam * FPS, 6)))
+    bulunan = _kare_say(cikti)
+    if abs(bulunan - beklenen) > 1:
+        raise RuntimeError(f"Kare sayısı tutmuyor: video {bulunan}, plan {beklenen}")
+    return cikti
 
+
+def bitir(zaman: dict, plan: dict, klasor: Path) -> dict:
+    """Altyazı (SRT), kaynak listesi ve rapor dosyalarını yazar."""
     srt_dosyasi(zaman, klasor / "altyazi.srt")
-    (klasor / "kaynaklar.txt").write_text("\n".join(atiflar) + "\n", encoding="utf-8")
-    rapor = {"video": str(cikti), "sure": toplam, "sahne_sayisi": len(sahneler), "uyarilar": uyarilar}
+    (klasor / "kaynaklar.txt").write_text("\n".join(plan["atiflar"]) + "\n", encoding="utf-8")
+    rapor = {"video": str(klasor / "video.mp4"), "sure": plan["toplam"], "sahne_sayisi": len(plan["sahneler"]),
+             "uyarilar": plan["uyarilar"]}
     (klasor / "rapor.json").write_text(json.dumps(rapor, ensure_ascii=False, indent=1), encoding="utf-8")
     return rapor
+
+
+def olustur(zaman: dict, ses: Path, bicim: str, klasor: Path, marka: str = "Gerçek Gizem",
+            son_kart_sure: float = 0.0, son_kart: dict | None = None) -> dict:
+    """Videoyu tek makinede üretir; klasor/video.mp4, klasor/altyazi.srt ve klasor/kaynaklar.txt yazar."""
+    plan = plan_hazirla(zaman, bicim, klasor, son_kart_sure, son_kart)
+    klipleri_uret(zaman, plan, klasor, marka=marka)
+    birlestir(plan, ses, klasor)
+    return bitir(zaman, plan, klasor)
 
 
 def bolum_zamanlari(zaman: dict) -> list[tuple[str, str]]:
