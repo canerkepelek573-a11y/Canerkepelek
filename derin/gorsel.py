@@ -53,7 +53,7 @@ def _wikimedia_kucukleri(url: str) -> list[str]:
     return [f"{kok}/thumb/{kova}/{ad}/{w}px-{ad}" for w in (1920, 1280, 960)]
 
 
-def _indir(url: str, hedef: Path, deneme_sayisi: int = 4) -> Path:
+def _indir(url: str, hedef: Path, deneme_sayisi: int = 2) -> Path:
     """Dosyayı indirir; 429 / 5xx durumunda (Retry-After'a uyarak) bekleyip yeniden dener.
     Wikimedia orijinali vermezse aynı görselin standart boyutlu küçük resmine geçer."""
     import time
@@ -77,7 +77,7 @@ def _indir(url: str, hedef: Path, deneme_sayisi: int = 4) -> Path:
                     bekle = float(yanit.headers.get("Retry-After", ""))
                 except ValueError:
                     bekle = 0
-                bekle = min(120, max(bekle, 15 * (deneme + 1)))
+                bekle = min(60, max(bekle, 15 * (deneme + 1)))
                 son_hata = f"{yanit.status_code}"
                 print(f"  {yanit.status_code}; {bekle:.0f} sn bekleniyor: {aday[:100]}", flush=True)
                 time.sleep(bekle)
