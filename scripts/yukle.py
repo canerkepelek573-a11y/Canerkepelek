@@ -41,6 +41,10 @@ def kalite_kapisi(kok: Path) -> list[str]:
     sorunlar += [u for u in ozet.get("uyarilar", []) if "alınamadı" in u or "süre" in u]
     if ozet.get("ana", {}).get("sure_dk", 0) < 20:
         sorunlar.append(f"ana video 20 dakikadan kısa: {ozet.get('ana')}")
+    # Ses denetimi ayrı bir işte de çalışabilir (ana video); sonucu hiç gelmediyse yükleme yapılmaz.
+    for parca in ["ana"] + sorted(p.name for p in kok.glob("shorts*") if p.is_dir()):
+        if (kok / parca / "video.mp4").exists() and not (kok / "onizleme" / f"{parca}_ses_kontrol.json").exists():
+            sorunlar.append(f"{parca}: ses kontrolü sonucu yok")
     for f in sorted((kok / "onizleme").glob("*_ses_kontrol.json")):
         d = json.loads(f.read_text(encoding="utf-8"))
         if d.get("hata") or d.get("sorunlu"):

@@ -27,6 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       yol: ${{ steps.bolum.outputs.yol }}
+      ad: ${{ steps.bolum.outputs.ad }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,10 +36,13 @@ jobs:
         id: bolum
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "yol=${{ inputs.bolum }}" >> "$GITHUB_OUTPUT"
+            yol="${{ inputs.bolum }}"
           else
-            echo "yol=$(git diff --name-only HEAD~1 HEAD -- 'bolumler/*/senaryo.yaml' | head -1 | xargs dirname)" >> "$GITHUB_OUTPUT"
+            yol=$(git diff --name-only HEAD~1 HEAD -- 'bolumler/*/senaryo.yaml' | head -1 | xargs dirname)
           fi
+          yol="${yol%/}"
+          echo "yol=$yol" >> "$GITHUB_OUTPUT"
+          echo "ad=$(basename "$yol")" >> "$GITHUB_OUTPUT"
 
   # Tüm arşiv görselleri önce tek makinede, sırayla ve sabırla indirilir; eksik varsa üretim başlamaz.
   gorseller:
@@ -66,7 +70,156 @@ jobs:
           path: .onbellek/gorsel
           key: gorsel-${{ github.run_id }}
 
-  # Ana video, 4 Shorts ve kapak aynı anda, ayrı makinelerde üretilir.
+  # ---------------------------------------------------------------- ana video (dağıtık)
+  # Ana video tek makinede ~37 dk kodlama + ses denetimi (art arda) sürüyordu. Artık:
+  #   ana_hazirla (ses + sahne planı, bir kez) → ana_sahne ×4 (klipler, aynı anda) → ana_birlestir
+  #                                            ↘ ana_kontrol (ses denetimi, kodlamayla aynı anda)
+  # Her makine aynı plan ve aynı görsellerle çalışır; birleştirilmiş video tek makinede üretilenle
+  # birebir aynıdır (yeniden kodlama yok, altyazı zamanlaması aynı).
+  ana_hazirla:
+    name: ana (ses + plan)
+    needs: [hazirla, gorseller]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Araçları kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q edge-tts==7.3.1 pyyaml pillow requests
+      - name: Görseller (önceden indirilmiş)
+        uses: actions/cache/restore@v4
+        with:
+          path: .onbellek/gorsel
+          key: gorsel-${{ github.run_id }}
+          fail-on-cache-miss: true
+      - name: Önbellek (ses ve haritalar)
+        uses: actions/cache@v4
+        with:
+          path: |
+            .onbellek/ses
+            .onbellek/harita
+          key: onbellek2-ana-${{ github.run_id }}
+          restore-keys: |
+            onbellek2-ana-
+            onbellek2-
+      - name: Testler
+        run: python -m unittest discover -s tests -t .
+      - name: Seslendir ve sahne planını çıkar
+        run: python scripts/uret.py "${{ needs.hazirla.outputs.yol }}" --sadece ana-hazirla
+      - name: Planı paylaş
+        uses: actions/upload-artifact@v4
+        with:
+          name: ana-temel
+          path: cikti/
+          retention-days: 1
+
+  ana_kontrol:
+    name: ana (ses kontrolü)
+    needs: [hazirla, ana_hazirla]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Araçları kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q edge-tts==7.3.1 pyyaml pillow requests faster-whisper
+      - uses: actions/download-artifact@v4
+        with:
+          name: ana-temel
+          path: cikti/
+      - name: Sesi yazıya çevirip metinle karşılaştır
+        run: python scripts/uret.py "${{ needs.hazirla.outputs.yol }}" --sadece ana-kontrol
+      - name: Yalnızca sonucu bırak
+        if: always()
+        run: rm -rf cikti/*/ana
+      - name: Sonucu sakla
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parca-ana-kontrol
+          path: cikti/
+          retention-days: 7
+
+  ana_sahne:
+    name: ana (sahneler ${{ matrix.dilim }})
+    needs: [hazirla, ana_hazirla]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: true
+      matrix:
+        dilim: [1, 2, 3, 4]       # dilim sayısı bu listeden okunur (strategy.job-total)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Araçları kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q edge-tts==7.3.1 pyyaml pillow requests
+      - uses: actions/download-artifact@v4
+        with:
+          name: ana-temel
+          path: cikti/
+      - name: Sahne kliplerini kodla
+        run: |
+          python scripts/uret.py "${{ needs.hazirla.outputs.yol }}" --sadece ana-sahne \
+            --dilim "${{ matrix.dilim }}/${{ strategy.job-total }}"
+      - name: Klipleri paylaş
+        uses: actions/upload-artifact@v4
+        with:
+          name: ana-klip-${{ matrix.dilim }}
+          path: cikti/${{ needs.hazirla.outputs.ad }}/ana/klipler/
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
+
+  ana_birlestir:
+    name: ana (birleştir)
+    needs: [hazirla, ana_hazirla, ana_sahne]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Araçları kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q edge-tts==7.3.1 pyyaml pillow requests
+      - uses: actions/download-artifact@v4
+        with:
+          name: ana-temel
+          path: cikti/
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ana-klip-*
+          path: cikti/${{ needs.hazirla.outputs.ad }}/ana/klipler/
+          merge-multiple: true
+      - name: Klipleri birleştir, sesi ekle
+        run: python scripts/uret.py "${{ needs.hazirla.outputs.yol }}" --sadece ana-birlestir
+      - name: Parçayı sakla
+        uses: actions/upload-artifact@v4
+        with:
+          name: parca-ana
+          path: cikti/
+          retention-days: 7
+
+  # 4 Shorts ve kapak aynı anda, ayrı makinelerde üretilir (ana video yukarıda).
   uret:
     needs: [hazirla, gorseller]
     runs-on: ubuntu-latest
@@ -74,7 +227,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        parca: [ana, shorts1, shorts2, shorts3, shorts4, kapak]
+        parca: [shorts1, shorts2, shorts3, shorts4, kapak]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -117,7 +270,7 @@ jobs:
           retention-days: 7
 
   topla:
-    needs: [hazirla, uret]
+    needs: [hazirla, uret, ana_birlestir, ana_kontrol]
     if: ${{ !cancelled() && needs.hazirla.result == 'success' && needs.uret.result != 'skipped' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -139,7 +292,9 @@ jobs:
           python scripts/uret.py "$yol" --sadece bilgi
           python scripts/ozet_birlestir.py "$ad"
       - name: YouTube'a yükle
-        if: github.event_name == 'workflow_dispatch' && inputs.yukle != 'hayir' && needs.uret.result == 'success'
+        if: >-
+          github.event_name == 'workflow_dispatch' && inputs.yukle != 'hayir' && needs.uret.result == 'success'
+          && needs.ana_birlestir.result == 'success' && needs.ana_kontrol.result == 'success'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}

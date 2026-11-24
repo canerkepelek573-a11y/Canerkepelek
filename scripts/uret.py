@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
 import json
 import shutil
 import subprocess
@@ -74,32 +75,111 @@ async def sesi_uret(paragraflar, klasor: Path) -> dict:
 KONTROL = False
 
 
+def ses_kontrolu(ad: str, klasor: Path, zaman: dict, paragraflar, kok: Path) -> dict:
+    """Sesi yazıya çevirip metinle karşılaştırır; sonucu onizleme/<ad>_ses_kontrol.json'a yazar."""
+    from derin import kontrol
+    try:
+        sonuc = kontrol.denetle(klasor / "ses.wav", zaman, [p.konusma for p in paragraflar])
+    except Exception as hata:      # kontrol aracı bozulursa video yine üretilsin, durum raporlansın
+        sonuc = {"hata": f"Ses kontrolü çalışmadı: {type(hata).__name__}: {hata}"}
+    (kok / "onizleme").mkdir(parents=True, exist_ok=True)
+    (kok / "onizleme" / f"{ad}_ses_kontrol.json").write_text(
+        json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")
+    return sonuc
+
+
+def onizleme_kareleri(ad: str, zaman: dict, video_yolu: str, kok: Path) -> None:
+    for t in (2, zaman["sure"] * 0.3, zaman["sure"] * 0.6):     # kontrol için örnek kareler
+        hedef = kok / "onizleme" / f"{ad}_{int(t):05d}.jpg"
+        hedef.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{t:.2f}", "-i", video_yolu,
+                        "-frames:v", "1", "-vf", "scale=960:-2", str(hedef)], check=False)
+
+
 def uret_bir(ad: str, paragraflar, bicim: str, kok: Path, **kwargs) -> tuple[dict, dict]:
     klasor = kok / ad
     zaman = asyncio.run(sesi_uret(paragraflar, klasor))
     if KONTROL:
-        from derin import kontrol
-        try:
-            sonuc = kontrol.denetle(klasor / "ses.wav", zaman, [p.konusma for p in paragraflar])
-        except Exception as hata:      # kontrol aracı bozulursa video yine üretilsin, durum raporlansın
-            sonuc = {"hata": f"Ses kontrolü çalışmadı: {type(hata).__name__}: {hata}"}
-        (kok / "onizleme").mkdir(parents=True, exist_ok=True)
-        (kok / "onizleme" / f"{ad}_ses_kontrol.json").write_text(
-            json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")
+        ses_kontrolu(ad, klasor, zaman, paragraflar, kok)
     rapor = video.olustur(zaman, klasor / "ses.wav", bicim, klasor, **kwargs)
-    for t in (2, zaman["sure"] * 0.3, zaman["sure"] * 0.6):     # kontrol için örnek kareler
-        hedef = kok / "onizleme" / f"{ad}_{int(t):05d}.jpg"
-        hedef.parent.mkdir(parents=True, exist_ok=True)
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{t:.2f}", "-i", rapor["video"],
-                        "-frames:v", "1", "-vf", "scale=960:-2", str(hedef)], check=False)
+    onizleme_kareleri(ad, zaman, rapor["video"], kok)
     shutil.rmtree(klasor / "gecici", ignore_errors=True)
+    shutil.rmtree(klasor / "klipler", ignore_errors=True)
     return zaman, rapor
+
+
+# Ana video birden çok makinede üretilirken (GitHub Actions) adımlar ayrı ayrı çalışır:
+#   ana-hazirla   → ses.wav + zaman.json + gecici/plan.json (görseller bir kez çözülür)
+#   ana-kontrol   → sesin yazıya çevrilip denetlenmesi (ayrı makinede, kodlamayla aynı anda)
+#   ana-sahne     → --dilim i/n: planın i. parçasının sahne klipleri (son kalitede)
+#   ana-birlestir → klipler uç uca + ses → video.mp4, altyazı, açıklama, önizleme, ozet_ana.json
+ANA_ADIMLARI = ("ana-hazirla", "ana-kontrol", "ana-sahne", "ana-birlestir")
+
+
+def _ana_ayar(veri: dict) -> dict:
+    return {"son_kart_sure": 15.0, "son_kart": veri.get("son_kart")}
+
+
+def ana_tamamla(veri: dict, kok: Path, zaman: dict, rapor: dict, ozet: dict) -> None:
+    atiflar = (kok / "ana" / "kaynaklar.txt").read_text(encoding="utf-8").split("\n")
+    (kok / "ana" / "aciklama.txt").write_text(aciklama(veri, zaman, [a for a in atiflar if a]), encoding="utf-8")
+    ozet["ana"] = {"sure_dk": round(rapor["sure"] / 60, 1), "sahne": rapor["sahne_sayisi"]}
+    ozet["uyarilar"] += rapor["uyarilar"]
+
+
+def ana_adimi(adim: str, veri: dict, kok: Path, dilim_arg: str, ozet: dict) -> bool:
+    """Dağıtık ana video adımını çalıştırır. ozet_ana.json yazılacaksa True döner."""
+    klasor = kok / "ana"
+    plan_yolu = klasor / "gecici" / "plan.json"
+    if adim == "ana-hazirla":
+        zaman = asyncio.run(sesi_uret(veri["paragraflar"], klasor))
+        plan = video.plan_hazirla(zaman, "ana", klasor, **_ana_ayar(veri))
+        # Kullanılan görselleri planın yanına kopyala: kodlama makineleri yalnızca bu klasörü indirir,
+        # görsel önbelleğine ya da ağa ihtiyaç duymaz (her makine birebir aynı dosyalarla çalışır).
+        hedef_klasor = klasor / "gecici" / "gorseller"
+        hedef_klasor.mkdir(parents=True, exist_ok=True)
+        for s in plan["sahneler"]:
+            kaynak = Path(s["gorsel"]["yol"])
+            if kaynak.resolve().is_relative_to(klasor.resolve()):
+                continue                       # kart / harita zaten gecici/ altında üretildi
+            hedef = hedef_klasor / (hashlib.sha1(str(kaynak).encode()).hexdigest()[:12] + kaynak.suffix)
+            if not hedef.exists():
+                shutil.copy2(kaynak, hedef)
+            s["gorsel"]["yol"] = str(hedef)
+        plan_yolu.write_text(json.dumps(plan, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"Plan: {len(plan['sahneler'])} sahne, {sum(s['kare'] for s in plan['sahneler'])} kare, "
+              f"{len(plan['uyarilar'])} uyarı")
+        return False
+    zaman = json.loads((klasor / "zaman.json").read_text(encoding="utf-8"))
+    if adim == "ana-kontrol":
+        sonuc = ses_kontrolu("ana", klasor, zaman, veri["paragraflar"], kok)
+        print(json.dumps(sonuc, ensure_ascii=False, indent=1))
+        return False
+    plan = json.loads(plan_yolu.read_text(encoding="utf-8"))
+    if adim == "ana-sahne":
+        no, adet = (int(x) for x in dilim_arg.split("/"))
+        secim = video.dilim(plan, no, adet)
+        video.klipleri_uret(zaman, plan, klasor, secim)
+        kare = sum(plan["sahneler"][k]["kare"] for k in secim)
+        print(f"Dilim {no}/{adet}: {len(secim)} sahne, {kare} kare kodlandı")
+        return False
+    # ana-birlestir
+    video.birlestir(plan, klasor / "ses.wav", klasor)
+    rapor = video.bitir(zaman, plan, klasor)
+    onizleme_kareleri("ana", zaman, rapor["video"], kok)
+    shutil.rmtree(klasor / "gecici", ignore_errors=True)
+    shutil.rmtree(klasor / "klipler", ignore_errors=True)
+    ana_tamamla(veri, kok, zaman, rapor, ozet)
+    return True
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("bolum", type=Path)
-    ap.add_argument("--sadece", default="hepsi", help="ana | shorts1..shorts4 | kapak | bilgi | hepsi")
+    ap.add_argument("--sadece", default="hepsi",
+                    help="ana | shorts1..shorts4 | kapak | bilgi | gorseller | hepsi | "
+                         "ana-hazirla | ana-kontrol | ana-sahne | ana-birlestir")
+    ap.add_argument("--dilim", default="", help="ana-sahne için: i/n (ör. 2/4)")
     ap.add_argument("--kontrol", action="store_true", help="sesi yazıya çevirip metinle karşılaştır")
     ap.add_argument("--yeniden-kontrol", default="",
                     help="üretilmiş parçaların sesini yeniden denetle (ör. ana,shorts1); render yapılmaz")
@@ -150,13 +230,18 @@ def main() -> int:
     if arg.sadece in ("hepsi", "kapak"):
         kapak.olustur(veri["kapak"], veri["bolum_no"], kok / "kapak.jpg")
 
+    if arg.sadece in ANA_ADIMLARI:
+        if arg.sadece == "ana-sahne" and not arg.dilim:
+            ap.error("ana-sahne için --dilim i/n gerekli")
+        if not ana_adimi(arg.sadece, veri, kok, arg.dilim, ozet):
+            return 0
+        (kok / "ozet_ana.json").write_text(json.dumps(ozet, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(json.dumps(ozet, ensure_ascii=False, indent=1))
+        return 0
+
     if arg.sadece in ("hepsi", "ana"):
-        zaman, rapor = uret_bir("ana", veri["paragraflar"], "ana", kok, son_kart_sure=15.0,
-                                son_kart=veri.get("son_kart"))
-        atiflar = (kok / "ana" / "kaynaklar.txt").read_text(encoding="utf-8").split("\n")
-        (kok / "ana" / "aciklama.txt").write_text(aciklama(veri, zaman, [a for a in atiflar if a]), encoding="utf-8")
-        ozet["ana"] = {"sure_dk": round(rapor["sure"] / 60, 1), "sahne": rapor["sahne_sayisi"]}
-        ozet["uyarilar"] += rapor["uyarilar"]
+        zaman, rapor = uret_bir("ana", veri["paragraflar"], "ana", kok, **_ana_ayar(veri))
+        ana_tamamla(veri, kok, zaman, rapor, ozet)
 
     for i, kisa in enumerate(veri.get("shorts", []) or [], 1):
         if arg.sadece not in ("hepsi", f"shorts{i}"):
