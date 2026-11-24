@@ -97,8 +97,18 @@ def _indir(url: str, hedef: Path, deneme_sayisi: int = 2) -> Path:
 
 def _json(url: str, params: dict | None = None, deneme_sayisi: int = 5) -> dict:
     """GET + JSON; geçici hatalarda (429, 5xx, ağ) bekleyip yeniden dener, sonunda açık hata verir."""
+    import json
     import time
 
+    # Başarılı cevaplar önbelleğe yazılır: görsel ön-indirme işi doldurur, render makineleri
+    # aynı API'ye tekrar sormaz (paralel işler Commons'tan 429 almasın).
+    anahtar = url + "?" + json.dumps(params or {}, sort_keys=True, ensure_ascii=False)
+    kayit = _dosya_adi("api:" + anahtar, ".json")
+    if kayit.exists() and kayit.stat().st_size > 0:
+        try:
+            return json.loads(kayit.read_text(encoding="utf-8"))
+        except ValueError:
+            pass
     son = ""
     for deneme in range(deneme_sayisi):
         try:
@@ -108,13 +118,23 @@ def _json(url: str, params: dict | None = None, deneme_sayisi: int = 5) -> dict:
         else:
             if yanit.ok:
                 try:
-                    return yanit.json()
+                    veri = yanit.json()
                 except ValueError:
                     son = f"JSON değil: {yanit.text[:120]!r}"
+                else:
+                    kayit.write_text(json.dumps(veri, ensure_ascii=False), encoding="utf-8")
+                    return veri
             else:
                 son = f"HTTP {yanit.status_code}"
                 if yanit.status_code < 500 and yanit.status_code != 429:
                     break
+                if yanit.status_code == 429:
+                    try:
+                        time.sleep(min(60, float(yanit.headers.get("Retry-After", "")) ))
+                        continue
+                    except ValueError:
+                        time.sleep(10 * (deneme + 1))
+                        continue
         time.sleep(3 * (deneme + 1))
     raise RuntimeError(f"{url} cevap vermedi: {son}")
 
