@@ -1,5 +1,27 @@
 {
  "bolum": "001-dyatlov",
- "uyarilar": [],
- "baslik": "Dyatlov Geçidi: Çadırı İçeriden Kesip Karanlığa Neden Kaçtılar?"
+ "uyarilar": [
+  "Paragraf 43: görsel alınamadı ({'kaynak': 'commons', 'dosya': 'File:Dyatlov pass incident avalanche possibility map 1.svg'}): https://commons.wikimedia.org/w/api.php cevap vermedi: HTTP 429"
+ ],
+ "baslik": "Dyatlov Geçidi: Çadırı İçeriden Kesip Karanlığa Neden Kaçtılar?",
+ "ana": {
+  "sure_dk": 29.9,
+  "sahne": 127
+ },
+ "shorts1": {
+  "sure_sn": 41.3,
+  "sahne": 5
+ },
+ "shorts2": {
+  "sure_sn": 56.0,
+  "sahne": 5
+ },
+ "shorts3": {
+  "sure_sn": 48.6,
+  "sahne": 6
+ },
+ "shorts4": {
+  "sure_sn": 42.5,
+  "sahne": 6
+ }
 }
