@@ -76,8 +76,9 @@ def main() -> int:
         sonuc["yuklenen"].append({"tur": "shorts", "id": sid, "yayin": zaman})
         print(f"Shorts yüklendi: https://youtu.be/{sid}")
 
-    if not all(youtube.dogrula(y["id"]) for y in sonuc["yuklenen"]):
-        print("HATA: yükleme doğrulanamadı; dosyalar silinmedi.")
+    if not all(youtube.dogrula(y["id"], arg.gizlilik, y["yayin"]) for y in sonuc["yuklenen"]):
+        print("HATA: yükleme istenen durumda değil (gizliye kilitlenmiş veya zamanlama kaybolmuş olabilir); "
+              "dosyalar silinmedi.")
         return 1
     (arg.bolum / "yuklendi.json").write_text(json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")
     shutil.rmtree(kok, ignore_errors=True)        # §7: yükleme doğrulandıktan sonra üretim dosyalarını sil

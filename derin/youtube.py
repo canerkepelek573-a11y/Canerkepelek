@@ -1,7 +1,7 @@
 """YouTube'a yükleme (YouTube Data API v3).
 
 Gerekli GitHub Secrets: YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN
-(kurulum: docs/youtube-kurulum.md). Kapsamlar: youtube.upload + youtube.force-ssl.
+(denetim/izin rehberi: docs/youtube-api-denetim.md). Kapsamlar: youtube.upload + youtube.force-ssl.
 
 Not: Google'ın denetiminden (audit) geçmemiş API projelerinin yüklediği videolar
 "gizli" olarak kilitlenir. Denetim onaylanana kadar yükleme elle yapılır.
@@ -63,8 +63,19 @@ def yukle(video: Path, baslik: str, aciklama: str, etiketler: list[str], gizlili
     return video_id
 
 
-def dogrula(video_id: str) -> bool:
-    """Yüklemenin gerçekten tamamlandığını doğrular (temizlikten önce çağrılır)."""
-    cevap = _servis().videos().list(part="status,processingDetails", id=video_id).execute()
+def dogrula(video_id: str, gizlilik: str, yayin_zamani: str | None = None) -> bool:
+    """Yüklemenin gerçekten istenen durumda olduğunu doğrular (temizlikten önce çağrılır).
+
+    Video yüklenmiş olsa bile YouTube onu gizliye kilitlediyse (denetlenmemiş API projesi) ya da
+    zamanlama kaybolduysa doğrulama geçmez; böylece üretim dosyaları silinmez.
+    """
+    cevap = _servis().videos().list(part="status", id=video_id).execute()
     ogeler = cevap.get("items", [])
-    return bool(ogeler) and ogeler[0]["status"].get("uploadStatus") in ("uploaded", "processed")
+    if not ogeler:
+        return False
+    durum = ogeler[0]["status"]
+    if durum.get("uploadStatus") not in ("uploaded", "processed"):
+        return False
+    if yayin_zamani:                     # zamanlanmış: yayına kadar gizli + yayın zamanı duruyor olmalı
+        return durum.get("privacyStatus") == "private" and bool(durum.get("publishAt"))
+    return durum.get("privacyStatus") == gizlilik
