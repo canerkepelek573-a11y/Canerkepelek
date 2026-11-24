@@ -1,0 +1,38 @@
+name: Ana videoyu oynatma listesine ekle
+
+on:
+  workflow_dispatch:
+    inputs:
+      bolum:
+        description: "Bölüm klasörü"
+        required: true
+        default: "bolumler/001-dyatlov"
+
+permissions:
+  contents: write
+
+jobs:
+  ekle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml google-api-python-client google-auth
+      - name: Listeye ekle
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/listeye_ekle.py "${{ inputs.bolum }}"
+      - name: Kaydı depoya gönder
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add "${{ inputs.bolum }}/yuklendi.json"
+          git diff --cached --quiet && exit 0
+          git commit -q -m "Oynatma listesi: $(basename "${{ inputs.bolum }}")"
+          for i in 1 2 3 4; do git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((i*5)); done
+          exit 1

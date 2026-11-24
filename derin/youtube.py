@@ -96,10 +96,20 @@ def listeye_ekle(video_id: str, liste_adi: str, uyarilar: list[str] | None = Non
                 body={"snippet": {"title": liste_adi, "defaultLanguage": "tr"},
                       "status": {"privacyStatus": "public"}},
             ).execute()["id"]
-        yt.playlistItems().insert(
-            part="snippet",
-            body={"snippet": {"playlistId": liste_id, "resourceId": {"kind": "youtube#video", "videoId": video_id}}},
-        ).execute()
+        import time
+
+        for deneme in range(5):   # yeni oluşturulan listeye hemen eklemede YouTube geçici 409 verebiliyor
+            try:
+                yt.playlistItems().insert(
+                    part="snippet",
+                    body={"snippet": {"playlistId": liste_id,
+                                      "resourceId": {"kind": "youtube#video", "videoId": video_id}}},
+                ).execute()
+                return liste_id
+            except Exception:  # noqa: BLE001
+                if deneme == 4:
+                    raise
+                time.sleep(15 * (deneme + 1))
         return liste_id
     except Exception as hata:  # noqa: BLE001
         _uyar(uyarilar, f"{video_id}: oynatma listesine eklenemedi ({liste_adi}): {hata}")
