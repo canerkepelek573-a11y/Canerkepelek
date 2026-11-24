@@ -31,7 +31,7 @@ def _servis():
 
 def yukle(video: Path, baslik: str, aciklama: str, etiketler: list[str], gizlilik: str = "private",
           yayin_zamani: str | None = None, kapak: Path | None = None, altyazi: Path | None = None,
-          yapay_zeka_beyani: bool = False) -> str:
+          yapay_zeka_beyani: bool = False, uyarilar: list[str] | None = None) -> str:
     """Videoyu yükler ve video kimliğini döndürür. Başarısızlıkta hata verir (sessiz geçmez)."""
     from googleapiclient.http import MediaFileUpload
 
@@ -52,15 +52,58 @@ def yukle(video: Path, baslik: str, aciklama: str, etiketler: list[str], gizlili
         _, cevap = istek.next_chunk()
     video_id = cevap["id"]
 
+    # Video yüklendikten sonra kapak/altyazı reddedilirse (ör. kanal telefonla doğrulanmamışsa özel kapak
+    # yüklenemez) yükleme yarıda bırakılmaz: uyarı kaydedilir, kanal sahibine bildirilir.
     if kapak and kapak.exists():
-        yt.thumbnails().set(videoId=video_id, media_body=MediaFileUpload(str(kapak))).execute()
+        try:
+            yt.thumbnails().set(videoId=video_id, media_body=MediaFileUpload(str(kapak))).execute()
+        except Exception as hata:  # noqa: BLE001
+            _uyar(uyarilar, f"{video_id}: kapak yüklenemedi: {hata}")
     if altyazi and altyazi.exists():
-        yt.captions().insert(
-            part="snippet",
-            body={"snippet": {"videoId": video_id, "language": "tr", "name": "Türkçe"}},
-            media_body=MediaFileUpload(str(altyazi), mimetype="application/octet-stream"),
-        ).execute()
+        try:
+            yt.captions().insert(
+                part="snippet",
+                body={"snippet": {"videoId": video_id, "language": "tr", "name": "Türkçe"}},
+                media_body=MediaFileUpload(str(altyazi), mimetype="application/octet-stream"),
+            ).execute()
+        except Exception as hata:  # noqa: BLE001
+            _uyar(uyarilar, f"{video_id}: altyazı yüklenemedi: {hata}")
     return video_id
+
+
+def _uyar(uyarilar: list[str] | None, mesaj: str) -> None:
+    print("UYARI:", mesaj[:400], flush=True)
+    if uyarilar is not None:
+        uyarilar.append(mesaj[:400])
+
+
+def listeye_ekle(video_id: str, liste_adi: str, uyarilar: list[str] | None = None) -> str | None:
+    """Videoyu kanaldaki adı verilen oynatma listesine ekler; liste yoksa herkese açık olarak oluşturur."""
+    try:
+        yt = _servis()
+        liste_id = None
+        sayfa = None
+        while liste_id is None:
+            cevap = yt.playlists().list(part="snippet", mine=True, maxResults=50, pageToken=sayfa).execute()
+            liste_id = next((o["id"] for o in cevap.get("items", [])
+                             if o["snippet"]["title"].strip().casefold() == liste_adi.strip().casefold()), None)
+            sayfa = cevap.get("nextPageToken")
+            if not sayfa:
+                break
+        if liste_id is None:
+            liste_id = yt.playlists().insert(
+                part="snippet,status",
+                body={"snippet": {"title": liste_adi, "defaultLanguage": "tr"},
+                      "status": {"privacyStatus": "public"}},
+            ).execute()["id"]
+        yt.playlistItems().insert(
+            part="snippet",
+            body={"snippet": {"playlistId": liste_id, "resourceId": {"kind": "youtube#video", "videoId": video_id}}},
+        ).execute()
+        return liste_id
+    except Exception as hata:  # noqa: BLE001
+        _uyar(uyarilar, f"{video_id}: oynatma listesine eklenemedi ({liste_adi}): {hata}")
+        return None
 
 
 def dogrula(video_id: str, gizlilik: str, yayin_zamani: str | None = None) -> bool:

@@ -52,6 +52,14 @@ def kalite_kapisi(kok: Path) -> list[str]:
     return sorunlar
 
 
+def oynatma_listesi(bolum: Path) -> str | None:
+    """Senaryodaki `oynatma_listesi` alanı (§5.8: video konusuna uygun tema listesine eklenir)."""
+    import yaml
+
+    veri = yaml.safe_load((bolum / "senaryo.yaml").read_text(encoding="utf-8")) or {}
+    return veri.get("oynatma_listesi")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("bolum", type=Path)
@@ -68,23 +76,38 @@ def main() -> int:
         return 1
     bilgi = json.loads((kok / "yukleme.json").read_text(encoding="utf-8"))
     zamanlar = yayin_zamanlari(1 + len(bilgi["shorts"])) if arg.zamanla else [None] * (1 + len(bilgi["shorts"]))
-    sonuc = {"yuklenen": []}
+    sonuc = {"yuklenen": [], "uyarilar": [], "dogrulandi": False}
+    kayit = arg.bolum / "yuklendi.json"
+
+    def kaydet() -> None:        # her yüklemeden sonra: yarıda kalsa bile hangi videoların yüklendiği bilinsin
+        kayit.write_text(json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")
 
     a = bilgi["ana"]
     vid = youtube.yukle(kok / a["video"], a["baslik"], a["aciklama"], a["etiketler"], arg.gizlilik, zamanlar[0],
-                        kapak=kok / a["kapak"], altyazi=kok / a["altyazi"])
+                        kapak=kok / a["kapak"], altyazi=kok / a["altyazi"], uyarilar=sonuc["uyarilar"])
     sonuc["yuklenen"].append({"tur": "ana", "id": vid, "yayin": zamanlar[0]})
-    print(f"Ana video yüklendi: https://youtu.be/{vid}")
+    kaydet()
+    print(f"Ana video yüklendi: https://youtu.be/{vid}", flush=True)
+    liste = oynatma_listesi(arg.bolum)
+    if liste:
+        sonuc["oynatma_listesi"] = liste
+        youtube.listeye_ekle(vid, liste, sonuc["uyarilar"])
     for k, zaman in zip(bilgi["shorts"], zamanlar[1:]):
-        sid = youtube.yukle(kok / k["video"], k["baslik"], k["aciklama"], k["etiketler"], arg.gizlilik, zaman)
+        sid = youtube.yukle(kok / k["video"], k["baslik"], k["aciklama"], k["etiketler"], arg.gizlilik, zaman,
+                            uyarilar=sonuc["uyarilar"])
         sonuc["yuklenen"].append({"tur": "shorts", "id": sid, "yayin": zaman})
-        print(f"Shorts yüklendi: https://youtu.be/{sid}")
+        kaydet()
+        print(f"Shorts yüklendi: https://youtu.be/{sid}", flush=True)
 
     if not all(youtube.dogrula(y["id"], arg.gizlilik, y["yayin"]) for y in sonuc["yuklenen"]):
+        kaydet()
         print("HATA: yükleme istenen durumda değil (gizliye kilitlenmiş veya zamanlama kaybolmuş olabilir); "
               "dosyalar silinmedi.")
         return 1
-    (arg.bolum / "yuklendi.json").write_text(json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")
+    sonuc["dogrulandi"] = True
+    for u in sonuc["uyarilar"]:
+        print("UYARI:", u)
+    kaydet()
     shutil.rmtree(kok, ignore_errors=True)        # §7: yükleme doğrulandıktan sonra üretim dosyalarını sil
     print("Yükleme doğrulandı, üretim dosyaları silindi.")
     return 0
