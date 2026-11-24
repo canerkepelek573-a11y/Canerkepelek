@@ -1,0 +1,80 @@
+name: Videoları YouTube'dan sil + sesleri temizle (fotoğraflar kalır)
+
+# Yalnızca kanal sahibinin açık talimatıyla çalıştırılır (CLAUDE.md §7.3).
+on:
+  workflow_dispatch:
+    inputs:
+      bolum:
+        description: "Bölüm klasörü"
+        required: true
+        default: "bolumler/001-dyatlov"
+      onay:
+        description: "Silmek için SIL yazın"
+        required: true
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  youtube:
+    if: inputs.onay == 'SIL'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q google-api-python-client google-auth
+      - name: YouTube'dan sil
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/sil.py "${{ inputs.bolum }}"
+      - name: Kaydı depoya gönder
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add -A "${{ inputs.bolum }}"
+          git commit -q -m "YouTube'dan silindi: $(basename "${{ inputs.bolum }}")"
+          for i in 1 2 3 4; do git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((i*5)); done
+          exit 1
+
+  temizlik:
+    if: inputs.onay == 'SIL'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Fotoğrafları geri yükle (eski + yeni görsel önbellekleri)
+        uses: actions/cache/restore@v4
+        with:
+          path: .onbellek
+          key: onbellek-ana-yok
+          restore-keys: onbellek-ana-
+      - uses: actions/cache/restore@v4
+        with:
+          path: .onbellek/gorsel
+          key: gorsel-yok
+          restore-keys: gorsel-
+      - name: Fotoğrafları kalıcı paket olarak sakla
+        uses: actions/upload-artifact@v4
+        with:
+          name: fotograflar-${{ github.run_number }}
+          path: .onbellek/gorsel
+          retention-days: 90
+          if-no-files-found: error
+      - name: Video/ses paketlerini ve ses önbelleklerini sil (fotoğraflar kalır)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          R: ${{ github.repository }}
+        run: |
+          gh api --paginate "repos/$R/actions/artifacts?per_page=100" --jq '.artifacts[] | "\(.id) \(.name)"' |
+          while read -r id ad; do
+            case "$ad" in fotograflar-*) echo "Kalıyor: $ad";; *) gh api -X DELETE "repos/$R/actions/artifacts/$id" && echo "Silindi: $ad";; esac
+          done
+          gh api --paginate "repos/$R/actions/caches?per_page=100" --jq '.actions_caches[] | "\(.id) \(.key)"' |
+          while read -r id key; do
+            case "$key" in gorsel-*) echo "Kalıyor: $key";; *) gh api -X DELETE "repos/$R/actions/caches/$id" && echo "Silindi: $key";; esac
+          done
