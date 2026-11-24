@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 .onbellek/
 cikti/
+.claude/worktrees/
